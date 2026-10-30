@@ -1,6 +1,7 @@
 // Image pipeline used by every photo tool. Runs inside a Web Worker (OffscreenCanvas),
 // so nothing here may touch the DOM.
 import { padJpeg, setJpegDpi } from "./jpeg";
+import { canvasToPng } from "./png";
 
 export type CropRect = { x: number; y: number; w: number; h: number };
 
@@ -48,7 +49,7 @@ export async function processImage(job: ImageJob): Promise<ImageResult> {
     let canvas = draw(bitmap, src, outW, outH, format);
 
     if (format === "png") {
-      const blob = await canvas.convertToBlob({ type: "image/png" });
+      const blob = canvasToPng(canvas);
       return { blob, width: outW, height: outH, quality: null, missed: false };
     }
 
@@ -119,6 +120,15 @@ function draw(bitmap: ImageBitmap, src: CropRect, outW: number, outH: number, fo
       y += (h - nh) / 2;
       h = nh;
     }
+  }
+
+  // A plain crop (no resize) must be a pixel copy. The crop box comes from screen coordinates and is
+  // fractional, which makes drawImage resample every pixel: softer output and a bigger PNG.
+  if (Math.abs(w - outW) < 1 && Math.abs(h - outH) < 1) {
+    x = Math.min(Math.max(0, Math.round(x)), bitmap.width - outW);
+    y = Math.min(Math.max(0, Math.round(y)), bitmap.height - outH);
+    w = outW;
+    h = outH;
   }
 
   // Step down in halves for big reductions — single-pass downscaling looks jagged.

@@ -1,5 +1,6 @@
 // Format conversion (anything decodable → JPG / PNG / WebP). Runs inside a Web Worker
 // (OffscreenCanvas), so nothing here may touch the DOM.
+import { canvasToPng } from "./png";
 
 export type ConvertFormat = "jpeg" | "png" | "webp";
 
@@ -29,7 +30,7 @@ export async function convertImage(job: ConvertJob): Promise<ConvertResult> {
     }
     ctx.drawImage(bitmap, 0, 0);
     const type = `image/${job.format}`;
-    const blob = await canvas.convertToBlob(job.format === "png" ? { type } : { type, quality: job.quality ?? 0.92 });
+    const blob = job.format === "png" ? canvasToPng(canvas) : await canvas.convertToBlob({ type, quality: job.quality ?? 0.92 });
     // Browsers that can't encode a format silently fall back to PNG (Safari does this for WebP).
     if (blob.type !== type) throw new Error(`This browser can't save ${FORMAT_EXT[job.format].toUpperCase()} files. Choose JPG or PNG, or use Chrome.`);
     return { blob, width, height };
