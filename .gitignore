@@ -1,0 +1,7 @@
+node_modules
+.next
+out
+.env*
+!.env.example
+.claude/worktrees
+.DS_Store
