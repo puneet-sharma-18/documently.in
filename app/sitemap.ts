@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { tools, presets, presetPath } from "@/lib/data";
+import { getGuides } from "@/lib/guides";
 import { absoluteUrl } from "@/lib/site";
 
 // Required for metadata routes under `output: "export"`.
@@ -24,6 +25,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: p.verifiedOn ? new Date(p.verifiedOn) : built,
       changeFrequency: (p.kind === "exam" ? "weekly" : "monthly") as "weekly" | "monthly",
       priority: 0.8,
+    })),
+    { url: absoluteUrl("/guides/"), lastModified: built, changeFrequency: "daily", priority: 0.7 },
+    ...getGuides().map((g) => ({
+      url: absoluteUrl(`/guides/${g.slug}/`),
+      lastModified: new Date(g.updated),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
     })),
     ...LEGAL.map((path) => ({
       url: absoluteUrl(path),

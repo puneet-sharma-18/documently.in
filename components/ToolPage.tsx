@@ -8,6 +8,7 @@ import ViewTracker from "./ViewTracker";
 import ToolRunner from "./tools/ToolRunner";
 import { presetPath, presetsFor, type ExamItem, type Preset, type Section, type Tool } from "@/lib/data";
 import { absoluteUrl, site } from "@/lib/site";
+import { guidesForTool } from "@/lib/guides";
 
 /** "Compress PDF" → "compress PDF", but leaves acronyms like "SSC CGL" alone. */
 const lowerFirst = (s: string) => (/^[A-Z][a-z]/.test(s) ? s.charAt(0).toLowerCase() + s.slice(1) : s);
@@ -109,6 +110,25 @@ export default function ToolPage({ tool, preset }: { tool: Tool; preset?: Preset
       </details>
 
       <Faq items={page.faqs} />
+
+      {guidesForTool(tool.slug).length > 0 && (
+        <nav aria-labelledby="guides" className="mt-10">
+          <h2 id="guides" className="eyebrow">
+            Guides
+          </h2>
+          <ul className="mt-3 space-y-2">
+            {guidesForTool(tool.slug)
+              .slice(0, 5)
+              .map((g) => (
+                <li key={g.slug}>
+                  <Link href={`/guides/${g.slug}/`} className="underline underline-offset-2 hover:text-brand-700">
+                    {g.h1}
+                  </Link>
+                </li>
+              ))}
+          </ul>
+        </nav>
+      )}
 
       <p className="mt-10 text-sm text-muted">
         Last updated {longDate(page.updated)}.{" "}

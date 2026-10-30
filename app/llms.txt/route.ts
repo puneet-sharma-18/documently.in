@@ -1,4 +1,5 @@
 import { tools, presets, presetPath, type Preset } from "@/lib/data";
+import { getGuides } from "@/lib/guides";
 import { absoluteUrl, site } from "@/lib/site";
 
 // Rendered once at build into out/llms.txt (static export supports GET route handlers with force-static).
@@ -47,6 +48,10 @@ export function GET() {
     "## Size and exam presets",
     "",
     ...presets.map((p) => `- [${p.h1}](${absoluteUrl(presetPath(p))}): ${spec(p) || p.metaDescription}`),
+    "",
+    "## Guides",
+    "",
+    ...getGuides().map((g) => `- [${g.h1}](${absoluteUrl(`/guides/${g.slug}/`)}): ${g.description}`),
     "",
     "## About and policies",
     "",

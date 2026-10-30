@@ -31,6 +31,7 @@ const groups: MenuGroup[] = [
 ];
 
 const links = [
+  { href: "/guides/", label: "Guides" },
   { href: "/about/", label: "About" },
   { href: "/contact/", label: "Contact" },
 ];
