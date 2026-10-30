@@ -3,7 +3,8 @@
  * (@jspawn/ghostscript-wasm, AGPL-3.0 — see /vendor/gs/LICENSE) entirely in the browser.
  * Documently's own source is published under AGPL-3.0: https://github.com/puneet-sharma-18/documently.in
  *
- * Message in:  { id, job: { bytes: ArrayBuffer, mode: "level" | "target", level?: "high"|"balanced"|"small", targetKB?: number, gray?: boolean } }
+ * Message in:  { id, job: { bytes: ArrayBuffer, mode: "level" | "target" | "unlock" | "protect", level?: "high"|"balanced"|"small",
+ *                           targetKB?: number, gray?: boolean, password?: string } }
  * Message out: { id, progress } … then { id, result: { bytes, resolution, reachedTarget } } or { id, error }
  */
 // This Ghostscript build ignores Module.print/printErr and binds console.log/warn when it loads,
@@ -110,16 +111,18 @@ function gsArgs(step, gray) {
   return args;
 }
 
-// Unlock: rewrite without encryption and without touching image quality. JPEGs pass through
-// byte-for-byte; every other image is stored losslessly (Ghostscript's default would re-encode to JPEG).
-function unlockArgs(password) {
-  var args = [
+// Rewrite without touching image quality. JPEGs pass through byte-for-byte; every other image is
+// stored losslessly (Ghostscript's default would re-encode to JPEG).
+function passThroughArgs() {
+  return [
     "-sDEVICE=pdfwrite",
     "-dCompatibilityLevel=1.7",
     "-dNOPAUSE",
     "-dQUIET",
     "-dBATCH",
     "-dSAFER",
+    // Keep each page's /Rotate as it is; the default (/PageByPage) re-orients pages by text direction.
+    "-dAutoRotatePages=/None",
     "-dPassThroughJPEGImages=true",
     "-dPassThroughJPXImages=true",
     "-dDownsampleColorImages=false",
@@ -130,8 +133,30 @@ function unlockArgs(password) {
     "-dAutoFilterGrayImages=false",
     "-dGrayImageFilter=/FlateEncode",
   ];
+}
+
+// Unlock: rewrite without encryption.
+function unlockArgs(password) {
+  var args = passThroughArgs();
   if (password) args.push("-sPDFPassword=" + password);
   args.push("-sOutputFile=/out.pdf", "/in.pdf");
+  return args;
+}
+
+// Protect: the same lossless rewrite, encrypted with 128-bit RC4 (revision 3, the strongest pdfwrite in
+// gs 9.56 offers). The owner password equals the open password and every permission stays allowed,
+// so whoever knows the password can print, copy and edit as before.
+function protectArgs(password) {
+  var args = passThroughArgs();
+  args.push(
+    "-sOwnerPassword=" + password,
+    "-sUserPassword=" + password,
+    "-dEncryptionR=3",
+    "-dKeyLength=128",
+    "-dPermissions=-4",
+    "-sOutputFile=/out.pdf",
+    "/in.pdf"
+  );
   return args;
 }
 
@@ -196,6 +221,14 @@ self.onmessage = async function (e) {
       progress("Removing the password…");
       var unlocked = await runOnce(input, null, false, unlockArgs(job.password || ""));
       self.postMessage({ id: id, result: { bytes: unlocked.buffer, resolution: 0, reachedTarget: true } }, [unlocked.buffer]);
+      return;
+    }
+
+    if (job.mode === "protect") {
+      if (!job.password) throw new Error("NO_PASSWORD");
+      progress("Adding the password…");
+      var locked = await runOnce(input, null, false, protectArgs(job.password));
+      self.postMessage({ id: id, result: { bytes: locked.buffer, resolution: 0, reachedTarget: true } }, [locked.buffer]);
       return;
     }
 

@@ -1,6 +1,7 @@
 // Runs public/workers/gs-worker.js in Node (same code the browser runs) against real PDFs.
-// Usage: node scripts/test-gs-worker.mjs <file.pdf> <targetKB | unlock:<password>> [...pairs]
-// Prints the chosen resolution, size, and whether the target was reached; unlock outputs are saved next to the input.
+// Usage: node scripts/test-gs-worker.mjs <file.pdf> <targetKB | unlock:<password> | protect:<password>> [...pairs]
+// Prints the chosen resolution, size, and whether the target was reached; unlock/protect outputs are saved next to
+// the input as <name>-unlocked.pdf / <name>-protected.pdf.
 import { readFileSync, writeFileSync } from "node:fs";
 import vm from "node:vm";
 
@@ -36,13 +37,14 @@ function loadWorker() {
 const args = process.argv.slice(2);
 for (let i = 0; i < args.length; i += 2) {
   const file = args[i];
-  const unlock = args[i + 1].startsWith("unlock:");
+  const pw = args[i + 1].match(/^(unlock|protect):(.*)$/s);
+  const unlock = Boolean(pw);
   const targetKB = Number(args[i + 1]);
   const { ctx, messages } = loadWorker();
   const bytes = readFileSync(file);
   const ab = bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.length);
   const t0 = Date.now();
-  const job = unlock ? { bytes: ab, mode: "unlock", password: args[i + 1].slice(7) } : { bytes: ab, mode: "target", targetKB };
+  const job = pw ? { bytes: ab, mode: pw[1], password: pw[2] } : { bytes: ab, mode: "target", targetKB };
   await ctx.onmessage({ data: { id: 1, job } });
   const res = messages.find((m) => m.result || m.error);
   if (res.error) {
@@ -50,7 +52,7 @@ for (let i = 0; i < args.length; i += 2) {
     continue;
   }
   if (unlock) {
-    const outPath = file.replace(/\.pdf$/, "-unlocked.pdf");
+    const outPath = file.replace(/\.pdf$/, pw[1] === "protect" ? "-protected.pdf" : "-unlocked.pdf");
     writeFileSync(outPath, new Uint8Array(res.result.bytes));
     console.log(`${file.split("/").pop()} ${args[i + 1]}: ${(bytes.length / 1000).toFixed(1)}KB -> ${(res.result.bytes.byteLength / 1000).toFixed(1)}KB, saved ${outPath.split("/").pop()}, ${Date.now() - t0}ms`);
     continue;

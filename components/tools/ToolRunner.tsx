@@ -16,6 +16,12 @@ const registry = {
   "rotate-pdf": dynamic(() => import("./RotatePdf")),
   "crop-image": dynamic(() => import("./CropImage")),
   "unlock-pdf": dynamic(() => import("./UnlockPdf")),
+  "add-page-numbers": dynamic(() => import("./AddPageNumbers")),
+  "watermark-pdf": dynamic(() => import("./WatermarkPdf")),
+  "organize-pdf": dynamic(() => import("./OrganizePdf")),
+  "protect-pdf": dynamic(() => import("./ProtectPdf")),
+  "convert-image": dynamic(() => import("./ConvertImage")),
+  "passport-photo-sheet": dynamic(() => import("./PassportPhotoSheet")),
 } as const;
 
 export const toolSlugs = Object.keys(registry);

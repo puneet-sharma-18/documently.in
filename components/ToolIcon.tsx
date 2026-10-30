@@ -11,6 +11,12 @@ const paths: Record<string, string> = {
   "rotate-pdf": "M7 3h8l4 4v8 M15 3v4h4 M4 13a8 8 0 0 0 14 5 M4 13V9 M4 13h4",
   "crop-image": "M6 2v16h16 M2 6h16v16",
   "unlock-pdf": "M5 11h14v10H5z M8 11V7a4 4 0 0 1 7.5-2 M12 15v2",
+  "add-page-numbers": "M6 3h8l4 4v14H6z M14 3v4h4 M9 9h6 M9 12h6 M11 16.2l1.2-1.2v4",
+  "watermark-pdf": "M6 3h8l4 4v14H6z M14 3v4h4 M8.5 18l7-7 M8.5 14l4-4",
+  "organize-pdf": "M3 3h7v9H3z M14 12h7v9h-7z M13 5h4a2 2 0 0 1 2 2v2 M17 7l2 2 2-2 M11 19H7a2 2 0 0 1-2-2v-2 M3 17l2-2 2 2",
+  "protect-pdf": "M5 11h14v10H5z M8 11V7a4 4 0 0 1 8 0v4 M12 15v2",
+  "convert-image": "M3 4h8v8H3z M13 12h8v8h-8z M14 4h3a3 3 0 0 1 3 3v2 M18 7l2 2 2-2 M10 20H7a3 3 0 0 1-3-3v-2 M6 17l-2-2-2 2",
+  "passport-photo-sheet": "M3 2h18v20H3z M6 5h5v6H6z M13 5h5v6h-5z M6 13h5v6H6z M13 13h5v6h-5z",
 };
 
 export default function ToolIcon({ slug, className = "h-6 w-6" }: { slug: string; className?: string }) {

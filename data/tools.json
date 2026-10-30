@@ -94,7 +94,8 @@
       "compress-pdf/to-100kb",
       "compress-pdf/to-200kb",
       "compress-pdf/to-500kb",
-      "unlock-pdf"
+      "unlock-pdf",
+      "watermark-pdf"
     ],
     "updated": "2026-10-31",
     "howTo": "How to compress a PDF"
@@ -185,7 +186,8 @@
       "crop-image",
       "compress-pdf",
       "compress-image/to-20kb",
-      "compress-image/to-10kb"
+      "compress-image/to-10kb",
+      "convert-image"
     ],
     "updated": "2026-10-31",
     "howTo": "How to compress an image to a size in KB"
@@ -272,7 +274,8 @@
       "compress-image",
       "crop-image",
       "resize-image/passport-size-photo",
-      "resize-image/signature-resize"
+      "resize-image/signature-resize",
+      "passport-photo-sheet"
     ],
     "updated": "2026-10-31",
     "howTo": "How to resize an image in pixels, cm or KB"
@@ -369,7 +372,8 @@
       "exam-photo-signature/neet-ug",
       "exam-photo-signature/jee-main",
       "exam-photo-signature/upsc-cse",
-      "exam-photo-signature/ibps-po"
+      "exam-photo-signature/ibps-po",
+      "convert-image"
     ],
     "updated": "2026-10-31",
     "howTo": "How to make an exam photo and signature"
@@ -628,7 +632,8 @@
       "compress-pdf",
       "jpg-to-pdf",
       "rotate-pdf",
-      "unlock-pdf"
+      "unlock-pdf",
+      "organize-pdf"
     ],
     "updated": "2026-10-31",
     "howTo": "How to merge PDF files"
@@ -716,7 +721,8 @@
       "merge-pdf",
       "compress-pdf",
       "pdf-to-jpg",
-      "rotate-pdf"
+      "rotate-pdf",
+      "organize-pdf"
     ],
     "updated": "2026-10-31",
     "howTo": "How to split a PDF"
@@ -805,7 +811,9 @@
       "merge-pdf",
       "split-pdf",
       "compress-pdf",
-      "jpg-to-pdf"
+      "jpg-to-pdf",
+      "organize-pdf",
+      "add-page-numbers"
     ],
     "updated": "2026-10-31",
     "howTo": "How to rotate PDF pages"
@@ -889,7 +897,8 @@
       "compress-pdf",
       "merge-pdf",
       "split-pdf",
-      "pdf-to-jpg"
+      "pdf-to-jpg",
+      "protect-pdf"
     ],
     "updated": "2026-10-31"
   },
@@ -976,9 +985,348 @@
       "exam-photo-signature",
       "resize-image",
       "compress-image",
-      "resize-image/passport-size-photo"
+      "resize-image/passport-size-photo",
+      "passport-photo-sheet"
     ],
     "updated": "2026-10-31",
     "howTo": "How to crop an image"
+  },
+  {
+    "slug": "add-page-numbers",
+    "name": "Add Page Numbers",
+    "category": "pdf",
+    "short": "Number every page of a PDF: 1, Page 1 or Page 1 of N.",
+    "h1": "Add Page Numbers to PDF Online",
+    "metaTitle": "Add Page Numbers to PDF Free | Documently",
+    "metaDescription": "Number PDF pages at the bottom or top, as 1, Page 1 or Page 1 of N. Start from any number or skip the cover page. Free, no upload, works on phones.",
+    "answer": "To add page numbers to a PDF, select the file, pick a position such as bottom centre, choose a format like Page 1 of N, and tap Add page numbers. The numbers are stamped on each page in your browser, and the file is never uploaded.",
+    "howTo": "How to add page numbers to a PDF",
+    "keyFacts": "Documently Add Page Numbers stamps a number on every page of a PDF. It offers six positions: bottom centre, bottom right, bottom left, top centre, top right and top left. The number can read 1, Page 1 or Page 1 of N, in small, medium or large text. Numbering can start from any value, which helps when the PDF continues an earlier part of a file, and the first page can be skipped so a cover page stays clean. Pages that are stored sideways in the PDF still get their number in the corner you chose, the right way up. The tool writes the numbers on top of the existing pages and does not re-compress anything, so scans and text keep their original quality. The PDF is processed inside the browser and never uploaded, so project reports, theses and application bundles stay private. Password-protected PDFs must be unlocked first.",
+    "intro": "Long application bundles, project reports and theses are easier to check when every page carries a number. Pick where the number goes and how it reads, and the tool stamps it on each page without touching the rest of the content.",
+    "steps": [
+      "Select or drop your PDF into the upload box.",
+      "Choose the position, for example bottom centre or bottom right.",
+      "Pick a format (1, Page 1 or Page 1 of N), the text size and the starting number.",
+      "Tick Skip the first page if your PDF has a cover page.",
+      "Tap Add page numbers and download the numbered PDF."
+    ],
+    "sections": [
+      {
+        "heading": "Good to know",
+        "bullets": [
+          "In Page 1 of N, N is the last page number printed, so a skipped cover isn't counted.",
+          "Merge your documents first with Merge PDF, then number the combined file once.",
+          "Numbers are added as text in the standard Helvetica font, in black.",
+          "Locked PDF? Remove the password with Unlock PDF, then add numbers."
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "q": "How do I add page numbers to a PDF on my phone?",
+        "a": "Open this page in Chrome or Safari, pick the PDF from your files, choose the position and format, and tap Add page numbers. It is free, needs no app or signup, and the file stays on your phone."
+      },
+      {
+        "q": "Can I start numbering from a number other than 1?",
+        "a": "Yes. Type any starting number in the Start numbering at box. This is handy when the PDF is the second part of a longer document and should continue from, say, page 21."
+      },
+      {
+        "q": "How do I leave the cover page without a number?",
+        "a": "Tick Skip the first page. Page 1 stays clean and numbering begins on page 2, starting from the number you set."
+      },
+      {
+        "q": "Will adding page numbers reduce the quality of my PDF?",
+        "a": "No. The numbers are written on top of each page and nothing else is re-compressed, so text, scans and photos look exactly as before."
+      }
+    ],
+    "related": [
+      "merge-pdf",
+      "organize-pdf",
+      "watermark-pdf",
+      "compress-pdf"
+    ],
+    "updated": "2026-10-31"
+  },
+  {
+    "slug": "watermark-pdf",
+    "name": "Watermark PDF",
+    "category": "pdf",
+    "short": "Stamp text like “For KYC only” across every page of a PDF.",
+    "h1": "Add Watermark to PDF — Mark Aadhaar & PAN Copies",
+    "metaTitle": "Watermark PDF Online Free — For KYC Only | Documently",
+    "metaDescription": "Stamp “For KYC only” or any text across Aadhaar, PAN or other PDF copies. Diagonal, centred or repeated, grey or red. Free, no upload, works on phones.",
+    "answer": "To watermark a PDF, select the file, type text such as “For KYC with XYZ Bank only”, pick diagonal, centre or repeat all over, and tap Add watermark. The text is stamped on every page in your browser, and the file is never uploaded.",
+    "howTo": "How to add a watermark to a PDF",
+    "keyFacts": "Documently Watermark PDF stamps a line of text across every page of a PDF. The text can run diagonally corner to corner, sit across the centre, or repeat all over the page, in grey or red, at light, medium or strong opacity and three sizes. Long text is shrunk automatically so it never runs off the page. A common use in India is marking copies of Aadhaar, PAN, passports or bank statements with the purpose they are shared for, such as “For KYC with XYZ Bank only”, so a copy that leaks is harder to reuse elsewhere. Naming the organisation and the purpose works better than a generic “COPY”. The watermark is added on top of the original pages without re-compressing them. Watermark text currently supports English letters, numbers and common symbols. The PDF is processed inside the browser and is never uploaded, so identity documents stay on the device.",
+    "intro": "Sharing a copy of your Aadhaar, PAN or bank statement? Stamp it with who it is for and why. A copy marked “For KYC with XYZ Bank only” is much harder to misuse than a clean one, and it takes a few seconds here.",
+    "steps": [
+      "Select or drop your PDF into the upload box.",
+      "Type the watermark text, or tap a suggestion like For KYC only.",
+      "Choose the layout (diagonal, centre or repeat all over), strength, size and colour.",
+      "Tap Add watermark and download the marked PDF."
+    ],
+    "sections": [
+      {
+        "heading": "What to write on an ID copy",
+        "bullets": [
+          "Name the receiver and the purpose: “For SBI account opening only”.",
+          "Add the date if you like: “For rental agreement, Oct 2026”.",
+          "Use Repeat all over for identity documents, so the text can't simply be cropped out.",
+          "Keep it light enough that the details underneath can still be read."
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "q": "How do I write “For KYC only” on my Aadhaar PDF?",
+        "a": "Select the Aadhaar PDF, type For KYC only (ideally with the bank or company name), choose Repeat all over or Diagonal, and tap Add watermark. If the e-Aadhaar is password-protected, remove the password with Unlock PDF first."
+      },
+      {
+        "q": "Can someone remove the watermark?",
+        "a": "A determined person with PDF editing software may be able to. The watermark is a deterrent and a clear record of purpose, not a lock. For extra safety, add a password with Protect PDF as well."
+      },
+      {
+        "q": "Can I write the watermark in Hindi?",
+        "a": "Not yet. The watermark uses a built-in PDF font that covers English letters, numbers and common symbols only."
+      },
+      {
+        "q": "Will the watermark make my document hard to read?",
+        "a": "Not at the default Medium strength, which keeps the text underneath readable. Choose Light for a fainter mark or Strong for a bolder one."
+      }
+    ],
+    "related": [
+      "protect-pdf",
+      "unlock-pdf",
+      "compress-pdf",
+      "add-page-numbers"
+    ],
+    "updated": "2026-10-31"
+  },
+  {
+    "slug": "organize-pdf",
+    "name": "Organize PDF",
+    "category": "pdf",
+    "short": "Reorder, rotate and delete PDF pages with a page preview.",
+    "h1": "Organize PDF Pages — Reorder, Rotate & Delete",
+    "metaTitle": "Organize PDF Pages: Reorder & Delete Free | Documently",
+    "metaDescription": "See every PDF page as a preview, then move pages, rotate single pages or delete the ones you don't need. Free, no upload, built for phone screens.",
+    "answer": "To organize a PDF, select the file, then use the arrows under each page preview to move it, ↻ to rotate it and ✕ to remove it, and tap Save PDF. Everything happens in your browser, and the file is never uploaded.",
+    "howTo": "How to reorder and delete PDF pages",
+    "keyFacts": "Documently Organize PDF shows a preview of every page in a PDF and lets you rearrange the document before saving. Each page has four large buttons: move earlier, move later, rotate 90° right, and remove. Removed pages stay visible, greyed out, with a Restore button, and Undo all changes returns the original order. The page count updates as you go, and Save PDF writes a new file in the order shown. Pages are copied as they are, not re-encoded, so text stays selectable and scans keep their quality. Rotation changes only the page's orientation setting, so it is lossless too. The buttons are sized for fingers rather than a mouse, so the tool works fully on a phone. The PDF is opened and saved inside the browser and is never uploaded, which keeps certificates, statements and forms private. Password-protected PDFs must be unlocked first.",
+    "intro": "Scanned pages out of order, a blank page in the middle, one sheet upside down: fix them all in one place. You see every page, tap to rearrange, and save a clean PDF.",
+    "steps": [
+      "Select or drop your PDF into the upload box and wait for the page previews.",
+      "Use ← and → under a page to move it earlier or later.",
+      "Tap ↻ to rotate a page, or ✕ to remove it (Restore brings it back).",
+      "Tap Save PDF and download the reorganised file."
+    ],
+    "sections": [
+      {
+        "heading": "Handy for",
+        "bullets": [
+          "Putting marksheets or certificates in the order a portal asks for.",
+          "Dropping blank or duplicate pages from a scan before upload.",
+          "Fixing a single sideways page without rotating the whole file.",
+          "Removing pages you don't want to share, such as unrelated statement pages."
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "q": "How do I delete a page from a PDF?",
+        "a": "Select the PDF, tap ✕ under the page you don't want, and tap Save PDF. The new file leaves that page out. If you remove the wrong one, tap Restore before saving."
+      },
+      {
+        "q": "How do I change the order of pages in a PDF on my phone?",
+        "a": "Open this page in your phone's browser, select the PDF, and tap ← or → under a page to move it one place at a time. The numbers on the cards show the new order. Then tap Save PDF."
+      },
+      {
+        "q": "Does reorganising a PDF reduce its quality?",
+        "a": "No. Pages are copied into the new file as they are, without re-compressing, and rotation only changes the page's orientation setting."
+      },
+      {
+        "q": "Can I combine pages from two PDFs here?",
+        "a": "Use Merge PDF to join the files first, then open the merged PDF here to put the pages in the order you want."
+      }
+    ],
+    "related": [
+      "merge-pdf",
+      "split-pdf",
+      "rotate-pdf",
+      "add-page-numbers"
+    ],
+    "updated": "2026-10-31"
+  },
+  {
+    "slug": "protect-pdf",
+    "name": "Protect PDF",
+    "category": "pdf",
+    "short": "Add an open password to a PDF before you share it.",
+    "h1": "Protect PDF with Password — Lock a PDF Online",
+    "metaTitle": "Protect PDF with Password Free | Documently",
+    "metaDescription": "Add an open password to any PDF with 128-bit encryption before you email or share it. Free, no upload: the file and password stay on your device.",
+    "answer": "To password-protect a PDF, select the file, type a password twice, and tap Add password. The PDF is encrypted in your browser with 128-bit encryption, so nobody can open it without the password, and neither the file nor the password is uploaded.",
+    "howTo": "How to password-protect a PDF",
+    "keyFacts": "Documently Protect PDF adds an open password to a PDF, so any PDF reader asks for the password before showing a page. The file is encrypted with 128-bit RC4 encryption, the standard supported by virtually every PDF reader, including phone viewers and browsers. Printing and copying stay allowed for anyone who knows the password. The rewrite keeps images at their original quality: JPEG photos pass through unchanged and other images are stored losslessly. Passwords can use English letters, numbers, symbols and spaces, from 4 to 32 characters. There is no recovery option, so keep the password somewhere safe; forgotten passwords cannot be reset. Encryption runs inside the browser with Ghostscript compiled to WebAssembly, and neither the PDF nor the password is ever uploaded. The PDF engine, about 11 MB, downloads once on first use and then loads from the browser cache. To remove a password later, use Unlock PDF.",
+    "intro": "Emailing a salary slip, ITR or bank statement? Add a password first, then share the password separately, for example over a call or message. The PDF is locked on your device, and its pages and images stay exactly as they were.",
+    "steps": [
+      "Select or drop your PDF into the upload box.",
+      "Type a password, then type it again to confirm.",
+      "Tap Add password and download the protected PDF.",
+      "Share the password separately from the file."
+    ],
+    "sections": [
+      {
+        "heading": "Choosing a password",
+        "bullets": [
+          "Longer is stronger: three or four unrelated words beat a short code.",
+          "Avoid your date of birth or mobile number. Banks often use those, and they are easy to guess.",
+          "Passwords are case-sensitive. The receiver must type it exactly.",
+          "Already locked? Remove the old password with Unlock PDF, then set a new one here."
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "q": "How do I put a password on a PDF for free?",
+        "a": "Select your PDF here, type the password twice and tap Add password. Download the new file: it asks for the password whenever it is opened. No signup or app is needed."
+      },
+      {
+        "q": "Is my password or file sent anywhere?",
+        "a": "No. The encryption runs in your browser, and neither the PDF nor the password leaves your device."
+      },
+      {
+        "q": "I forgot the password I set. Can it be recovered?",
+        "a": "No. There is no recovery or reset, which is what makes the protection meaningful. Keep the original unprotected file, or note the password somewhere safe."
+      },
+      {
+        "q": "Will the protected PDF open on phones?",
+        "a": "Yes. The 128-bit encryption used here is supported by standard PDF readers on Android, iPhone, Windows and Mac, as well as by Chrome and other browsers."
+      }
+    ],
+    "related": [
+      "unlock-pdf",
+      "watermark-pdf",
+      "compress-pdf",
+      "merge-pdf"
+    ],
+    "updated": "2026-10-31"
+  },
+  {
+    "slug": "convert-image",
+    "name": "Convert Image",
+    "category": "image",
+    "short": "HEIC, WebP or PNG to JPG, PNG or WebP. Batch, no upload.",
+    "h1": "Convert Image — HEIC, WebP and PNG to JPG",
+    "metaTitle": "HEIC to JPG & Image Converter – Free, No Upload | Documently",
+    "metaDescription": "Convert iPhone HEIC, WebP and PNG photos to JPG, PNG or WebP. Up to 30 files at once, ZIP download. Free, works on phones, files stay on your device.",
+    "answer": "To convert an image, select one or more photos (HEIC, WebP, PNG, JPG and more), pick JPG, PNG or WebP, and tap Convert. Choose JPG for exam and government portals; files are converted in your browser and never uploaded.",
+    "howTo": "How to convert an image to JPG",
+    "keyFacts": "Documently Convert Image is a free tool that turns photos into JPG, PNG or WebP inside the browser. It reads iPhone HEIC and HEIF files, WebP, PNG, JPG, GIF, BMP and any other format the browser can open, up to 30 files per batch, with a single ZIP download for batches. HEIC matters because iPhones save photos in that format by default, while most Indian exam and government portals accept only JPG. Safari can open HEIC itself; on Chrome, Edge and Android the page fetches a HEIC decoder (libheif) only when a HEIC file is chosen, so other conversions stay light. Photos are turned upright using their orientation tag, so a sideways phone picture comes out the right way up. JPG has no transparency, so transparent areas become white. Converting re-saves the image and drops embedded metadata such as camera details and GPS location. Files are processed on the device and never uploaded. For a KB limit, run Compress Image afterwards.",
+    "intro": "Portals that want JPG reject iPhone HEIC photos and many WebP downloads. This tool converts them in one go, right in your browser. Pick the files, choose JPG, PNG or WebP, and download. Nothing is uploaded.",
+    "steps": [
+      "Select or drop your photos: HEIC, WebP, PNG, JPG and more, up to 30 at a time.",
+      "Choose the output format: JPG, PNG or WebP.",
+      "Tap Convert and wait a moment; iPhone HEIC photos take a little longer the first time.",
+      "Download the file, or all files as one ZIP."
+    ],
+    "sections": [
+      {
+        "heading": "Which format should you pick?",
+        "bullets": [
+          "JPG: for exam, job and government forms, and for sharing. Smallest files for photos.",
+          "PNG: for screenshots, signatures and logos that need sharp edges or transparency.",
+          "WebP: for websites. Some browsers, including Safari, can't save WebP; pick JPG or PNG there."
+        ]
+      },
+      {
+        "heading": "Good to know",
+        "bullets": [
+          "Converting doesn't shrink pixels. If a form has a KB limit, use Compress Image or Resize Image next.",
+          "Converting to JPG turns transparent areas white.",
+          "Location and camera details stored in the original photo are not copied to the new file."
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "q": "How do I convert an iPhone HEIC photo to JPG?",
+        "a": "Select the HEIC photo here, keep JPG as the format, and tap Convert. It works in Safari, Chrome and on Android phones. The photo is converted in your browser and is never uploaded."
+      },
+      {
+        "q": "Why won't the exam portal accept my iPhone photo?",
+        "a": "iPhones save photos as HEIC by default, and most portals only accept JPG. Convert the photo to JPG here, then resize or compress it if the form also lists pixel or KB limits."
+      },
+      {
+        "q": "Can I convert many photos at once?",
+        "a": "Yes. Select up to 30 photos in one go. Each is converted separately and you can save them one by one or download all of them as a single ZIP file."
+      },
+      {
+        "q": "Does converting reduce quality?",
+        "a": "PNG output is lossless. JPG and WebP use a high quality setting, so the difference is hard to see. Pixel size stays the same; use Compress Image if you also need a smaller file."
+      }
+    ],
+    "related": [
+      "compress-image",
+      "resize-image",
+      "exam-photo-signature",
+      "passport-photo-sheet"
+    ],
+    "updated": "2026-10-31"
+  },
+  {
+    "slug": "passport-photo-sheet",
+    "name": "Passport Photo Sheet",
+    "category": "image",
+    "short": "Print 8 passport photos on one 4×6 sheet, or a full A4 page.",
+    "h1": "Passport Size Photo Sheet — Print 8 on 4×6 or 30 on A4",
+    "metaTitle": "Passport Size Photo Sheet Maker – 4×6 & A4 | Documently",
+    "metaDescription": "Make a printable sheet of passport size photos: 8 copies of 35×45 mm on 4×6 in, or 30 on A4. JPG and exact-size PDF with cut lines. Free, no upload.",
+    "answer": "To make a passport photo sheet, select your photo, crop it in the 35 × 45 mm box, pick 4×6 in photo paper or A4, and tap Make photo sheet. You get a 300 DPI JPG for a photo lab and an exact-size PDF, with 8 copies on 4×6 or 30 on A4.",
+    "howTo": "How to make a passport size photo sheet",
+    "keyFacts": "Documently Passport Photo Sheet is a free tool that tiles one cropped photo as many times as fit on a printable page, with 2 mm gaps and thin grey cut lines. At 35 × 45 mm, 8 copies fit on 4 × 6 inch photo paper and 30 fit on A4. The 2 × 2 inch (51 × 51 mm) size gives 2 on 4 × 6 and 15 on A4; 35 × 35 mm gives 8 and 35. Each photo is drawn at 300 DPI, so 35 × 45 mm is 413 × 531 pixels and the 4 × 6 sheet is 1800 × 1200 pixels. You get a JPG for a photo lab and a PDF set to the exact paper size; print it at 100%, not fit to page. The Passport Seva instruction booklet asks for colour 4.5 × 3.5 cm photos on a plain white background, printed on photo paper (https://www.passportindia.gov.in/AppOnlineProject/pdf/ApplicationformInstructionBooklet-V3.0.pdf). Everything runs in the browser and the photo is never uploaded.",
+    "intro": "Need a strip of passport photos for a form, ID card or visa file? Crop your photo once and this tool fills a 4×6 inch print or an A4 page with copies, cut lines included. Take the JPG to any photo lab or print the PDF yourself. Your photo stays on your device.",
+    "steps": [
+      "Select a clear, front-facing photo (JPG, PNG, WebP or iPhone HEIC).",
+      "Pick the photo size (35 × 45 mm, 2 × 2 in or 35 × 35 mm) and the paper (4×6 in or A4).",
+      "Drag the crop box so your face and shoulders fill it, with a little space above the head.",
+      "Tap Make photo sheet, then download the JPG for a photo lab or the PDF for your printer."
+    ],
+    "sections": [
+      {
+        "heading": "Printing tips",
+        "bullets": [
+          "Photo lab: ask for a 4×6 inch print of the JPG with no cropping or borders added.",
+          "Home printer: open the PDF and print at 100% or Actual size. Fit to page shrinks every photo.",
+          "Cut along the grey lines; the 2 mm gaps leave room for scissors or a trimmer.",
+          "For Indian passport applications, the Passport Seva instruction booklet says photos are not required at a Passport Seva Kendra or Post Office Passport Seva Kendra, and that computer printouts are not accepted where photos are needed (https://www.passportindia.gov.in/AppOnlineProject/pdf/ApplicationformInstructionBooklet-V3.0.pdf). Use photo paper."
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "q": "How many passport size photos fit on a 4×6 print?",
+        "a": "Eight 35 × 45 mm photos fit on one 4 × 6 inch print, in two rows of four with 2 mm gaps and cut lines. On A4 paper, 30 copies fit."
+      },
+      {
+        "q": "What size is an Indian passport photo?",
+        "a": "The Passport Seva application instruction booklet asks for a colour photo of 4.5 cm by 3.5 cm with a plain white background (https://www.passportindia.gov.in/AppOnlineProject/pdf/ApplicationformInstructionBooklet-V3.0.pdf). That is the default 35 × 45 mm size here. Check your own form, as visa and exam forms set their own rules."
+      },
+      {
+        "q": "Will the photos print at the right size?",
+        "a": "Yes, if printed at 100%. The JPG is saved at 300 DPI and the PDF page is the exact paper size. Choose Actual size or 100% in the print dialog, never Fit to page."
+      },
+      {
+        "q": "Can I use an iPhone HEIC photo?",
+        "a": "Yes. HEIC photos are converted in your browser before cropping, on iPhone, Android and desktop. Nothing is uploaded."
+      }
+    ],
+    "related": [
+      "crop-image",
+      "resize-image",
+      "exam-photo-signature",
+      "convert-image"
+    ],
+    "updated": "2026-10-31"
   }
 ]

@@ -1,5 +1,5 @@
-// pdf-lib operations: merge, split, rotate, images → PDF. Runs inside a Web Worker.
-import { PDFDocument, degrees } from "pdf-lib";
+// pdf-lib operations: merge, split, rotate, images → PDF, page numbers, watermark, organize. Runs inside a Web Worker.
+import { PDFDocument, PDFFont, PDFPage, StandardFonts, degrees, rgb } from "pdf-lib";
 import { jpegOrientation, jpegSize } from "./jpeg";
 import { parseRanges } from "./ranges";
 
@@ -14,7 +14,33 @@ export type PdfJob =
       pageSize: "a4" | "fit";
       orientation: "auto" | "portrait" | "landscape";
       marginPt: number;
-    };
+    }
+  | {
+      op: "numbers";
+      file: Blob;
+      position: NumberPosition;
+      format: NumberFormat;
+      /** Number printed on the first numbered page. */
+      start: number;
+      /** Leave page 1 (e.g. a cover) unnumbered; numbering starts on page 2. */
+      skipFirst: boolean;
+      fontSize: number;
+    }
+  | {
+      op: "watermark";
+      file: Blob;
+      text: string;
+      /** 0.05–1 */
+      opacity: number;
+      layout: "diagonal" | "center" | "tiled";
+      fontSize: number;
+      color: "grey" | "red";
+    }
+  /** Output pages in this order (0-based source indices), each turned by an extra `rotate` degrees. Missing pages are dropped. */
+  | { op: "organize"; file: Blob; pages: { index: number; rotate: 0 | 90 | 180 | 270 }[] };
+
+export type NumberPosition = "bottom-center" | "bottom-right" | "bottom-left" | "top-center" | "top-right" | "top-left";
+export type NumberFormat = "n" | "page-n" | "page-n-of-total";
 
 export type PdfOutput = { name: string; bytes: Uint8Array };
 export type PdfResult = { outputs: PdfOutput[]; pageCount: number };
@@ -93,7 +119,124 @@ export async function runPdfJob(job: PdfJob): Promise<PdfResult> {
       }
       return { outputs: [{ name: "images.pdf", bytes: await doc.save() }], pageCount: doc.getPageCount() };
     }
+    case "numbers": {
+      const doc = await load(job.file);
+      const font = await doc.embedFont(StandardFonts.Helvetica);
+      const pages = doc.getPages();
+      const first = job.skipFirst ? 1 : 0;
+      const total = job.start + (pages.length - first) - 1;
+      const size = job.fontSize;
+      for (let i = first; i < pages.length; i++) {
+        const n = job.start + (i - first);
+        const label = job.format === "n" ? String(n) : job.format === "page-n" ? `Page ${n}` : `Page ${n} of ${total}`;
+        const page = pages[i];
+        const { w, h } = visualSize(page);
+        const tw = font.widthOfTextAtSize(label, size);
+        // ~0.5 inch from the edge, scaled down on tiny pages (ID-card scans).
+        const margin = Math.min(36, Math.min(w, h) * 0.06);
+        const [vert, horiz] = job.position.split("-") as ["top" | "bottom", "left" | "center" | "right"];
+        const vx = horiz === "left" ? margin : horiz === "right" ? w - margin - tw : (w - tw) / 2;
+        const vy = vert === "bottom" ? margin : h - margin - font.heightAtSize(size, { descender: false });
+        drawVisual(page, label, { vx, vy, angle: 0, font, size, color: rgb(0, 0, 0), opacity: 1 });
+      }
+      return { outputs: [{ name: "numbered.pdf", bytes: await doc.save() }], pageCount: pages.length };
+    }
+    case "watermark": {
+      const text = job.text.trim();
+      if (!text) throw new Error("Type the watermark text first.");
+      const doc = await load(job.file);
+      const font = await doc.embedFont(StandardFonts.HelveticaBold);
+      try {
+        font.encodeText(text);
+      } catch {
+        throw new Error("The watermark can only use English letters, numbers and common symbols.");
+      }
+      const color = job.color === "red" ? rgb(0.82, 0.1, 0.1) : rgb(0.45, 0.45, 0.45);
+      const opacity = Math.min(1, Math.max(0.05, job.opacity));
+      for (const page of doc.getPages()) {
+        const { w, h } = visualSize(page);
+        const cap = font.heightAtSize(1, { descender: false });
+        if (job.layout === "tiled") {
+          // A grid laid along the 30° text direction, rows offset like bricks, covering the whole page.
+          const size = Math.min(job.fontSize, Math.min(w, h) / 6);
+          const tw = font.widthOfTextAtSize(text, size);
+          const a = (30 * Math.PI) / 180;
+          const stepU = tw + size * 3;
+          const stepV = size * 4;
+          const reach = Math.hypot(w, h) / 2 + tw;
+          for (let row = 0, v = -reach; v <= reach; v += stepV, row++) {
+            for (let u = -reach + (row % 2) * (stepU / 2); u <= reach; u += stepU) {
+              const cx = w / 2 + u * Math.cos(a) - v * Math.sin(a);
+              const cy = h / 2 + u * Math.sin(a) + v * Math.cos(a);
+              if (cx < -tw / 2 || cx > w + tw / 2 || cy < -size || cy > h + size) continue;
+              drawCentred(page, text, { cx, cy, angle: 30, font, size, cap, color, opacity });
+            }
+          }
+        } else {
+          const angle = job.layout === "diagonal" ? (Math.atan2(h, w) * 180) / Math.PI : 0;
+          // Shrink to fit the diagonal (or the width), so long text never runs off the page.
+          const room = (job.layout === "diagonal" ? Math.hypot(w, h) : w) * 0.85;
+          const size = Math.min(job.fontSize, room / font.widthOfTextAtSize(text, 1));
+          drawCentred(page, text, { cx: w / 2, cy: h / 2, angle, font, size, cap, color, opacity });
+        }
+      }
+      return { outputs: [{ name: "watermarked.pdf", bytes: await doc.save() }], pageCount: doc.getPageCount() };
+    }
+    case "organize": {
+      if (!job.pages.length) throw new Error("Keep at least one page.");
+      const src = await load(job.file);
+      const out = await PDFDocument.create();
+      const copied = await out.copyPages(
+        src,
+        job.pages.map((p) => p.index),
+      );
+      copied.forEach((page, i) => {
+        const extra = job.pages[i].rotate;
+        if (extra) page.setRotation(degrees((page.getRotation().angle + extra) % 360));
+        out.addPage(page);
+      });
+      return { outputs: [{ name: "organized.pdf", bytes: await out.save() }], pageCount: out.getPageCount() };
+    }
   }
+}
+
+// --- Drawing on pages as they appear on screen ---------------------------------------------
+// A page with /Rotate is shown turned, so "bottom right" and "left-to-right" must be mapped back
+// into the page's own coordinates. (vx, vy) are measured from the bottom-left of the visible page.
+
+function pageRotation(page: PDFPage) {
+  return (((page.getRotation().angle % 360) + 360) % 360) as 0 | 90 | 180 | 270;
+}
+
+function visualSize(page: PDFPage) {
+  const box = page.getCropBox();
+  const r = pageRotation(page);
+  return r === 90 || r === 270 ? { w: box.height, h: box.width } : { w: box.width, h: box.height };
+}
+
+function toUser(page: PDFPage, vx: number, vy: number) {
+  const box = page.getCropBox();
+  const r = pageRotation(page);
+  const [x, y] = r === 90 ? [box.width - vy, vx] : r === 180 ? [box.width - vx, box.height - vy] : r === 270 ? [vy, box.height - vx] : [vx, vy];
+  return { x: box.x + x, y: box.y + y };
+}
+
+type Ink = { font: PDFFont; size: number; color: ReturnType<typeof rgb>; opacity: number };
+
+/** Draw text whose baseline starts at visual (vx, vy), running at `angle`° anticlockwise as seen on screen. */
+function drawVisual(page: PDFPage, text: string, o: Ink & { vx: number; vy: number; angle: number }) {
+  const { x, y } = toUser(page, o.vx, o.vy);
+  page.drawText(text, { x, y, font: o.font, size: o.size, color: o.color, opacity: o.opacity, rotate: degrees((o.angle + pageRotation(page)) % 360) });
+}
+
+/** Draw text centred on visual (cx, cy). `cap` is the font's cap height at size 1. */
+function drawCentred(page: PDFPage, text: string, o: Ink & { cx: number; cy: number; angle: number; cap: number }) {
+  const a = (o.angle * Math.PI) / 180;
+  const half = o.font.widthOfTextAtSize(text, o.size) / 2;
+  const up = (o.cap * o.size) / 2;
+  const vx = o.cx - half * Math.cos(a) + up * Math.sin(a);
+  const vy = o.cy - half * Math.sin(a) - up * Math.cos(a);
+  drawVisual(page, text, { ...o, vx, vy });
 }
 
 /**

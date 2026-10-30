@@ -62,3 +62,51 @@ export async function renderPdfToJpgs(
   }
   return out;
 }
+
+/**
+ * Streams small JPEG previews of every page (longest side ≈ `maxSide` px), calling `onThumb` as each
+ * one is ready so a page grid can fill in progressively. `onCount` reports the page count before the
+ * first preview; rendering stops early once `isCancelled()` returns true. Resolves to the page count.
+ */
+export async function renderPdfThumbnails(
+  file: Blob,
+  opts: { maxSide: number; onCount?: (n: number) => void; isCancelled?: () => boolean },
+  onThumb: (page: number, blob: Blob) => void,
+): Promise<number> {
+  const pdfjs = await loadPdfjs();
+  const task = pdfjs.getDocument({ data: new Uint8Array(await file.arrayBuffer()) });
+  let doc;
+  try {
+    doc = await task.promise;
+  } catch (err) {
+    await task.destroy();
+    if (err instanceof Error && /password/i.test(err.name + err.message)) throw new Error("This PDF is password-protected.");
+    throw err;
+  }
+  const total = doc.numPages;
+  opts.onCount?.(total);
+  try {
+    for (let n = 1; n <= total; n++) {
+      if (opts.isCancelled?.()) break;
+      const page = await doc.getPage(n);
+      const base = page.getViewport({ scale: 1 });
+      const viewport = page.getViewport({ scale: opts.maxSide / Math.max(base.width, base.height) });
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.max(1, Math.floor(viewport.width));
+      canvas.height = Math.max(1, Math.floor(viewport.height));
+      const ctx = canvas.getContext("2d")!;
+      ctx.fillStyle = "#fff";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      await page.render({ canvas, canvasContext: ctx, viewport }).promise;
+      const blob = await new Promise<Blob>((res, rej) =>
+        canvas.toBlob((b) => (b ? res(b) : rej(new Error("Couldn't draw a page preview"))), "image/jpeg", 0.7),
+      );
+      page.cleanup();
+      canvas.width = canvas.height = 0;
+      onThumb(n, blob);
+    }
+  } finally {
+    await task.destroy();
+  }
+  return total;
+}
