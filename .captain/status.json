@@ -1,9 +1,9 @@
 {
   "name": "documently.in",
   "stage": "live at documently.in",
-  "focus": "17 tools live (added page numbers, watermark, organize, protect PDF, HEIC converter, passport sheet); mega menu + mobile drawer",
+  "focus": "17 tools + /guides/; cloud routine 'documently daily guide' publishes 1 sourced guide/day at 7:00 IST",
   "blockers": [],
-  "next_action": "Check Search Console indexing (~7 Nov); next tools: compress video (ffmpeg.wasm), OCR, Hindi UI",
+  "next_action": "Skim yesterday's guide + post the social drafts in growth/social/; check Search Console ~7 Nov",
   "health": "active",
   "updated_at": "2026-10-31"
 }

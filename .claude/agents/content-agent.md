@@ -42,7 +42,7 @@ Quality beats volume. Google demotes sites that publish many thin or templated p
    - Then run `INDEXNOW_KEY=04ad4d0bf87c4a9ba67ed487108f10cc node scripts/indexnow.mjs`. The key is public by design; it is served at /04ad4d0bf87c4a9ba67ed487108f10cc.txt.
 8. **Report** in 5 lines or fewer: the URL, the keyword, the sources, anything skipped, and anything a human must check.
 
-Once a week (on Sundays), refresh instead of publishing:
+On Sundays, if any guide's `updated` date is more than 30 days old, refresh instead of publishing (otherwise publish as usual):
 - Pick the oldest guide whose official source may have changed, re-check it, and update the facts and the `updated` date.
 - Change `updated` only when the content materially changes.
 
