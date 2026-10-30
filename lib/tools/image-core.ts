@@ -60,6 +60,8 @@ export async function processImage(job: ImageJob): Promise<ImageResult> {
     }
 
     // Find the highest quality that fits under maxBytes; shrink dimensions if even low quality is too big.
+    // 0.35 when we may shrink: measured at 20/50/100 KB on a 12 MP photo, raising it to 0.5 (fewer pixels,
+    // higher quality) scored slightly *lower* SSIM at the same file size, so keep the larger image.
     const floorQ = dimsLocked || job.allowDownscale === false ? 0.05 : 0.35;
     for (let attempt = 0; attempt < 8; attempt++) {
       const best = await bestQualityUnder(canvas, maxBytes, floorQ);

@@ -2,10 +2,12 @@ import { createWorkerClient } from "./worker-client";
 
 export type GsJob = {
   bytes: ArrayBuffer;
-  mode: "level" | "target";
+  mode: "level" | "target" | "unlock";
   level?: "high" | "balanced" | "small";
   targetKB?: number;
   gray?: boolean;
+  /** unlock mode: the open password; blank for permission-only locks. */
+  password?: string;
 };
 /** `contentBound`: the target was out of reach because text/fonts/vector art, not images, make up the size. */
 export type GsResult = { bytes: ArrayBuffer; resolution: number; reachedTarget: boolean; contentBound?: boolean };

@@ -1,5 +1,6 @@
 // pdf-lib operations: merge, split, rotate, images → PDF. Runs inside a Web Worker.
 import { PDFDocument, degrees } from "pdf-lib";
+import { jpegOrientation, jpegSize } from "./jpeg";
 import { parseRanges } from "./ranges";
 
 export type PdfJob =
@@ -95,8 +96,16 @@ export async function runPdfJob(job: PdfJob): Promise<PdfResult> {
   }
 }
 
-/** Re-encodes every image (PNG stays PNG, the rest become JPEG) so EXIF rotation is baked in and size is capped. */
+/**
+ * Upright JPEGs that already fit are embedded byte-for-byte (no generation loss). Everything else is
+ * re-encoded (PNG stays PNG, the rest become JPEG) so EXIF rotation is baked in and size is capped.
+ */
 async function toEmbeddable(img: Blob, maxSide: number): Promise<{ bytes: Uint8Array; kind: "jpg" | "png" }> {
+  if (img.type === "image/jpeg" || /\.jpe?g$/i.test((img as File).name ?? "")) {
+    const raw = new Uint8Array(await img.arrayBuffer());
+    const size = jpegSize(raw);
+    if (size && Math.max(size.width, size.height) <= maxSide && jpegOrientation(raw) === 1) return { bytes: raw, kind: "jpg" };
+  }
   const bitmap = await createImageBitmap(img);
   try {
     const scale = Math.min(1, maxSide / Math.max(bitmap.width, bitmap.height));

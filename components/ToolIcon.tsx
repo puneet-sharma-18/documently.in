@@ -10,6 +10,7 @@ const paths: Record<string, string> = {
   "split-pdf": "M9 3h6v8H9z M12 11v3 M5 14h14 M5 14v7 M19 14v7 M3 21h4 M17 21h4",
   "rotate-pdf": "M7 3h8l4 4v8 M15 3v4h4 M4 13a8 8 0 0 0 14 5 M4 13V9 M4 13h4",
   "crop-image": "M6 2v16h16 M2 6h16v16",
+  "unlock-pdf": "M5 11h14v10H5z M8 11V7a4 4 0 0 1 7.5-2 M12 15v2",
 };
 
 export default function ToolIcon({ slug, className = "h-6 w-6" }: { slug: string; className?: string }) {

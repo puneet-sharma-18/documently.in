@@ -15,6 +15,7 @@ const registry = {
   "split-pdf": dynamic(() => import("./SplitPdf")),
   "rotate-pdf": dynamic(() => import("./RotatePdf")),
   "crop-image": dynamic(() => import("./CropImage")),
+  "unlock-pdf": dynamic(() => import("./UnlockPdf")),
 } as const;
 
 export const toolSlugs = Object.keys(registry);

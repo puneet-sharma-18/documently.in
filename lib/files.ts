@@ -36,11 +36,15 @@ export function isEncryptedPdf(bytes: Uint8Array) {
   return false;
 }
 
+/** An error whose message is already written for the user; friendlyError shows it as is. */
+export class UserFacingError extends Error {}
+
 /** Turn any thrown value into a short, human message. */
 export function friendlyError(err: unknown): string {
   const msg = err instanceof Error ? err.message : String(err);
+  if (err instanceof UserFacingError) return msg;
   if (/encrypt|password/i.test(msg))
-    return "This PDF is password-protected. Remove the password first (open it, then 'Print → Save as PDF'), and try again.";
+    return "This PDF is password-protected. Remove the password with our Unlock PDF tool first, then try again.";
   if (/invalid pdf|no pdf header|failed to parse|unexpected eof/i.test(msg))
     return "This file doesn't look like a valid PDF. It may be damaged — try re-downloading or re-saving it.";
   if (/decode|source image|InvalidStateError|could not be decoded/i.test(msg))

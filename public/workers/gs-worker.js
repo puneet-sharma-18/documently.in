@@ -6,6 +6,23 @@
  * Message in:  { id, job: { bytes: ArrayBuffer, mode: "level" | "target", level?: "high"|"balanced"|"small", targetKB?: number, gray?: boolean } }
  * Message out: { id, progress } … then { id, result: { bytes, resolution, reachedTarget } } or { id, error }
  */
+// This Ghostscript build ignores Module.print/printErr and binds console.log/warn when it loads,
+// so route the console into the current run's log *before* importing it. Password and parse
+// failures only show up there.
+var gsLog = null;
+(function () {
+  var log = console.log,
+    warn = console.warn;
+  console.log = function () {
+    if (gsLog) gsLog.push(Array.prototype.join.call(arguments, " "));
+    else log.apply(console, arguments);
+  };
+  console.warn = function () {
+    if (gsLog) gsLog.push(Array.prototype.join.call(arguments, " "));
+    else warn.apply(console, arguments);
+  };
+})();
+
 importScripts("/vendor/gs/gs.js");
 
 var compiledWasm = null;
@@ -93,12 +110,40 @@ function gsArgs(step, gray) {
   return args;
 }
 
-async function runOnce(input, step, gray) {
+// Unlock: rewrite without encryption and without touching image quality. JPEGs pass through
+// byte-for-byte; every other image is stored losslessly (Ghostscript's default would re-encode to JPEG).
+function unlockArgs(password) {
+  var args = [
+    "-sDEVICE=pdfwrite",
+    "-dCompatibilityLevel=1.7",
+    "-dNOPAUSE",
+    "-dQUIET",
+    "-dBATCH",
+    "-dSAFER",
+    "-dPassThroughJPEGImages=true",
+    "-dPassThroughJPXImages=true",
+    "-dDownsampleColorImages=false",
+    "-dDownsampleGrayImages=false",
+    "-dDownsampleMonoImages=false",
+    "-dAutoFilterColorImages=false",
+    "-dColorImageFilter=/FlateEncode",
+    "-dAutoFilterGrayImages=false",
+    "-dGrayImageFilter=/FlateEncode",
+  ];
+  if (password) args.push("-sPDFPassword=" + password);
+  args.push("-sOutputFile=/out.pdf", "/in.pdf");
+  return args;
+}
+
+async function runOnce(input, step, gray, argsOverride) {
   var wasm = await getWasm();
   var errors = [];
   var mod = await Module({
     noInitialRun: true,
-    print: function () {},
+    // Ghostscript reports password and parse failures on stdout, so keep both streams.
+    print: function (t) {
+      errors.push(t);
+    },
     printErr: function (t) {
       errors.push(t);
     },
@@ -110,10 +155,13 @@ async function runOnce(input, step, gray) {
     },
   });
   mod.FS.writeFile("/in.pdf", input);
+  gsLog = errors;
   try {
-    mod.callMain(gsArgs(step, gray));
+    mod.callMain(argsOverride || gsArgs(step, gray));
   } catch {
     // Emscripten signals exit() by throwing; a missing output file below is the real failure signal.
+  } finally {
+    gsLog = null;
   }
   var out;
   try {
@@ -122,6 +170,10 @@ async function runOnce(input, step, gray) {
     out = null;
   }
   var log = errors.join("\n");
+  // A wrong or missing password still writes a page-less PDF, so check the log, not just the file.
+  if (/Password did not work/i.test(log)) throw new Error("WRONG_PASSWORD");
+  if (/requires a password/i.test(log)) throw new Error("NEEDS_PASSWORD");
+  if (/No pages will be processed/i.test(log)) out = null;
   if (!out || out.length === 0) {
     if (/password|encrypt/i.test(log)) throw new Error("This PDF is password-protected.");
     throw new Error(log ? "Couldn't process this PDF: " + log.slice(0, 200) : "Couldn't process this PDF.");
@@ -140,8 +192,16 @@ self.onmessage = async function (e) {
     progress("Loading the compression engine…");
     await getWasm();
 
+    if (job.mode === "unlock") {
+      progress("Removing the password…");
+      var unlocked = await runOnce(input, null, false, unlockArgs(job.password || ""));
+      self.postMessage({ id: id, result: { bytes: unlocked.buffer, resolution: 0, reachedTarget: true } }, [unlocked.buffer]);
+      return;
+    }
+
     if (job.mode === "level") {
-      var step = LADDER[LEVELS[job.level] || 2];
+      // "high" maps to index 0, so test for a known level rather than truthiness.
+      var step = LADDER[job.level in LEVELS ? LEVELS[job.level] : LEVELS.balanced];
       progress("Compressing…");
       var out = await runOnce(input, step, job.gray);
       self.postMessage({ id: id, result: { bytes: out.buffer, resolution: step.dpi, reachedTarget: true } }, [out.buffer]);

@@ -127,3 +127,49 @@ Running log for documently.in. The SEO agent (PLAN.md, Prompt 2) appends a dated
 - **Lighthouse mobile (local):** performance 100 on home, PDF to 100 KB, IBPS PO, Resize Image and Privacy (LCP 0.8–0.9 s, CLS 0); accessibility 100 and SEO 100.
   - **Best practices:** 96 on tool pages, from the local-only `/api/track` 404.
 - **New OG image** (sky card); favicon and PWA icons regenerated.
+
+---
+
+## 2026-10-31 — Quality audit of all tools + new Unlock PDF tool
+
+### How it was measured
+- Each tool ran in Chrome on the local build with realistic inputs:
+  - a 12 MP photo containing a real portrait, fine text and a line comb
+  - a signature scan
+  - a 6-page scan
+  - a Canva-style vector résumé (2 pages, 7 embedded fonts, 1 photo)
+- Outputs were scored against an ideal reference (Lanczos resize for images, poppler render for PDFs) using PSNR and SSIM, plus an estimate of the JPEG quality actually used.
+
+### Results
+
+| Tool | Result |
+|---|---|
+| Merge PDF, Split PDF | Pixel-identical (SSIM 1.000), fonts and images kept |
+| Rotate PDF | Lossless; only the /Rotate flag changes |
+| Compress PDF, vector résumé | SSIM 0.993, text stays vector |
+| Crop Image | SSIM 0.967 at JPEG q≈92 |
+| Exam photo (IBPS) | SSIM 0.958 at q≈95 |
+| Signature | SSIM 0.993 |
+| Passport resize | SSIM 0.949 at q≈95 |
+| JPG→PDF, 12 MP photo | SSIM 0.956 (capped at 2400 px, q 85) |
+| PDF→JPG | q 88 |
+| Compress Image (20/50/100 KB) | q≈37–45. Tested lower dims with higher quality instead: SSIM was flat to slightly worse, so the current strategy was kept |
+
+### Fixed
+- **Compress PDF target mode** wrecked photos when the target was below the font/vector floor. It now stops when lowering image resolution saves less than 5%, and returns the sharpest result within 10% of the smallest. Example: résumé at a 50 KB target now gives 83 KB with the photo at 150 dpi (was 77 KB with a 62 px photo).
+- **Compress PDF "Best quality"** returned the same file as Balanced: `LEVELS.high = 0` was treated as falsy. It now gives 150 dpi.
+- **JPG→PDF** now embeds upright JPEGs at or under 2400 px byte-for-byte, with no re-encode.
+- **Locked-PDF errors** now point users to Unlock PDF.
+
+### New tool: /unlock-pdf/
+- Removes a known open password, or a permissions-only lock with no password needed. It uses the Ghostscript engine already in the bundle.
+- JPEGs pass through and other images are stored losslessly. In our tests, unlocked pages rendered pixel-identical to the password-opened original.
+- Wrong or missing passwords give clear errors instead of a blank PDF. This build of Ghostscript logs to console.log, so the worker captures it.
+- **Needs human review:** the e-Aadhaar FAQ ("first four letters of the name in capitals + year of birth") is attributed to UIDAI's e-Aadhaar FAQ without a URL, because uidai.gov.in returned 404 to automated fetches. Add the official FAQ link once you've confirmed it in a browser.
+
+### Citations to check manually
+| Query | Should surface |
+|---|---|
+| "remove password from pdf" | /unlock-pdf/ |
+| "aadhaar pdf password" | /unlock-pdf/ |
+| "pdf ka password kaise hataye" | /unlock-pdf/ |

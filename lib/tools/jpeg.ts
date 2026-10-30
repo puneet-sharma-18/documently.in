@@ -31,6 +31,52 @@ export function setJpegDpi(bytes: Uint8Array, dpi: number): Uint8Array {
 }
 
 /**
+ * Reads the EXIF orientation (1–8) from a JPEG; 1 when absent or unreadable.
+ * Anything other than 1 means the pixels must be redrawn to appear upright in a PDF.
+ */
+export function jpegOrientation(bytes: Uint8Array): number {
+  if (bytes[0] !== 0xff || bytes[1] !== 0xd8) return 1;
+  let p = 2;
+  while (p + 4 < bytes.length && bytes[p] === 0xff) {
+    const marker = bytes[p + 1];
+    const len = (bytes[p + 2] << 8) | bytes[p + 3];
+    if (marker === 0xda) break; // start of scan: no more metadata
+    // APP1 "Exif\0\0"
+    if (marker === 0xe1 && bytes[p + 4] === 0x45 && bytes[p + 5] === 0x78 && bytes[p + 6] === 0x69 && bytes[p + 7] === 0x66) {
+      const t = p + 10; // TIFF header
+      const le = bytes[t] === 0x49;
+      const u16 = (o: number) => (le ? bytes[o] | (bytes[o + 1] << 8) : (bytes[o] << 8) | bytes[o + 1]);
+      const u32 = (o: number) => (le ? u16(o) | (u16(o + 2) << 16) : (u16(o) << 16) | u16(o + 2));
+      const ifd = t + u32(t + 4);
+      const count = u16(ifd);
+      for (let i = 0; i < count; i++) {
+        const e = ifd + 2 + i * 12;
+        if (e + 10 > bytes.length) break;
+        if (u16(e) === 0x0112) return u16(e + 8) || 1;
+      }
+      return 1;
+    }
+    p += 2 + len;
+  }
+  return 1;
+}
+
+/** Image width/height from the JPEG frame header (SOF0–SOF15 except DHT/JPG/DAC), or null. */
+export function jpegSize(bytes: Uint8Array): { width: number; height: number } | null {
+  let p = 2;
+  while (p + 9 < bytes.length && bytes[p] === 0xff) {
+    const marker = bytes[p + 1];
+    const len = (bytes[p + 2] << 8) | bytes[p + 3];
+    if (marker >= 0xc0 && marker <= 0xcf && marker !== 0xc4 && marker !== 0xc8 && marker !== 0xcc) {
+      return { height: (bytes[p + 5] << 8) | bytes[p + 6], width: (bytes[p + 7] << 8) | bytes[p + 8] };
+    }
+    if (marker === 0xda) break;
+    p += 2 + len;
+  }
+  return null;
+}
+
+/**
  * Grows a JPEG to at least `minBytes` by inserting COM (comment) segments right after SOI.
  * Decoders skip comments, so the picture is pixel-identical.
  */

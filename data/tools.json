@@ -93,7 +93,8 @@
       "compress-image",
       "compress-pdf/to-100kb",
       "compress-pdf/to-200kb",
-      "compress-pdf/to-500kb"
+      "compress-pdf/to-500kb",
+      "unlock-pdf"
     ],
     "updated": "2026-10-31",
     "howTo": "How to compress a PDF"
@@ -626,7 +627,8 @@
       "split-pdf",
       "compress-pdf",
       "jpg-to-pdf",
-      "rotate-pdf"
+      "rotate-pdf",
+      "unlock-pdf"
     ],
     "updated": "2026-10-31",
     "howTo": "How to merge PDF files"
@@ -807,6 +809,89 @@
     ],
     "updated": "2026-10-31",
     "howTo": "How to rotate PDF pages"
+  },
+  {
+    "slug": "unlock-pdf",
+    "name": "Unlock PDF",
+    "category": "pdf",
+    "short": "Remove the password from a PDF you can open — e-Aadhaar, bank statements, payslips.",
+    "h1": "Remove Password from PDF — Unlock PDF Online Free",
+    "metaTitle": "Remove PDF Password Online Free – Unlock PDF | Documently",
+    "metaDescription": "Remove the password from a PDF you own, like e-Aadhaar or a bank statement. Type the password once and get an unlocked copy. Free, no upload, quality unchanged.",
+    "answer": "To remove a password from a PDF, choose the file, type the password you use to open it and tap Remove password. You get an unlocked copy with the same pages, text and images. PDFs that only block printing or copying need no password.",
+    "howTo": "How to remove a password from a PDF",
+    "keyFacts": "Documently Unlock PDF removes the password from a PDF that you can already open, such as an e-Aadhaar, a bank statement or a salary slip. Type the open password once, tap Remove password, and download an unlocked copy that opens without asking again. PDFs that open freely but block printing, copying or editing need no password; leave the box blank. The unlock runs on Ghostscript compiled to WebAssembly inside the browser, so neither the file nor the password is uploaded. JPEG photos and scans are copied byte for byte and other images are stored losslessly, so pages look the same as the original; in our tests, unlocked pages rendered pixel-identical to the password-opened file. A wrong password is reported as wrong, not turned into a blank file. The tool cannot recover a forgotten password. Unlock only documents that belong to you, then compress, merge or upload the unlocked copy.",
+    "intro": "Many official PDFs arrive locked: e-Aadhaar, bank and credit card statements, salary slips and some exam admit cards. That is good for privacy, but most upload portals, and tools like merge or compress, can't read a password-protected file. This tool makes an unlocked copy of a PDF you can already open. You type the password once, the work happens in your browser, and the copy no longer asks for a password.",
+    "steps": [
+      "Select or drop the locked PDF into the upload box.",
+      "Type the password you normally use to open it (leave it blank if the PDF opens but blocks printing or copying).",
+      "Tap Remove password.",
+      "Download the unlocked PDF and upload it, compress it or merge it as needed."
+    ],
+    "sections": [
+      {
+        "heading": "When do you need to remove a PDF password?",
+        "bullets": [
+          "An upload portal rejects your e-Aadhaar or bank statement because it is password-protected.",
+          "You want to merge a statement with other documents, or compress it to a KB limit, and the tool refuses locked files.",
+          "You need to print a PDF that opens fine but has printing blocked.",
+          "You share the file with family or a CA often and don't want to send the password every time."
+        ]
+      },
+      {
+        "heading": "Two kinds of PDF lock",
+        "paragraphs": [
+          "An open password (also called a user password) stops anyone opening the file without it. To unlock this kind, you must type that password; the tool cannot guess or recover it.",
+          "A permissions password (owner password) lets the file open but blocks printing, copying or editing. These PDFs unlock without typing anything — leave the password box empty."
+        ]
+      },
+      {
+        "heading": "Does unlocking change the quality?",
+        "paragraphs": [
+          "No. The pages are rewritten without encryption, but JPEG photos and scans are copied byte for byte and every other image is stored losslessly. Text stays as real, selectable text.",
+          "In our tests on a two-page résumé with a photo, the unlocked pages rendered pixel-identical to the original opened with its password."
+        ]
+      },
+      {
+        "heading": "Privacy",
+        "paragraphs": [
+          "The PDF and the password are processed by code running in your browser and are never sent to a server. We record only anonymous counts, such as that the tool was used, never the file, its name or the password."
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "q": "What is the password of an e-Aadhaar PDF?",
+        "a": "According to UIDAI's e-Aadhaar FAQ, it is the first four letters of your name in capital letters followed by your year of birth, for example SURE1990 for Suresh Kumar born in 1990. Type that here and the tool removes it."
+      },
+      {
+        "q": "Can this tool unlock a PDF if I forgot the password?",
+        "a": "No. For PDFs that need a password to open, you must type the correct password. The tool removes a known password; it does not crack or recover forgotten ones."
+      },
+      {
+        "q": "PDF ka password kaise hataye?",
+        "a": "PDF choose karein, woh password type karein jisse file khulti hai, aur Remove password dabayein. Unlocked copy download ho jayegi — file aur password aapke phone se bahar nahi jaate."
+      },
+      {
+        "q": "My PDF opens without a password but won't print. What do I do?",
+        "a": "Leave the password box empty and tap Remove password. PDFs that only block printing, copying or editing unlock without a password."
+      },
+      {
+        "q": "Is it safe to type my bank statement password here?",
+        "a": "Yes. The unlock runs inside your browser, so the password and the file are never uploaded. Only unlock documents that belong to you."
+      },
+      {
+        "q": "Will the unlocked PDF be smaller or lower quality?",
+        "a": "Quality stays the same: photos are copied as they are and text stays selectable. The size may change slightly because the file is rewritten; to make it smaller, run it through Compress PDF afterwards."
+      }
+    ],
+    "related": [
+      "compress-pdf",
+      "merge-pdf",
+      "split-pdf",
+      "pdf-to-jpg"
+    ],
+    "updated": "2026-10-31"
   },
   {
     "slug": "crop-image",
