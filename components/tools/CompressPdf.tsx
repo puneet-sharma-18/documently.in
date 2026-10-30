@@ -49,6 +49,8 @@ export default function CompressPdf({ tool, presetSlug, config }: ToolProps) {
       if (blob.size >= f.size) {
         blob = f;
         warning = "This PDF is already well optimised — we couldn't make it smaller, so here's your original file.";
+      } else if (mode === "target" && res.contentBound) {
+        warning = `This PDF's text, fonts and drawings alone take about ${formatBytes(blob.size)}, so it can't go under ${kbLabel(target)} without turning the text into a blurry picture. We kept it sharp instead. If the form insists on ${kbLabel(target)}, upload only the page it needs (Split PDF).`;
       } else if (mode === "target" && !res.reachedTarget) {
         warning = `The smallest we could reach is ${formatBytes(blob.size)}. Try "Black & white", or split the PDF and upload only the pages the form needs.`;
       }

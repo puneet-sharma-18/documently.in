@@ -153,13 +153,24 @@ self.onmessage = async function (e) {
     var target = job.targetKB * 1000 - 1024;
     var best = null; // highest-dpi result under target
     var smallest = null;
+    var results = [];
     var tried = {};
+    var prev = null;
+    // True when lowering image resolution stopped paying off: the size is text, fonts and vector
+    // drawings (e.g. Canva/Word exports), which no image setting can shrink.
+    var contentBound = false;
     var dpi = clampDpi(200 * Math.sqrt(target / input.length) * 1.4);
     for (var pass = 1; pass <= 5 && !tried[dpi]; pass++) {
       tried[dpi] = true;
       progress("Pass " + pass + " — trying " + dpi + " dpi images…");
       var bytes = await runOnce(input, stepFor(dpi), job.gray);
+      results.push({ bytes: bytes, dpi: dpi });
       if (!smallest || bytes.length < smallest.bytes.length) smallest = { bytes: bytes, dpi: dpi };
+      if (bytes.length > target && prev && prev.bytes.length > target && prev.bytes.length - bytes.length < prev.bytes.length * 0.05) {
+        contentBound = true;
+        break;
+      }
+      prev = { bytes: bytes, dpi: dpi };
       var next;
       if (bytes.length <= target) {
         if (!best || dpi > best.dpi) best = { bytes: bytes, dpi: dpi };
@@ -175,9 +186,30 @@ self.onmessage = async function (e) {
       }
       dpi = next;
     }
-    var pick = best || smallest;
+    var pick = best;
+    if (!pick) {
+      // Target out of reach. Don't trade image quality for a few KB: take the sharpest result
+      // within 10% of the smallest size, trying full quality once if we haven't.
+      if (contentBound && !tried[MAX_DPI]) {
+        progress("Keeping images sharp…");
+        results.push({ bytes: await runOnce(input, stepFor(MAX_DPI), job.gray), dpi: MAX_DPI });
+      }
+      var limit = smallest.bytes.length * 1.1;
+      pick = smallest;
+      for (var i = 0; i < results.length; i++) {
+        if (results[i].bytes.length <= limit && results[i].dpi > pick.dpi) pick = results[i];
+      }
+    }
     self.postMessage(
-      { id: id, result: { bytes: pick.bytes.buffer, resolution: pick.dpi, reachedTarget: Boolean(best) } },
+      {
+        id: id,
+        result: {
+          bytes: pick.bytes.buffer,
+          resolution: pick.dpi,
+          reachedTarget: Boolean(best),
+          contentBound: !best && contentBound,
+        },
+      },
       [pick.bytes.buffer]
     );
   } catch (err) {
