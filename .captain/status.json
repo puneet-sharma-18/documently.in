@@ -1,9 +1,9 @@
 {
   "name": "documently.in",
-  "stage": "live on documently-570.pages.dev — custom domain pending",
-  "focus": "Cloudflare Pages + D1 + ADMIN_TOKEN live; auto-deploys from mvp-build",
-  "blockers": ["Nameservers at registrar not yet switched to Cloudflare"],
-  "next_action": "Delete parked A/www records in Cloudflare DNS, switch registrar nameservers, add documently.in as Pages custom domain",
+  "stage": "live at documently.in",
+  "focus": "11 tools live (incl. Unlock PDF); Cloudflare Pages + D1 + www redirect + hello@ email routing done",
+  "blockers": [],
+  "next_action": "Submit https://documently.in/sitemap.xml in Google Search Console and Bing Webmaster Tools",
   "health": "active",
   "updated_at": "2026-10-31"
 }
