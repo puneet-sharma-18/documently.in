@@ -14,6 +14,8 @@ export type Tool = {
   metaDescription: string;
   /** Answer-first summary (1–2 sentences) shown under the H1 — written to be quotable by AI search. */
   answer: string;
+  /** Self-contained 134–167-word passage with the page's key numbers and source — the block answer engines quote. */
+  keyFacts?: string;
   intro: string;
   steps: string[];
   sections: Section[];
@@ -52,6 +54,7 @@ export type Preset = {
   metaTitle: string;
   metaDescription: string;
   answer: string;
+  keyFacts?: string;
   intro: string;
   updated: string;
   /** Tool configuration the page pre-applies (target KB, dimensions, exam items). */

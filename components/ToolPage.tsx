@@ -40,6 +40,15 @@ export default function ToolPage({ tool, preset }: { tool: Tool; preset?: Preset
 
       {preset?.kind === "exam" && preset.config.items && <SpecBox preset={preset} items={preset.config.items} />}
 
+      {page.keyFacts && (
+        <section aria-labelledby="key-facts" className="mt-8 border-l-4 border-brand-500 bg-card py-1 pl-4 pr-2">
+          <h2 id="key-facts" className="text-lg font-bold">
+            Key facts
+          </h2>
+          <p className="mt-2 leading-relaxed text-[#2b3532]">{page.keyFacts}</p>
+        </section>
+      )}
+
       {siblings.length > 0 && (
         <nav aria-label={`${tool.name} presets`} className="mt-8">
           <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">{preset ? "Other sizes & presets" : "Popular sizes & exam presets"}</h2>
