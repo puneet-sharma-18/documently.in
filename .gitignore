@@ -49,3 +49,4 @@ public/vendor
 .wrangler/
 .dev.vars
 !.env.example
+.admin-token

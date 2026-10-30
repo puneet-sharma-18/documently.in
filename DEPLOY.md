@@ -71,7 +71,7 @@ curl -s 'http://localhost:8788/api/stats?days=7' -H 'authorization: Bearer local
 5. **SSL/TLS** → mode *Full*; **Edge Certificates** → *Always Use HTTPS* on, *Automatic HTTPS Rewrites* on, minimum TLS 1.2.
 6. **Speed → Optimization** → Brotli is on by default on Cloudflare; confirm it. Leave caching at defaults.
 7. No CORS setup needed: the tracking endpoint only accepts requests from
-   `documently.in`, `www.documently.in`, `*.documently.pages.dev` and `localhost`.
+   `documently.in`, `www.documently.in`, `*.documently-570.pages.dev` and `localhost`.
 
 ## 6. Email: hello@documently.in
 

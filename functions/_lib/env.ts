@@ -9,7 +9,8 @@ const ALLOWED_HOSTS = new Set(["documently.in", "www.documently.in", "localhost"
 
 export function isAllowedHost(host: string): boolean {
   const h = host.toLowerCase();
-  return ALLOWED_HOSTS.has(h) || /^([a-z0-9-]+\.)?documently\.pages\.dev$/.test(h);
+  // The Pages project was assigned the subdomain documently-570.pages.dev (plain "documently" was taken).
+  return ALLOWED_HOSTS.has(h) || /^([a-z0-9-]+\.)?documently-570\.pages\.dev$/.test(h);
 }
 
 export function hostOf(url: string | null): string | null {
