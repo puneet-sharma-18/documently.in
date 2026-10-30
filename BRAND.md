@@ -2,7 +2,7 @@
 
 Style direction: calm sky, ink and electric lime. The structure and visual language are inspired by a clean consulting-template look; all content, illustrations and the logo are original to Documently.
 
-**Speed is the top rule.** Every visual is CSS or inline SVG. There are no web fonts, no hero images, no animation libraries and no icon fonts. A design change that adds a network request needs a good reason.
+**Speed is the top rule.** Every visual is CSS or inline SVG. The only web font is Inter (self-hosted via next/font, one preloaded 48 KB Latin file). There are no hero images, no animation libraries and no icon fonts. A design change that adds a network request needs a good reason.
 
 ## Colour (tokens in `app/globals.css`)
 | Token | Hex | Use |
@@ -24,7 +24,7 @@ Contrast rules:
 
 ## Type
 - **System stack only:** SF Pro on Apple and Roboto on Android. Headings are semibold with tight tracking (−0.025 to −0.035em).
-- **Labels:** `.eyebrow` and the pill text use the mono stack, uppercase, tracked at 0.12–0.14em.
+- **Labels:** `.eyebrow` and pill text are Inter semibold, sentence case, normal tracking. No mono or all-caps labels: they read as technical.
 - **Sizes:**
 
 | Element | Phone | Desktop |
@@ -44,7 +44,7 @@ Contrast rules:
 
 ## Components (`components/Brand.tsx`)
 - **`Logo`:** an ink tile containing a white page, a lime fold and an ink tick. `scripts/generate-icons.mjs` must mirror the same geometry; rerun it after any change.
-- **`PillLink`:** the signature CTA, an uppercase mono pill with a round arrow badge.
+- **`PillLink`:** the signature CTA, a sentence-case pill with a round arrow badge.
 
 | Tone | Pill | Badge |
 |---|---|---|
