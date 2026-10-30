@@ -45,7 +45,6 @@ export default function ResizeImage({ tool, presetSlug, config }: ToolProps) {
   }, [file]);
 
   const toPx = (v: number) => (unit === "cm" ? Math.round((v / 2.54) * dpi) : Math.round(v));
-  const fromPx = (v: number) => (unit === "cm" ? Math.round((v / dpi) * 2.54 * 100) / 100 : v);
 
   function changeW(v: number | "") {
     setW(v);
@@ -85,7 +84,7 @@ export default function ResizeImage({ tool, presetSlug, config }: ToolProps) {
       return {
         files: [{ name: renameFile(f.name, `-${r.width}x${r.height}`, "jpg"), blob: r.blob }],
         beforeBytes: f.size,
-        details: [`${r.width} × ${r.height} px`, `${dpi} DPI`, `${fromPx(r.width)} × ${fromPx(r.height)} ${unit}`],
+        details: [`${r.width} × ${r.height} px`, `${dpi} DPI`, `${((r.width / dpi) * 2.54).toFixed(1)} × ${((r.height / dpi) * 2.54).toFixed(1)} cm`],
         warning: r.message,
       };
     });

@@ -1,9 +1,9 @@
 {
   "name": "documently.in",
-  "stage": "building",
-  "focus": "MVP: 10 client-side tools + Tier A pages",
+  "stage": "built — awaiting deploy",
+  "focus": "MVP: 10 client-side tools, 16 verified presets, tracking backend",
   "blockers": [],
-  "next_action": "Deploy to Cloudflare Pages and submit sitemap",
+  "next_action": "Connect repo to Cloudflare Pages, create D1 + ADMIN_TOKEN, point DNS, submit sitemap",
   "health": "active",
-  "updated_at": "2026-10-30"
+  "updated_at": "2026-10-31"
 }

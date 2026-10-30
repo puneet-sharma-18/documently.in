@@ -52,7 +52,7 @@ export default function Home() {
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-[#2b3532]">
             Compress, resize and convert PDFs and photos to the exact size an exam, job or government form asks for. {site.trustLine}.
           </p>
-          <div className="mt-6 max-w-2xl">
+          <div className="mt-6">
             <ToolGrid tools={tools.map(({ slug, name, short, category }) => ({ slug, name, short, category }))} searchable />
           </div>
         </div>

@@ -34,6 +34,8 @@ export type ExamItem = {
   maxKB: number | null;
   format: string;
   dpi: number | null;
+  /** Shown in the spec table when the notice gives a range rather than exact px/cm. */
+  dimensions?: string;
   rules: string[];
   /** Pixel size we output. Equals the official size when one is prescribed, else a safe default we explain in `outputNote`. */
   outWidth: number;

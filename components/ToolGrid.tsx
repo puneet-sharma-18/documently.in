@@ -19,7 +19,7 @@ export default function ToolGrid({ tools, searchable }: { tools: Card[]; searcha
   return (
     <div>
       {searchable && (
-        <label className="block">
+        <label className="block max-w-2xl">
           <span className="sr-only">Search tools</span>
           <input
             type="search"

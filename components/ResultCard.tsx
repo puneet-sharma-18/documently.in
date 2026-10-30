@@ -20,7 +20,7 @@ type Props = {
 
 export default function ResultCard({ files, beforeBytes, details, warning, zipName = "documently.zip", onDownload, onReset, resetLabel = "Do another" }: Props) {
   const after = files.reduce((n, f) => n + f.blob.size, 0);
-  const saved = beforeBytes && beforeBytes > after ? Math.round((1 - after / beforeBytes) * 100) : null;
+  const saved = beforeBytes && beforeBytes > after ? Math.min(99, Math.round((1 - after / beforeBytes) * 100)) : null;
 
   async function downloadAll() {
     const entries = await Promise.all(files.map(async (f) => ({ name: f.name, data: new Uint8Array(await f.blob.arrayBuffer()) })));

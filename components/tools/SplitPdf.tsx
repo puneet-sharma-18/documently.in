@@ -39,7 +39,6 @@ export default function SplitPdf({ tool, presetSlug }: ToolProps) {
       const base = f.name.replace(/\.pdf$/i, "");
       return {
         files: r.outputs.map((o) => ({ name: `${base}-${o.name}`, blob: new Blob([o.bytes as BlobPart], { type: "application/pdf" }) })),
-        beforeBytes: f.size,
         details: [`${r.outputs.length} PDF${r.outputs.length > 1 ? "s" : ""} from ${r.pageCount} pages`],
       };
     });

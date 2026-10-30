@@ -67,7 +67,8 @@ export async function runPdfJob(job: PdfJob): Promise<PdfResult> {
     case "images": {
       const doc = await PDFDocument.create();
       for (const img of job.images) {
-        const { bytes, kind } = await toEmbeddable(img);
+        // On A4 there's no visible gain past ~250 DPI, so cap pixels to keep the PDF upload-friendly.
+        const { bytes, kind } = await toEmbeddable(img, job.pageSize === "a4" ? 2400 : 4000);
         const embedded = kind === "png" ? await doc.embedPng(bytes) : await doc.embedJpg(bytes);
         const iw = embedded.width,
           ih = embedded.height;
@@ -94,19 +95,21 @@ export async function runPdfJob(job: PdfJob): Promise<PdfResult> {
   }
 }
 
-/** JPG/PNG embed directly; anything else (WebP, GIF, BMP) is re-encoded to JPEG. EXIF rotation is baked in. */
-async function toEmbeddable(img: Blob): Promise<{ bytes: Uint8Array; kind: "jpg" | "png" }> {
+/** Re-encodes every image (PNG stays PNG, the rest become JPEG) so EXIF rotation is baked in and size is capped. */
+async function toEmbeddable(img: Blob, maxSide: number): Promise<{ bytes: Uint8Array; kind: "jpg" | "png" }> {
   const bitmap = await createImageBitmap(img);
   try {
-    const canvas = new OffscreenCanvas(bitmap.width, bitmap.height);
+    const scale = Math.min(1, maxSide / Math.max(bitmap.width, bitmap.height));
+    const canvas = new OffscreenCanvas(Math.round(bitmap.width * scale), Math.round(bitmap.height * scale));
     const ctx = canvas.getContext("2d")!;
     const isPng = img.type === "image/png";
     if (!isPng) {
       ctx.fillStyle = "#fff";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
-    ctx.drawImage(bitmap, 0, 0);
-    const out = await canvas.convertToBlob(isPng ? { type: "image/png" } : { type: "image/jpeg", quality: 0.92 });
+    ctx.imageSmoothingQuality = "high";
+    ctx.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+    const out = await canvas.convertToBlob(isPng ? { type: "image/png" } : { type: "image/jpeg", quality: 0.85 });
     return { bytes: new Uint8Array(await out.arrayBuffer()), kind: isPng ? "png" : "jpg" };
   } finally {
     bitmap.close();

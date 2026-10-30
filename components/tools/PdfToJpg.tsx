@@ -24,7 +24,6 @@ export default function PdfToJpg({ tool, presetSlug }: ToolProps) {
       const base = f.name.replace(/\.pdf$/i, "") || "page";
       return {
         files: pages.map((p) => ({ name: pages.length === 1 ? `${base}.jpg` : `${base}-page-${p.page}.jpg`, blob: p.blob })),
-        beforeBytes: f.size,
         details: [`${pages.length} image${pages.length > 1 ? "s" : ""}`, `${dpi} DPI`],
       };
     });

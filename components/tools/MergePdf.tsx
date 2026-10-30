@@ -29,7 +29,6 @@ export default function MergePdf({ tool, presetSlug }: ToolProps) {
       const r = await runPdfJob({ op: "merge", files: list });
       return {
         files: [{ name: "merged.pdf", blob: new Blob([r.outputs[0].bytes as BlobPart], { type: "application/pdf" }) }],
-        beforeBytes: list.reduce((n, f) => n + f.size, 0),
         details: [`${list.length} files → 1 PDF`, `${r.pageCount} pages`],
       };
     });

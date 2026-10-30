@@ -37,7 +37,6 @@ export default function JpgToPdf({ tool, presetSlug }: ToolProps) {
       const out = r.outputs[0];
       return {
         files: [{ name: list.length === 1 ? list[0].name.replace(/\.[^.]+$/, "") + ".pdf" : "images.pdf", blob: new Blob([out.bytes as BlobPart], { type: "application/pdf" }) }],
-        beforeBytes: list.reduce((n, f) => n + f.size, 0),
         details: [`${r.pageCount} page${r.pageCount > 1 ? "s" : ""}`, pageSize === "a4" ? "A4" : "Page = image size"],
       };
     });

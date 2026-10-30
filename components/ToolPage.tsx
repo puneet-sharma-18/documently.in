@@ -23,6 +23,7 @@ export default function ToolPage({ tool, preset }: { tool: Tool; preset?: Preset
   if (preset) crumbs.push({ name: preset.chip, href: path });
   const siblings = presetsFor(tool.slug).filter((p) => p.slug !== preset?.slug);
   const related = preset?.related ?? tool.related;
+  const howTo = preset?.kind === "exam" ? `How to resize your ${preset.exam} photo and signature` : `How to ${lowerFirst(page.h1)}`;
 
   return (
     <main className="mx-auto max-w-3xl px-4 pb-8 pt-4">
@@ -56,7 +57,7 @@ export default function ToolPage({ tool, preset }: { tool: Tool; preset?: Preset
 
       <section aria-labelledby="how-to" className="mt-10">
         <h2 id="how-to" className="text-xl font-bold">
-          How to {lowerFirst(page.h1)}
+          {howTo}
         </h2>
         <ol className="mt-4 space-y-3">
           {page.steps.map((s, i) => (
@@ -106,7 +107,7 @@ export default function ToolPage({ tool, preset }: { tool: Tool; preset?: Preset
           {
             "@context": "https://schema.org",
             "@type": "HowTo",
-            name: `How to ${lowerFirst(page.h1)}`,
+            name: howTo,
             description: page.answer,
             totalTime: "PT1M",
             estimatedCost: { "@type": "MonetaryAmount", currency: "INR", value: "0" },
@@ -142,6 +143,7 @@ function sizeText(i: ExamItem) {
 }
 
 function dimText(i: ExamItem) {
+  if (i.dimensions) return i.dimensions;
   const parts = [];
   if (i.widthPx && i.heightPx) parts.push(`${i.widthPx} × ${i.heightPx} px`);
   if (i.widthCm && i.heightCm) parts.push(`${i.widthCm} × ${i.heightCm} cm`);

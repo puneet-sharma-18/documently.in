@@ -25,6 +25,17 @@ export const isPdf = (f: File) => f.type === "application/pdf" || /\.pdf$/i.test
 export const isImage = (f: File) => f.type.startsWith("image/") || /\.(jpe?g|png|webp|gif|bmp|heic|heif)$/i.test(f.name);
 export const isHeic = (f: File) => /heic|heif/i.test(f.type) || /\.(heic|heif)$/i.test(f.name);
 
+/** True if the PDF declares an /Encrypt dictionary (password-protected or permission-locked). */
+export function isEncryptedPdf(bytes: Uint8Array) {
+  const needle = [0x2f, 0x45, 0x6e, 0x63, 0x72, 0x79, 0x70, 0x74]; // "/Encrypt"
+  for (let i = bytes.indexOf(0x2f); i !== -1 && i <= bytes.length - needle.length; i = bytes.indexOf(0x2f, i + 1)) {
+    let k = 1;
+    while (k < needle.length && bytes[i + k] === needle[k]) k++;
+    if (k === needle.length) return true;
+  }
+  return false;
+}
+
 /** Turn any thrown value into a short, human message. */
 export function friendlyError(err: unknown): string {
   const msg = err instanceof Error ? err.message : String(err);

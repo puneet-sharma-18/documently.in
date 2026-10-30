@@ -32,7 +32,6 @@ export default function RotatePdf({ tool, presetSlug }: ToolProps) {
       const r = await runPdfJob({ op: "rotate", file: f, angle, pages });
       return {
         files: [{ name: renameFile(f.name, "-rotated", "pdf"), blob: new Blob([r.outputs[0].bytes as BlobPart], { type: "application/pdf" }) }],
-        beforeBytes: f.size,
         details: [`${pages ? pages.length : r.pageCount} page${(pages?.length ?? r.pageCount) > 1 ? "s" : ""} rotated ${angle}°`],
       };
     });

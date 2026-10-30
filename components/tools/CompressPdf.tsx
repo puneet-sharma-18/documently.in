@@ -6,7 +6,7 @@ import ResultCard from "../ResultCard";
 import { Busy, Chips, ErrorBox, FileRow, Panel, PrimaryButton } from "./ui";
 import { useJob } from "./useJob";
 import type { ToolProps } from "./types";
-import { formatBytes, isPdf, renameFile } from "@/lib/files";
+import { formatBytes, isEncryptedPdf, isPdf, renameFile } from "@/lib/files";
 import { runGsJob } from "@/lib/tools/run-gs";
 
 const TARGETS = [50, 100, 200, 500, 1000] as const;
@@ -28,6 +28,8 @@ export default function CompressPdf({ tool, presetSlug, config }: ToolProps) {
     if (!file) return;
     const f = file;
     job.run({ bytes: f.size, count: 1 }, async (onProgress) => {
+      const head = new TextDecoder().decode(await f.slice(0, 1024).arrayBuffer());
+      if (!head.includes("%PDF-")) throw new Error("Invalid PDF: no PDF header");
       if (mode === "target" && f.size <= target * 1000 - 1024) {
         return {
           files: [{ name: f.name, blob: f }],
@@ -36,6 +38,8 @@ export default function CompressPdf({ tool, presetSlug, config }: ToolProps) {
         };
       }
       const bytes = await f.arrayBuffer();
+      // Ghostscript silently drops pages of encrypted files, so refuse them up front.
+      if (isEncryptedPdf(new Uint8Array(bytes))) throw new Error("This PDF is password-protected.");
       const res = await runGsJob(
         { bytes, mode, level, targetKB: target, gray },
         { transfer: [bytes], onProgress },

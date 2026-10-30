@@ -1,11 +1,10 @@
 import Link from "next/link";
-import { site } from "@/lib/site";
 
 export default function SiteHeader() {
   return (
     <header className="border-b border-line bg-card">
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4">
-        <Link href="/" className="flex items-center gap-2 font-bold tracking-tight" aria-label={`${site.name} home`}>
+        <Link href="/" className="flex items-center gap-2 font-bold tracking-tight" aria-label="documently.in home">
           <Logo />
           <span>
             documently<span className="text-brand-600">.in</span>
