@@ -14,6 +14,8 @@ export type Tool = {
   metaDescription: string;
   /** Answer-first summary (1–2 sentences) shown under the H1 — written to be quotable by AI search. */
   answer: string;
+  /** Heading for the how-to steps (and HowTo schema name), e.g. "How to compress a PDF". */
+  howTo?: string;
   /** Self-contained 134–167-word passage with the page's key numbers and source — the block answer engines quote. */
   keyFacts?: string;
   intro: string;
@@ -54,6 +56,7 @@ export type Preset = {
   metaTitle: string;
   metaDescription: string;
   answer: string;
+  howTo?: string;
   keyFacts?: string;
   intro: string;
   updated: string;

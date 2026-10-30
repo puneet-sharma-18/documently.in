@@ -7,20 +7,21 @@
     "h1": "Compress PDF Online — Reduce PDF Size Free",
     "metaTitle": "Compress PDF Online Free – Reduce PDF Size | Documently",
     "metaDescription": "Compress PDF to 100 KB, 200 KB or any target size right in your browser. Free, no upload, no signup. Scans shrink a lot while text stays sharp.",
-    "answer": "To compress a PDF, open it here, pick a target size such as 100 KB or 200 KB, and tap Compress. The PDF is shrunk inside your browser by lowering image resolution, so text stays sharp and the file is never uploaded.",
+    "answer": "To compress a PDF, open it here, pick a target such as 100 KB or 200 KB, and tap Compress. In our tests, a 5.16 MB six-page scan came down to 69 KB in 2.1 seconds. Text stays sharp and the file is never uploaded.",
+    "keyFacts": "Documently Compress PDF is a free in-browser tool that reduces a PDF to a target size such as 50 KB, 100 KB, 200 KB, 500 KB or 1 MB. The compressor runs Ghostscript compiled to WebAssembly, so the PDF is processed on the phone or computer and is never uploaded. Typed text and vector lines stay sharp, because only scanned images are resampled, starting at 150 DPI and stepping down to 40 DPI if needed. In our tests on a 6-page scanned PDF of 5.16 MB, we measured 44 KB for the 50 KB target in 1.4 seconds, 69 KB for 100 KB in 2.1 seconds, 154 KB for 200 KB in 2.6 seconds, 284 KB for 500 KB in 7.0 seconds and 877 KB for 1 MB in 3.7 seconds. The engine is about 11 MB and downloads once, on first use. Pick the exact limit printed on your form, compress, and check the size on the result card before you upload.",
     "intro": "Most form portals reject a PDF the moment it crosses their size limit, and a phone scan of even two pages can easily be 3–5 MB. This PDF size reducer gets your file under the limit without a laptop or an app. Choose an exact target in KB or a quality level, and the tool keeps the text crisp while it shrinks the images and scans that make the file heavy.",
     "steps": [
       "Select or drop your PDF into the upload box.",
       "Choose Target size and tap a chip such as 100 KB or 200 KB, or switch to Quality level and pick Best quality, Balanced or Smallest size.",
       "Turn on Black & white if your PDF is a scanned document and colour is not required.",
-      "Tap Compress and wait a few seconds; the first time, the compression engine (about 5 MB) downloads once.",
+      "Tap Compress and wait a few seconds; the first time, the compression engine (about 11 MB) downloads once.",
       "Check the new size shown on the result card and tap Download."
     ],
     "sections": [
       {
         "heading": "When do you need to reduce PDF size?",
         "paragraphs": [
-          "Almost every online application in India has a PDF limit, and it is usually small. Many state scholarship portals cap documents at 200–300 KB, and job and admission forms often ask for 100 KB or less per certificate.",
+          "Almost every online application in India has a PDF limit, and it is usually small. Limits differ by portal — NTA's JEE Main 2027 bulletin, for example, asks for supporting PDFs of 50–300 KB — so check the exact limit printed on your form.",
           "Common situations where a smaller PDF saves the day:"
         ],
         "bullets": [
@@ -33,7 +34,7 @@
       {
         "heading": "Why won't my PDF go below 100 KB?",
         "paragraphs": [
-          "Compression only removes weight from images and scans. Typed text and vector graphics are already compact, so a 40-page text-only PDF may not shrink much, while a 2-page phone scan can drop by 90% or more.",
+          "Compression only removes weight from images and scans. Typed text and vector graphics are already compact, so a 40-page text-only PDF may not shrink much, while scans shrink a lot: in our tests a 6-page, 5.16 MB scan came down to 877 KB at the 1 MB target, an 83% cut.",
           "In Target size mode the tool lowers image resolution step by step, from 150 DPI down to 40 DPI, until the file fits. Going from 300 to 100 DPI alone cuts the pixel count by about 89%. If even 40 DPI is not enough, you get the smallest size that was possible instead of an unreadable file. If your PDF is already under the target, you get the original back untouched."
         ],
         "bullets": [
@@ -82,7 +83,7 @@
       },
       {
         "q": "Why does the tool download something the first time?",
-        "a": "The compression engine is about 5 MB and is loaded only when you use this tool, so other pages stay fast. It downloads once, after which compression runs offline-style on your device. On 4G this usually takes a few seconds."
+        "a": "The compression engine is about 11 MB and is loaded only when you use this tool, so other pages stay fast. It downloads once, after which compression runs offline-style on your device. On 4G this usually takes a few seconds."
       }
     ],
     "related": [
@@ -94,7 +95,8 @@
       "compress-pdf/to-200kb",
       "compress-pdf/to-500kb"
     ],
-    "updated": "2026-10-30"
+    "updated": "2026-10-31",
+    "howTo": "How to compress a PDF"
   },
   {
     "slug": "compress-image",
@@ -104,7 +106,8 @@
     "h1": "Compress Image to KB Online — Reduce Photo Size Free",
     "metaTitle": "Compress Image to KB – Reduce Photo Size Free | Documently",
     "metaDescription": "Reduce photo size to 20 KB, 50 KB, 100 KB or any custom KB in your browser. Free, no upload, batch up to 30 images, sized for online form limits.",
-    "answer": "To compress an image to a specific size in KB, select your photo, pick a target such as 20 KB, 50 KB or 100 KB, and tap Compress. The tool lowers JPEG quality first and shrinks dimensions only if needed, all inside your browser.",
+    "answer": "To compress a photo, select it, pick a target such as 20, 50 or 100 KB, and tap Compress. In our tests, two photos totalling 10.4 MB came out at 48 KB and 47 KB for a 50 KB target.",
+    "keyFacts": "Documently Compress Image is a free browser tool that reduces a JPG, PNG or WebP photo to a target size in KB, from 10 KB up to 500 KB, and saves the result as a JPG. The compressor first runs a binary search on JPEG quality to find the highest quality under the target, and only then shrinks the pixel dimensions. Up to 30 images can be compressed in one batch, and every photo stays on the device, with no upload. In our tests with two phone photos totalling 10.4 MB, we measured 48 KB and 47 KB for a 50 KB target, and 9.2 KB and 8.9 KB for a 10 KB target, at about 3 seconds per batch. Results stay under the target whether a portal counts 1 KB as 1,000 or 1,024 bytes. iPhone HEIC photos are not supported yet. Check both the minimum and maximum KB on your form, then compress.",
     "intro": "A photo straight from a phone camera is often 2–5 MB, while most application forms want it under 50 or 100 KB. This tool reduces photo size in KB to an exact target so the portal accepts it on the first try. You can compress up to 30 images in one go, and every file is processed on your own device, so nothing is uploaded.",
     "steps": [
       "Select or drop up to 30 photos into the upload box.",
@@ -183,7 +186,8 @@
       "compress-image/to-20kb",
       "compress-image/to-10kb"
     ],
-    "updated": "2026-10-30"
+    "updated": "2026-10-31",
+    "howTo": "How to compress an image to a size in KB"
   },
   {
     "slug": "resize-image",
@@ -193,7 +197,8 @@
     "h1": "Resize Image in Pixels, cm and KB Online — Free",
     "metaTitle": "Resize Image in Pixels, cm & KB Free | Documently",
     "metaDescription": "Resize image to exact pixels or cm, set DPI and a KB range in one step. Free, no upload, works on phones. Made for form photo requirements.",
-    "answer": "To resize an image, enter the width and height in pixels or centimetres, choose a DPI, and optionally set a minimum and maximum KB, then tap Resize. You get a JPG with the exact size, made in your browser without uploading.",
+    "answer": "To resize an image, enter the width and height in pixels or cm, choose a DPI, set a KB range if your form has one, and tap Resize. For example, 3.5 × 4.5 cm at 300 DPI gives 413 × 531 pixels. Nothing is uploaded.",
+    "keyFacts": "Documently Resize Image is a free tool that sets the exact width and height of a photo in pixels or centimetres, writes a DPI value into the JPG and keeps the file inside a minimum and maximum KB range, all in one step. Centimetres convert to pixels with the formula pixels = cm ÷ 2.54 × DPI. For example, a 3.5 × 4.5 cm passport-style photo is 276 × 354 pixels at 200 DPI and 413 × 531 pixels at 300 DPI. In our tests, a 5.6 MB phone photo resized with the passport preset came out at 413 × 531 px, 300 DPI and 54 KB. With Keep proportions off, the photo is centre-cropped to the new shape instead of stretched. A file below the minimum KB is padded without changing the picture. Resizing runs in the browser canvas, so the photo is never uploaded. Enter the pixels or cm printed on your form, set the KB range, and tap Resize.",
     "intro": "Forms rarely ask for just one thing. They want a photo of 200 × 230 pixels, under 50 KB, sometimes at 200 DPI, or a size written in centimetres. This tool handles all of it together: exact dimensions in pixels or cm, the DPI value in the file, and a KB range. It runs in your browser, so it works on any phone without installing an app.",
     "steps": [
       "Select or drop your image into the upload box.",
@@ -268,7 +273,8 @@
       "resize-image/passport-size-photo",
       "resize-image/signature-resize"
     ],
-    "updated": "2026-10-30"
+    "updated": "2026-10-31",
+    "howTo": "How to resize an image in pixels, cm or KB"
   },
   {
     "slug": "exam-photo-signature",
@@ -279,6 +285,7 @@
     "metaTitle": "Exam Photo & Signature Resize to KB | Documently",
     "metaDescription": "Resize exam photo and signature to the exact pixels, KB range and DPI forms ask for. Free, no upload, works on phones. SSC, NEET, JEE, UPSC, IBPS.",
     "answer": "To resize a photo or signature for an exam form, choose the upload type, drag the locked crop box over your face or signature, and download. You get the exact pixels, KB range and DPI the form asks for, made in your browser.",
+    "keyFacts": "Documently Exam Photo & Signature is a free tool that crops, resizes and compresses an exam photo or signature to the exact pixels, KB range and DPI an Indian exam form asks for. The crop box locks to the required shape, and files below the minimum KB are padded without changing the image. Ready presets follow official notices verified on 30 October 2026: IBPS PO 2026 (photo 200 × 230 px, 20–50 KB), NEET UG 2026 (photo 10–200 KB), JEE Main 2027 (photo 10–200 KB), UPSC CSE 2026 (photo 20–200 KB) and SSC CGL 2026 (signature 10–20 KB). In our IBPS PO test, a 5.6 MB phone photo became a 200 × 230 px, 20.3 KB JPG at 200 DPI, inside the official range. The generic passport preset gives 276 × 354 px, which is 3.5 × 4.5 cm at 200 DPI. Everything runs in the browser, with no upload. Open the preset for your exam and download each file.",
     "intro": "Exam portals check three things at once: pixel dimensions, file size in KB, and shape. Get one wrong and the upload fails, often minutes before the deadline. This tool locks the crop to the required shape and then produces a JPG that matches all three. Use the generic passport photo and signature settings, edit the KB range yourself, or open a ready preset for your exam.",
     "steps": [
       "Choose the upload type, such as Passport photo or Signature, or open your exam's preset page.",
@@ -363,7 +370,8 @@
       "exam-photo-signature/upsc-cse",
       "exam-photo-signature/ibps-po"
     ],
-    "updated": "2026-10-30"
+    "updated": "2026-10-31",
+    "howTo": "How to make an exam photo and signature"
   },
   {
     "slug": "jpg-to-pdf",
@@ -374,6 +382,7 @@
     "metaTitle": "JPG to PDF – Convert Photos to PDF Free | Documently",
     "metaDescription": "Convert JPG, PNG or WebP photos to one PDF, reorder pages, choose A4 size and margins. Free, no upload, no watermark, works on any phone.",
     "answer": "To convert JPG to PDF, select your photos, arrange them in order with the up and down arrows, choose A4 or Same as image page size, and tap Convert. All images become one PDF, created in your browser without uploading.",
+    "keyFacts": "Documently JPG to PDF is a free tool that combines JPG, PNG and WebP images into one PDF, one image per page, in the order set with the up and down arrows. Page size can be A4 (210 × 297 mm), which suits certificates and marksheets, or Same as image, which suits screenshots and receipts. Auto orientation picks portrait or landscape for each page, and the EXIF rotation saved by phone cameras is respected, so sideways photos come out upright. The PDF is built inside the browser on the device, so ID cards and certificates are never uploaded, and the output carries no watermark. Full-resolution phone photos make heavy PDFs, so a portal limit such as 200 KB usually needs a second step with Compress PDF; in our tests, the 200 KB target took a 5.16 MB six-page scanned PDF to 154 KB. iPhone HEIC photos are not supported yet. Photograph each page flat in daylight, convert, then compress if the form sets a size limit.",
     "intro": "Most portals want documents as a PDF, but your marksheets, certificates and ID cards are sitting in your phone gallery as photos. This tool combines JPG, PNG or WebP images into a single PDF in the order you choose. Phone photos are turned the right way up automatically, and you can set A4 pages and margins so the result looks like a proper scanned document.",
     "steps": [
       "Select or drop your JPG, PNG or WebP images.",
@@ -432,8 +441,8 @@
         "a": "It should not be here. Phones save a rotation tag (EXIF) instead of turning the actual image, and this tool reads that tag so pages come out upright. If a page is still wrong, rotate the photo in your gallery or use Rotate PDF afterwards."
       },
       {
-        "q": "How do I make the PDF smaller for upload?",
-        "a": "Phone photos are large, so a PDF of several photos can be several MB. After converting, open the PDF in Compress PDF and pick a target like 200 KB or 500 KB. Scans also shrink a lot with the Black & white option."
+        "q": "How do I make a JPG to PDF file smaller for upload?",
+        "a": "Run it through Compress PDF after converting and pick a target such as 200 KB or 500 KB. Phone photos are large, so a PDF of several photos can be several MB. Scans also shrink a lot with the Black & white option."
       },
       {
         "q": "Does the PDF have a watermark?",
@@ -446,7 +455,8 @@
       "crop-image",
       "pdf-to-jpg"
     ],
-    "updated": "2026-10-30"
+    "updated": "2026-10-31",
+    "howTo": "How to convert JPG to PDF"
   },
   {
     "slug": "pdf-to-jpg",
@@ -456,7 +466,8 @@
     "h1": "PDF to JPG Converter — Save PDF Pages as Images",
     "metaTitle": "PDF to JPG – Convert PDF Pages to Images | Documently",
     "metaDescription": "Convert every PDF page to a JPG image at 100, 150 or 300 DPI. Download as a ZIP or one by one. Free, no upload, no signup, works on phones.",
-    "answer": "To convert a PDF to JPG, select the PDF, choose 100, 150 or 300 DPI, and tap Convert. Every page becomes a separate JPG image, which you can download individually or together as one ZIP, all processed in your browser.",
+    "answer": "To convert a PDF to JPG, select the PDF, choose 100, 150 or 300 DPI, and tap Convert. Every page becomes its own JPG. In our tests, a 6-page PDF became six 1240 × 1753 px JPGs at 150 DPI in 0.8 seconds.",
+    "keyFacts": "Documently PDF to JPG saves every page of a PDF as a separate JPG image at 100, 150 or 300 DPI. Pages can be downloaded one at a time or together as one ZIP file. DPI sets the pixel count: an A4 page measures 8.27 × 11.69 inches, so the page is about 827 × 1169 pixels at 100 DPI, about 1240 × 1754 at 150 DPI and about 2480 × 3508 at 300 DPI. In our tests, a 6-page PDF became six JPGs of 1240 × 1753 px at 150 DPI in 0.8 seconds. Use 150 DPI for portal uploads and WhatsApp, and 300 DPI for printing. The PDF renderer runs in the browser, so documents such as an Aadhaar card, a PAN card or a DigiLocker certificate are never uploaded. Password-protected PDFs must be unlocked first. To meet a portal limit, convert at 150 DPI, then run the page through Compress Image or Resize Image.",
     "intro": "Some portals accept only images, even for documents that you have as a PDF. Admit cards, certificates and e-statements often need to be a JPG to upload, print at a shop, or share on WhatsApp. This tool turns each PDF page into a clear JPG at the resolution you choose, and the conversion happens on your phone or computer, so your document stays private.",
     "steps": [
       "Select or drop your PDF into the upload box.",
@@ -519,8 +530,8 @@
         "a": "Yes, if the PDF opens normally without a password. Select it here and convert as usual. If the file asks for a password when opened, unlock it first with the password in a PDF reader and save an unlocked copy."
       },
       {
-        "q": "Is there a limit on pages?",
-        "a": "There is no fixed page limit, but every page is rendered on your device, so very long PDFs at 300 DPI need more memory and time. On older phones, convert at 100 or 150 DPI or split the PDF into smaller parts first."
+        "q": "Is there a page limit for converting PDF to JPG?",
+        "a": "No fixed page limit. Every page is rendered on your device, so very long PDFs at 300 DPI need more memory and time. On older phones, convert at 100 or 150 DPI or split the PDF into smaller parts first."
       }
     ],
     "related": [
@@ -529,7 +540,8 @@
       "compress-image",
       "resize-image"
     ],
-    "updated": "2026-10-30"
+    "updated": "2026-10-31",
+    "howTo": "How to convert PDF to JPG"
   },
   {
     "slug": "merge-pdf",
@@ -540,6 +552,7 @@
     "metaTitle": "Merge PDF – Combine PDF Files into One Free | Documently",
     "metaDescription": "Merge 2 to 50 PDF files into one PDF and set the page order. Free, no upload, no signup, no watermark. Ideal for single-file form uploads.",
     "answer": "To merge PDFs, select 2 to 50 PDF files, arrange them in the order you want, and tap Merge. You get one combined PDF, created inside your browser, so your documents are never uploaded and there is no watermark.",
+    "keyFacts": "Documently Merge PDF combines 2 to 50 PDF files into one document, in the order chosen with the up and down arrows. Pages are copied as they are, without re-compression, so text, stamps and scans keep their original quality, and the merged file is roughly the sum of the inputs. For example, five scans of 300 KB each make a merged PDF of about 1.5 MB. If the result crosses a portal limit, Compress PDF can bring it down; in our tests, the 500 KB target took a 5.16 MB six-page scan to 284 KB. Photos need converting first with JPG to PDF, and unwanted pages can be removed with Split PDF. Merging happens inside the browser, so no document is uploaded and no watermark is added. When the form gives no order, a safe sequence is application page, ID proof, certificates from the highest qualification down, then other papers. Merge in the order the form lists, open the file once, and upload.",
     "intro": "Many application forms give you a single upload slot for all supporting documents. If your marksheets, certificates and ID proof are separate PDFs, you need to combine them first. This tool merges up to 50 PDF files into one in the order you set, keeps every page exactly as it was, and does it all on your device, which keeps personal documents private.",
     "steps": [
       "Select or drop 2 to 50 PDF files.",
@@ -606,7 +619,7 @@
       },
       {
         "q": "Can I add JPG photos to a merged PDF?",
-        "a": "Convert the photos to a PDF first using JPG to PDF, then add that PDF to the merge list with your other files. Arrange the order and tap Merge to get one complete document."
+        "a": "Yes, with one extra step. Convert the photos to a PDF first using JPG to PDF, then add that PDF to the merge list with your other files. Arrange the order and tap Merge to get one complete document."
       }
     ],
     "related": [
@@ -615,7 +628,8 @@
       "jpg-to-pdf",
       "rotate-pdf"
     ],
-    "updated": "2026-10-30"
+    "updated": "2026-10-31",
+    "howTo": "How to merge PDF files"
   },
   {
     "slug": "split-pdf",
@@ -626,6 +640,7 @@
     "metaTitle": "Split PDF – Extract Pages from PDF Free | Documently",
     "metaDescription": "Split a PDF by page ranges like 1-3, 5, 8-end, or save every page separately. Free, no upload, results as PDFs or one ZIP. Works on phones.",
     "answer": "To split a PDF, select the file, choose Pick pages and type ranges like 1-3, 5, 8-end, or choose Every page separately, then tap Split. Each range becomes its own PDF, and several results download together as a ZIP.",
+    "keyFacts": "Documently Split PDF extracts chosen pages from a PDF into new PDF files. In Pick pages mode, each comma-separated range becomes its own file: typing 1-3, 5, 8-end gives three PDFs, with pages 1 to 3, page 5 alone, and page 8 to the last page. The word end always means the final page, so no page count is needed. Every page separately turns a 10-page PDF into 10 single-page PDFs, and several results download together as one ZIP. Pages are copied without re-compression, so text and scans keep their original sharpness. Splitting also helps with size limits: keeping 2 pages of a 6-page scan leaves a third of the pages, and the file shrinks roughly in proportion. The PDF is read and split in the browser and is never uploaded. Check page positions in a PDF viewer first, because printed page numbers can differ, then type the range and tap Split.",
     "intro": "Downloaded documents often contain more pages than a form needs. A bank statement may run to 12 pages when you need three, or a single PDF may hold all your certificates when each must be uploaded separately. This tool extracts exactly the pages you want into new PDFs. It works in your browser, keeps the pages at their original quality, and never uploads your file.",
     "steps": [
       "Select or drop the PDF you want to split.",
@@ -701,7 +716,8 @@
       "pdf-to-jpg",
       "rotate-pdf"
     ],
-    "updated": "2026-10-30"
+    "updated": "2026-10-31",
+    "howTo": "How to split a PDF"
   },
   {
     "slug": "rotate-pdf",
@@ -712,6 +728,7 @@
     "metaTitle": "Rotate PDF Pages Online Free | Documently",
     "metaDescription": "Rotate PDF pages 90° right, 90° left or 180°, for all pages or just a few like 2, 4-6. Free, no upload, lossless — quality stays the same.",
     "answer": "To rotate a PDF, select the file, choose 90° right, 180° or 90° left, apply it to all pages or type specific pages like 2, 4-6, and tap Rotate. Rotation is lossless, so the pages keep their exact quality.",
+    "keyFacts": "Documently Rotate PDF turns sideways or upside-down PDF pages by 90° right, 180° or 90° left. The rotation can apply to all pages or to a list such as 2, 4-6. Every PDF page stores a rotation setting, and the tool changes only that setting, so rotation is lossless: text stays selectable, scans keep their exact pixels and the file size stays almost the same. The new direction is saved inside the PDF, so the page displays correctly in any viewer and on any portal. Pages needing different directions take two passes, one per direction. Rotation works in 90° steps only and cannot straighten a slightly tilted scan. The PDF is opened and saved in the browser and is never uploaded, so bank statements and offer letters stay private. Note the wrong pages in a viewer, type those page numbers, choose the direction, and tap Rotate.",
     "intro": "Scanned forms and phone-made PDFs often end up with a page or two lying sideways or upside down. Reviewers have to tilt their heads, and some portals' previews make the document look broken. This tool turns the pages you choose to the right direction without re-compressing anything, so the file quality stays the same. It runs entirely in your browser and works on any phone.",
     "steps": [
       "Select or drop your PDF into the upload box.",
@@ -775,7 +792,7 @@
       },
       {
         "q": "Can I rotate different pages in different directions?",
-        "a": "Do it in two passes. First rotate one set of pages, for example 2, 4-6 by 90° right, and download. Then open that new file and rotate the other pages in the direction they need."
+        "a": "Yes, in two passes. First rotate one set of pages, for example 2, 4-6 by 90° right, and download. Then open that new file and rotate the other pages in the direction they need."
       },
       {
         "q": "Can I rotate a PDF on my phone?",
@@ -788,7 +805,8 @@
       "compress-pdf",
       "jpg-to-pdf"
     ],
-    "updated": "2026-10-30"
+    "updated": "2026-10-31",
+    "howTo": "How to rotate PDF pages"
   },
   {
     "slug": "crop-image",
@@ -799,6 +817,7 @@
     "metaTitle": "Crop Image Online – Passport & Signature Size | Documently",
     "metaDescription": "Crop a photo freely or to fixed shapes: passport 3.5:4.5, signature 3:1, square, 4:3 and 16:9. Free, no upload, keeps PNG as PNG. Works on phones.",
     "answer": "To crop an image, select it, pick Free or a fixed shape such as Passport 3.5:4.5 or Signature 3:1, drag the crop box over the area you want, and tap Crop. PNG files stay PNG; other images are saved as JPG.",
+    "keyFacts": "Documently Crop Image is a free tool that cuts a photo to a free shape or a locked ratio: Passport 3.5:4.5, Signature 3:1, square 1:1, 4:3 or 16:9. The crop box works with touch, so a passport photo can be framed with a finger on any phone. Passport 3.5:4.5 matches the 3.5 × 4.5 cm photos many Indian forms ask for, and Signature 3:1 matches a strip such as 300 × 100 pixels. Cropping sets the shape, not the final pixels or KB, so a form with exact numbers needs Resize Image or the exam photo tool afterwards. A tight crop also helps file size. For example, a 900 × 1157 px face crop keeps about 1 million of the 12 million pixels in a 4000 × 3000 phone photo, so the face stays clear at small KB targets. PNG files stay PNG with transparency; other formats save as JPG. Cropping runs in the browser canvas, with no upload. Crop first, then resize or compress.",
     "intro": "A good crop is often the difference between an accepted and a rejected photo. Forms want a face that fills the frame or a signature without a page of empty paper around it. This tool lets you crop freely or lock the box to common shapes, including passport and signature ratios. It works with touch on any phone, and your photo is processed in the browser, never uploaded.",
     "steps": [
       "Select or drop your image into the upload box.",
@@ -857,7 +876,7 @@
       },
       {
         "q": "Does cropping reduce image quality?",
-        "a": "Cropping removes the outer area but keeps the remaining pixels. PNG files are saved without loss. Other images are saved as JPG, which applies light compression, so the visible quality stays very close to the original."
+        "a": "Barely. Cropping removes the outer area and keeps the remaining pixels as they were. PNG files are saved without any loss. Other images are saved as JPG, which applies light compression, so the visible quality stays very close to the original."
       },
       {
         "q": "Can I crop an image on my phone with my finger?",
@@ -874,6 +893,7 @@
       "compress-image",
       "resize-image/passport-size-photo"
     ],
-    "updated": "2026-10-30"
+    "updated": "2026-10-31",
+    "howTo": "How to crop an image"
   }
 ]

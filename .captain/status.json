@@ -1,7 +1,7 @@
 {
   "name": "documently.in",
   "stage": "built — awaiting deploy",
-  "focus": "MVP: 10 client-side tools, 16 verified presets, tracking backend",
+  "focus": "MVP live-ready; AEO agent + skill in repo, first pass done",
   "blockers": [],
   "next_action": "Connect repo to Cloudflare Pages, create D1 + ADMIN_TOKEN, point DNS, submit sitemap",
   "health": "active",

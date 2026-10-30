@@ -23,7 +23,7 @@ export default function ToolPage({ tool, preset }: { tool: Tool; preset?: Preset
   if (preset) crumbs.push({ name: preset.chip, href: path });
   const siblings = presetsFor(tool.slug).filter((p) => p.slug !== preset?.slug);
   const related = preset?.related ?? tool.related;
-  const howTo = preset?.kind === "exam" ? `How to resize your ${preset.exam} photo and signature` : `How to ${lowerFirst(page.h1)}`;
+  const howTo = preset?.kind === "exam" ? `How to resize your ${preset.exam} photo and signature` : preset ? (preset.howTo ?? `How to ${lowerFirst(preset.h1)}`) : (tool.howTo ?? `How to use ${tool.name}`);
 
   return (
     <main className="mx-auto max-w-3xl px-4 pb-8 pt-4">

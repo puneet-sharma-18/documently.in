@@ -1,0 +1,37 @@
+page                                               avg blocks 134-167w  A/B/C/D/F
+contact                                           31.2      5        0  0/0/1/1/3
+terms                                             33.1     10        0  0/0/0/5/5
+.                                                 33.8     10        0  0/0/0/4/6
+404                                               34.3      3        0  0/0/0/1/2
+_not-found                                        34.3      3        0  0/0/0/1/2
+exam-photo-signature/ibps-po                      36.0     19        1  0/1/2/5/11
+resize-image                                      37.5     13        1  0/1/0/7/5
+compress-image/to-20kb                            39.1     13        1  0/0/3/4/6
+resize-image/signature-resize                     39.2     13        1  0/1/2/5/5
+resize-image/passport-size-photo                  39.5     13        1  0/0/3/5/5
+compress-image/to-50kb                            39.6     12        1  0/1/1/4/6
+crop-image                                        40.0     13        1  0/1/0/9/3
+rotate-pdf                                        40.1     13        1  0/0/3/6/4
+exam-photo-signature                              40.3     14        1  0/1/2/7/4
+compress-image/to-100kb                           41.2     12        1  0/1/1/7/3
+exam-photo-signature/upsc-cse                     41.3     15        2  0/1/2/8/4
+split-pdf                                         41.7     13        1  0/2/1/5/5
+compress-pdf/to-200kb                             42.1     12        1  0/1/3/4/4
+pdf-to-jpg                                        43.1     13        1  0/0/2/8/3
+merge-pdf                                         43.2     13        1  0/0/3/7/3
+exam-photo-signature/jee-main                     43.4     15        1  0/1/3/6/5
+compress-pdf/to-500kb                             43.5     12        1  0/1/2/5/4
+compress-image                                    43.8     14        1  0/1/3/6/4
+compress-image/to-10kb                            43.8     12        1  0/1/2/7/2
+exam-photo-signature/ssc-cgl                      44.3     14        1  0/1/2/8/3
+compress-pdf/to-1mb                               44.5     13        1  0/1/2/8/2
+jpg-to-pdf                                        44.5     13        1  0/1/3/6/3
+compress-pdf/to-100kb                             44.8     13        1  0/1/4/5/3
+privacy                                           45.1     10        1  0/0/4/4/2
+disclaimer                                        45.2      4        0  0/0/1/3/0
+exam-photo-signature/neet-ug                      45.4     15        1  0/0/6/7/2
+compress-pdf/to-50kb                              46.9     13        2  0/1/4/6/2
+compress-pdf                                      47.2     14        3  0/2/3/7/2
+about                                             49.0      6        1  0/0/4/1/1
+
+site average: 41.2 across 34 pages

@@ -91,7 +91,7 @@ export default function CompressPdf({ tool, presetSlug, config }: ToolProps) {
             Black & white (much smaller for scanned documents)
           </label>
           {job.busy ? <Busy message={job.progress} /> : <PrimaryButton onClick={start}>{mode === "target" ? `Compress to under ${kbLabel(target)}` : "Compress PDF"}</PrimaryButton>}
-          {!job.busy && <p className="text-xs text-muted">First run downloads the compression engine once (about 5 MB), then works offline-fast.</p>}
+          {!job.busy && <p className="text-xs text-muted">First use downloads the compression engine once (about 11 MB); after that it loads from your browser cache.</p>}
         </>
       )}
 

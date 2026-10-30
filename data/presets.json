@@ -8,8 +8,9 @@
     "metaTitle": "Compress PDF to 50 KB – Free, No Upload | Documently",
     "metaDescription": "Compress a PDF to under 50 KB in your browser. Ideal for one-page scans on forms with tiny upload caps. Free, no signup, files never leave your phone.",
     "answer": "To compress a PDF to 50 KB, pick the file and tap Compress to under 50 KB. The tool lowers image resolution step by step until the file is below 50 KB, keeps text sharp, and tells you if it can't get there.",
+    "keyFacts": "Compress PDF to 50 KB is a Documently preset that shrinks a PDF until the file is under 50 KB, one of the tightest PDF limits on Indian application forms. The preset suits one scanned page, such as a caste certificate, an income certificate or a Class 10 marksheet. Ghostscript, running as WebAssembly in the browser, resamples the scanned images from 150 DPI down to a floor of 40 DPI and stops at the first step under 50 KB, while typed text stays sharp. In our tests, we measured a 6-page scanned PDF of 5.16 MB coming down to 44 KB in 1.4 seconds. A file already under 50 KB is returned unchanged. Aim for under 50,000 bytes, because some portals count 1 KB as 1,024 bytes and others as 1,000. If the result looks soft, switch on Black & white or split out the one page the form needs, then compress again.",
     "intro": "A 50 KB cap is one of the tightest limits you will meet on an online form. It shows up on some recruitment, scholarship and admission portals that expect a single scanned page — a caste certificate, an income certificate, a Class 10 marksheet. This page is set to 50 KB already. Everything runs inside your browser, so your certificate never travels to a server, and it works the same on a phone as on a laptop.",
-    "updated": "2026-10-30",
+    "updated": "2026-10-31",
     "config": {
       "targetKB": 50
     },
@@ -56,7 +57,7 @@
     "faqs": [
       {
         "q": "Can I compress a PDF to 50 KB without losing quality?",
-        "a": "Typed text stays crisp because it is kept as text, not pixels. Scanned images do lose some detail, since that is where the size comes from. For a single certificate page the result is normally still easy to read on screen. Check the downloaded file once before you upload it."
+        "a": "Partly. Typed text stays crisp because it is kept as text, not pixels, but scanned images lose some detail, since that is where the size comes from. For a single certificate page the result is normally still easy to read on screen. Check the file once before you upload it."
       },
       {
         "q": "Why does my 8-page PDF not go under 50 KB?",
@@ -90,9 +91,10 @@
     "h1": "Compress PDF to 100 KB",
     "metaTitle": "Compress PDF to 100 KB – Free & Private | Documently",
     "metaDescription": "Reduce a PDF to under 100 KB for certificates, ID proofs and form uploads. Runs in your browser, keeps text sharp, files never leave your device. Free.",
-    "answer": "To compress a PDF to 100 KB, choose your file and tap Compress to under 100 KB. The tool lowers image resolution in steps until the PDF is below 100 KB, keeps typed text sharp, and returns the original if it already fits.",
-    "intro": "100 KB is the limit you will see most often for supporting documents on Indian application forms: an Aadhaar or PAN copy, a caste or domicile certificate, a degree certificate or an experience letter. It is roomy for one or two pages and tight for more. This page is preset to 100 KB, works on your phone, and never uploads your documents anywhere.",
-    "updated": "2026-10-30",
+    "answer": "To compress a PDF to 100 KB, choose your file and tap Compress to under 100 KB. Image resolution drops in steps until the PDF fits; typed text stays sharp. In our tests, a 5.16 MB six-page scan reached 69 KB in 2.1 seconds.",
+    "keyFacts": "Compress PDF to 100 KB is a Documently preset that brings a PDF under 100 KB, a frequent limit for supporting documents such as an Aadhaar or PAN copy, a caste certificate or an experience letter. In our tests, we measured a 6-page scanned PDF of 5.16 MB reaching 69 KB in 2.1 seconds. The compressor is Ghostscript compiled to WebAssembly, so the file is processed inside the browser and never uploaded. Scanned images are redrawn at 150 DPI first and lowered towards 40 DPI only if the file is still too big; typed text is never touched. A PDF already under 100 KB comes back untouched. Under 100,000 bytes is the safe target, because 100 KB can mean 100,000 or 102,400 bytes depending on the portal. A password-protected e-Aadhaar file needs an unlocked copy first. Pick the PDF, tap Compress to under 100 KB, and zoom in on the result before uploading.",
+    "intro": "Some application forms cap each supporting document at 100 KB: an Aadhaar or PAN copy, a caste or domicile certificate, a degree certificate or an experience letter. It is roomy for one or two pages and tight for more. This page is preset to 100 KB, works on your phone, and never uploads your documents anywhere.",
+    "updated": "2026-10-31",
     "config": {
       "targetKB": 100
     },
@@ -132,14 +134,14 @@
       {
         "heading": "What if it says it couldn't reach 100 KB?",
         "paragraphs": [
-          "That happens with long, photo-heavy PDFs. The tool tells you honestly instead of shipping an unreadable file. Your options: switch on Black & white, remove pages with Split PDF, or check whether the form accepts a larger file on a different field. 100 KB fits roughly one to three scanned pages; beyond that, expect to make trade-offs."
+          "That happens with long, photo-heavy PDFs. The tool tells you honestly instead of shipping an unreadable file. Your options: switch on Black & white, remove pages with Split PDF, or check whether the form accepts a larger file on a different field. In our tests a 6-page scan reached 69 KB, but with images at about 55 DPI, so zoom in to check small print; the more pages, the bigger the trade-off."
         ]
       }
     ],
     "faqs": [
       {
-        "q": "How do I compress a PDF to 100 KB on my phone?",
-        "a": "Open this page in Chrome or Safari, tap Choose PDF, and pick the file from your downloads or file manager. Under 100 KB is already selected, so just tap Compress to under 100 KB and download the result. No app or signup is needed."
+        "q": "PDF ko 100 KB kaise kare on mobile?",
+        "a": "Open this page in Chrome or Safari, tap Choose PDF, and pick the file. Under 100 KB is already selected, so tap Compress to under 100 KB and download the result. No app or signup is needed, and the PDF never leaves your phone."
       },
       {
         "q": "Can I compress my Aadhaar PDF to 100 KB?",
@@ -174,9 +176,10 @@
     "h1": "Compress PDF to 200 KB",
     "metaTitle": "Compress PDF to 200 KB – Free Online Tool | Documently",
     "metaDescription": "Shrink a PDF to under 200 KB for marksheets and multi-page certificates. Works on mobile, keeps text sharp, and your files never leave your device.",
-    "answer": "To compress a PDF to 200 KB, select it and tap Compress to under 200 KB. Images inside the PDF are resampled from 150 DPI downwards until the file is under 200 KB, while typed text stays sharp.",
-    "intro": "200 KB is a common middle limit for application forms — enough for a multi-page marksheet, a set of semester results, or a certificate plus its annexure. It is generous for one page, so the goal here is usually keeping three to six pages readable. This page is preset to 200 KB and does all the work in your browser, so your documents stay on your phone.",
-    "updated": "2026-10-30",
+    "answer": "To compress a PDF to 200 KB, select it and tap Compress to under 200 KB. Images are resampled from 150 DPI downwards until the file fits, while typed text stays sharp. In our tests, a 5.16 MB six-page scan came out at 154 KB.",
+    "keyFacts": "Compress PDF to 200 KB is a Documently preset for multi-page academic documents, such as Class 10 and 12 marksheets, semester grade sheets or a certificate with an annexure. The preset brings the whole PDF under 200 KB. Ghostscript, compiled to WebAssembly, runs in the browser and redraws scanned images at 150 DPI, then 120, 100 and lower, down to 40 DPI, stopping at the first step that fits. In our tests, we measured a 6-page scanned PDF of 5.16 MB dropping to 154 KB in 2.6 seconds. Digitally issued marksheets keep their typed text sharp at every step. Black & white mode removes colour from every page, which leaves room for a higher resolution. For a form wanting several certificates in one file, merge first with Merge PDF, then compress once. The PDF never leaves the device. Choose the file, tap Compress to under 200 KB, and check the size on the result card.",
+    "intro": "200 KB is a common middle limit for application forms — enough for a multi-page marksheet, a set of semester results, or a certificate plus its annexure. It is generous for one page; in our tests a 6-page scan came in at 154 KB with images at 85 DPI. This page is preset to 200 KB and does all the work in your browser, so your documents stay on your phone.",
+    "updated": "2026-10-31",
     "config": {
       "targetKB": 200
     },
@@ -199,7 +202,7 @@
       {
         "heading": "How many pages fit in 200 KB?",
         "paragraphs": [
-          "There's no fixed number — it depends on how the pages were scanned. As a rough guide, three to six scanned pages usually fit while staying clear on screen. Pages of plain typed text compress much better than coloured marksheets with watermarks and patterned backgrounds.",
+          "There's no fixed number — it depends on how the pages were scanned. Page count matters more than anything else: every extra scanned page adds image data, so fewer pages means sharper results. Pages of plain typed text compress much better than coloured marksheets with watermarks and patterned backgrounds.",
           "Black & white mode makes a large difference for multi-page files. Removing colour shrinks every page, so the compressor can keep a higher resolution and the text stays crisper."
         ]
       },
@@ -231,7 +234,7 @@
       },
       {
         "q": "My PDF is 5 MB. Can it really get to 200 KB?",
-        "a": "Often, yes, if it has only a few pages. Large scans are mostly oversized images, and lowering their resolution removes most of the weight. A long document with 20 or more colour pages may not get there — the tool will tell you if it can't."
+        "a": "Often, yes, if it has only a few pages. In our tests, a 5.16 MB six-page scan came down to 154 KB in 2.6 seconds. A long document with 20 or more colour pages may not get there, and the tool will tell you if it can't."
       },
       {
         "q": "Will the compressed PDF still print properly?",
@@ -254,9 +257,10 @@
     "h1": "Compress PDF to 500 KB",
     "metaTitle": "Compress PDF to 500 KB – Free, On Mobile | Documently",
     "metaDescription": "Compress a PDF to under 500 KB for portal uploads, email attachments and multi-page applications. Free, no signup, processed right in your browser.",
-    "answer": "To compress a PDF to 500 KB, choose the file and tap Compress to under 500 KB. Most scanned documents of up to around 15–20 pages can reach 500 KB with images resampled to a still-readable resolution, and text stays sharp.",
+    "answer": "To compress a PDF to 500 KB, choose the file and tap Compress to under 500 KB. Images are resampled only as much as needed, often staying at 150 or 120 DPI. In our tests, a 5.16 MB six-page scan came out at 284 KB.",
+    "keyFacts": "Compress PDF to 500 KB is a Documently preset for complete application packets: a filled form with annexures, a full set of certificates, a project report, a bank statement or a rent agreement. The preset keeps the PDF under 500 KB, light enough to email or send on WhatsApp over 4G. Because 500 KB is generous, the compressor often stops at 150 or 120 DPI, close to the original on screen, and goes as low as 40 DPI only for heavy files. In our tests, we measured a 6-page scanned PDF of 5.16 MB reaching 284 KB in 7.0 seconds. PDFs of up to 200 MB can be opened, and processing happens on the device with Ghostscript compiled to WebAssembly, so Aadhaar numbers, marks and signatures are never uploaded. Very long colour scans of 40 or more pages may not fit at a readable quality. Arrange the pages with Merge PDF, then compress here.",
     "intro": "500 KB is a comfortable limit for a complete application packet: a filled form with annexures, a full set of educational certificates, a project report or a rent agreement. It's also a sensible size for sending documents over WhatsApp or email on a slow connection. This page is preset to 500 KB and runs in your browser, so nothing is uploaded.",
-    "updated": "2026-10-30",
+    "updated": "2026-10-31",
     "config": {
       "targetKB": 500
     },
@@ -335,9 +339,10 @@
     "h1": "Compress PDF to 1 MB",
     "metaTitle": "Compress PDF to 1 MB Online Free – No Upload | Documently",
     "metaDescription": "Reduce a large PDF to under 1 MB for portals, email and WhatsApp. Keeps text sharp, lowers image resolution only as needed. Free, private, on your phone.",
-    "answer": "To compress a PDF to 1 MB, open it here and tap Compress to under 1 MB. The tool resamples scanned images only as much as needed — often staying at 150 DPI — so long documents stay readable while dropping below 1 MB.",
+    "answer": "To compress a PDF to 1 MB, open it and tap Compress to under 1 MB. Scanned images are resampled only as much as needed, starting at 150 DPI. In our tests, a 5.16 MB six-page scan came out at 877 KB in 3.7 seconds.",
+    "keyFacts": "Compress PDF to 1 MB is a Documently preset for long documents: a thesis, a scanned sale deed, a medical file or every semester marksheet in one PDF. The preset targets 1,000 KB, which stays under 1 MB whether a portal counts 1 MB as 1,000,000 bytes or 1,048,576 bytes. The compressor, Ghostscript compiled to WebAssembly, redraws scanned images at 150 DPI first and lowers the resolution only if the file is still above 1,000 KB, down to 40 DPI at the lowest. In our tests, we measured a 6-page scanned PDF of 5.16 MB reaching 877 KB in 3.7 seconds. Taking a 20 MB scan to 1 MB is a 95% reduction (1 ÷ 20 = 5% kept), and most of a scan's weight is image detail the compressor can resample. A file already under 1 MB is returned unchanged, and nothing is uploaded. Compress, then zoom into a table or footnote to check the fine print.",
     "intro": "A 1 MB limit gives you room for long documents: a full thesis, a scanned property file, a complete set of semester marksheets or a detailed application with photos. The challenge is usually a phone scan that has ballooned to 20 or 30 MB. This page is preset to 1 MB and compresses right in your browser, without uploading your files.",
-    "updated": "2026-10-30",
+    "updated": "2026-10-31",
     "config": {
       "targetKB": 1000
     },
@@ -384,11 +389,11 @@
     "faqs": [
       {
         "q": "How can I reduce a 10 MB PDF to 1 MB?",
-        "a": "Open the PDF here and tap Compress to under 1 MB. For a scanned document, the images are resampled to a lower resolution until the file drops below 1 MB — usually in under a minute. Text pages that were typed, not scanned, stay perfectly sharp."
+        "a": "Open the PDF here and tap Compress to under 1 MB. Scanned images are resampled until the file drops below 1 MB; in our tests, a 5.16 MB six-page scan reached 877 KB in 3.7 seconds. Typed text pages stay perfectly sharp."
       },
       {
         "q": "Can I compress a PDF to 1 MB without losing quality?",
-        "a": "Some loss in images is how compression works, but at 1 MB it's often hard to see. The tool tries 150 DPI first and goes lower only if it must. Typed text and vector graphics are not degraded at all."
+        "a": "Almost. Images lose a little detail, but at 1 MB the loss is often hard to see, because the tool tries 150 DPI first and goes lower only if it must. Typed text and vector graphics are not degraded at all."
       },
       {
         "q": "Can I send the compressed PDF on WhatsApp?",
@@ -418,9 +423,10 @@
     "h1": "Compress Image to 10 KB",
     "metaTitle": "Compress Image to 10 KB – JPG Photo, Free | Documently",
     "metaDescription": "Compress a photo or signature to under 10 KB as a JPG. Lowers quality first, shrinks size only if needed. Free, batch up to 30, nothing is uploaded.",
-    "answer": "To compress an image to 10 KB, add the photo and tap Compress to under 10 KB. The tool searches for the highest JPEG quality that fits, shrinks the dimensions only if it must, and saves a JPG under 10,000 bytes.",
+    "answer": "To compress an image to 10 KB, add the photo and tap Compress to under 10 KB. You get a JPG under 10,000 bytes at the highest quality that fits. In our tests, two phone photos came out at 9.2 KB and 8.9 KB.",
+    "keyFacts": "Compress Image to 10 KB is a Documently preset for the tightest image limit on online forms, usually a signature or a small photo on an older portal. The preset saves a JPG under 10,000 bytes, which is below 10 KB whether a site counts 1 KB as 1,000 or 1,024 bytes. The compressor first runs a binary search on JPEG quality to find the highest quality under 10 KB, and shrinks the width and height only when quality alone cannot reach the target. In our tests, we measured two phone photos totalling 10.4 MB coming out at 9.2 KB and 8.9 KB, in about 3 seconds per batch. A full 4000 × 3000 phone photo always needs some resizing to fit, so crop a signature tightly first. JPG, PNG and WebP files are accepted; HEIC is not supported yet. Processing happens in the browser. Crop, compress, and check the result at full size before uploading.",
     "intro": "10 KB is the tightest image limit you'll usually see on forms — often for a signature, sometimes for a small photo on older portals. At this size, every byte matters, and a careless resize leaves a blocky, unreadable result. This page is preset to 10 KB, outputs a JPG, and works entirely in your browser, so your photo or signature is never uploaded.",
-    "updated": "2026-10-30",
+    "updated": "2026-10-31",
     "config": {
       "targetKB": 10
     },
@@ -478,7 +484,7 @@
         "a": "Yes. You can add JPG, PNG or WebP files, and the result is saved as a JPG under 10 KB. Most forms ask for JPG anyway. If a form specifically wants PNG, this tool isn't the right fit."
       },
       {
-        "q": "Will 10 KB be counted correctly by the website?",
+        "q": "Will the portal accept my file as under 10 KB?",
         "a": "Yes. The result is kept under 10,000 bytes, which is below 10 KB whether the site uses 1,000 or 1,024 bytes per kilobyte. The exact size is shown on the result card before you download."
       }
     ],
@@ -498,8 +504,9 @@
     "metaTitle": "Compress Image to 20 KB – Photo & Signature | Documently",
     "metaDescription": "Reduce a photo or signature to under 20 KB as a JPG for online forms. Highest quality that fits, batch up to 30, free and processed on your phone.",
     "answer": "To compress an image to 20 KB, add your photo or signature and tap Compress to under 20 KB. You get a JPG under 20,000 bytes, saved at the highest quality that fits; dimensions shrink only if quality alone isn't enough.",
-    "intro": "20 KB is one of the most common upload limits on Indian exam and job forms, especially for signatures. Many forms ask for a scanned signature between 10 and 20 KB, and some also use 20 KB as the upper limit for a small photo. This page is preset to 20 KB, outputs JPG, and runs in your browser so the image never leaves your phone.",
-    "updated": "2026-10-30",
+    "keyFacts": "Compress Image to 20 KB is a Documently preset for the 20 KB cap found on many signature uploads. Two verified examples: the SSC CGL 2026 notice asks for a scanned signature of 10–20 KB, and the IBPS PO 2026 notification asks for a 140 × 60 px signature of 10–20 KB. The preset saves a JPG under 20,000 bytes at the highest quality that fits, found by a binary search on JPEG quality; the dimensions shrink only if quality alone is not enough. Compression guarantees the upper limit only, so a file below a 10 KB minimum needs Resize Image or the exam tool, which pad the file without changing the picture. Up to 30 images can go in one batch, and nothing is uploaded, because the work happens in the browser. Sign in black ink on plain white paper, crop the signature to a 3:1 strip with Crop Image, then tap Compress to under 20 KB.",
+    "intro": "20 KB is the upper limit for signatures on several exam forms — SSC CGL 2026 and IBPS PO 2026 both ask for 10–20 KB. Many forms ask for a scanned signature between 10 and 20 KB, and some also use 20 KB as the upper limit for a small photo. This page is preset to 20 KB, outputs JPG, and runs in your browser so the image never leaves your phone.",
+    "updated": "2026-10-31",
     "config": {
       "targetKB": 20
     },
@@ -545,8 +552,8 @@
     ],
     "faqs": [
       {
-        "q": "How do I reduce a photo to 20 KB for an online form?",
-        "a": "Tap Choose images, pick the photo, and tap Compress to under 20 KB. You'll get a JPG under 20 KB at the best quality that fits. If the form also gives pixel dimensions, use the resize tool so both requirements are met."
+        "q": "Photo ko 20 KB kaise kare for an online form?",
+        "a": "Tap Choose images, pick the photo, and tap Compress to under 20 KB. You get a JPG under 20 KB at the best quality that fits. If the form also gives pixel dimensions, use the resize tool so both requirements are met."
       },
       {
         "q": "What if the form says 10 to 20 KB?",
@@ -582,8 +589,9 @@
     "metaTitle": "Compress Image to 50 KB – JPG Photo Online | Documently",
     "metaDescription": "Compress a photo to under 50 KB as a JPG for exam and job forms. Keeps the highest quality that fits, batch up to 30. Free, no upload, works on mobile.",
     "answer": "To compress an image to 50 KB, choose the photo and tap Compress to under 50 KB. The tool finds the highest JPEG quality that fits under 50,000 bytes and resizes only if it has to, so faces stay clear.",
+    "keyFacts": "Compress Image to 50 KB is a Documently preset for passport-style photo uploads with a 50 KB upper limit. For example, the IBPS PO 2026 notification (CRP PO/MT-XVI, Annexure III) asks for a 200 × 230 px photo of 20–50 KB. The preset saves a JPG under 50,000 bytes, so the file passes whether a portal counts 1 KB as 1,000 or 1,024 bytes. In our tests, we measured two phone photos totalling 10.4 MB coming out at 48 KB and 47 KB, in about 3 seconds per batch. The compressor picks the highest JPEG quality under 50 KB and resizes only when required, so faces stay clear. A plain photo can land below a 20 KB minimum, so a 20–50 KB range is safer with the exam tool or Resize Image with Min size set. PNG and WebP inputs come out as JPG. Crop to head and shoulders, then tap Compress to under 50 KB.",
     "intro": "50 KB is a common upper limit for passport-style photos on application forms. The IBPS PO 2026 notification, for instance, asks for a 20–50 KB photo. At 50 KB a face photo can look clean and natural, as long as it isn't a full-resolution camera image. This page is preset to 50 KB, outputs JPG, and processes everything on your phone.",
-    "updated": "2026-10-30",
+    "updated": "2026-10-31",
     "config": {
       "targetKB": 50
     },
@@ -663,8 +671,9 @@
     "metaTitle": "Compress Image to 100 KB – JPG, Free | Documently",
     "metaDescription": "Compress photos and document images to under 100 KB as JPG. Batch up to 30, keeps the highest quality that fits. Free, no signup, nothing uploaded.",
     "answer": "To compress an image to 100 KB, add one or more photos and tap Compress to under 100 KB. Each becomes a JPG under 100,000 bytes at the best quality that fits — usually with no visible change for photos and scanned documents.",
+    "keyFacts": "Compress Image to 100 KB is a Documently preset for roomier photo and document-image uploads. Examples include photographed Aadhaar or PAN cards, profile photos for job portals, and photo fields with higher caps: NEET UG 2026 and JEE Main 2027 both accept photos of 10–200 KB, according to the NTA information bulletins. The preset saves a JPG under 100,000 bytes, which is below 100 KB in both counting systems, since 100 × 1,024 = 102,400 bytes. The compressor chooses the highest JPEG quality that fits and shrinks the dimensions only when needed, so a photographed A4 page usually keeps legible text. Up to 30 JPG, PNG or WebP images can be compressed in one batch, each to its own file. Everything runs on the device, with no upload. For a multi-page document, JPG to PDF followed by Compress PDF suits forms asking for a PDF. Crop away the background, then tap Compress to under 100 KB.",
     "intro": "100 KB is a roomy target. It suits photos on forms that allow larger files, photographed documents such as an ID card or certificate saved as an image, and pictures you want to send quickly on WhatsApp or email without losing detail. This page is preset to 100 KB, handles up to 30 images at once, and keeps everything on your device.",
-    "updated": "2026-10-30",
+    "updated": "2026-10-31",
     "config": {
       "targetKB": 100
     },
@@ -744,9 +753,10 @@
     "h1": "Passport Size Photo Resize (3.5 × 4.5 cm)",
     "metaTitle": "Passport Size Photo Resize 3.5×4.5 cm Online | Documently",
     "metaDescription": "Resize any photo to passport size, 3.5 × 4.5 cm (413 × 531 px at 300 DPI), as a JPG under your form's KB limit. Free, private, works on your phone.",
-    "answer": "A 3.5 × 4.5 cm passport-size photo is 413 × 531 pixels at 300 DPI. Add your photo, keep the preset size, set the KB limit your form asks for, and tap Resize to get a JPG with that DPI saved in the file.",
+    "answer": "A 3.5 × 4.5 cm passport-size photo is 413 × 531 pixels at 300 DPI. Add your photo, keep the preset size, set the KB limit your form asks for, and tap Resize. In our tests, a 5.6 MB photo came out at 54 KB.",
+    "keyFacts": "Passport Size Photo Resize is a Documently preset that turns any photo into a 3.5 × 4.5 cm passport-style JPG of 413 × 531 pixels at 300 DPI, with a 100 KB maximum. The arithmetic: 3.5 cm ÷ 2.54 × 300 = 413 px, and 4.5 cm ÷ 2.54 × 300 = 531 px. At 200 DPI the same print size is 276 × 354 px, which is why forms quote different pixel sizes for one photo. In our tests, a 5.6 MB phone photo came out at 413 × 531 px, 300 DPI and 54 KB. No single passport photo KB size exists; each form sets a range, such as 20–50 KB for IBPS PO 2026, so the Min size and Max size fields are editable. The photo is centre-cropped, never stretched, and processed in the browser without upload. Passport Seva and visa portals publish their own rules. Set the KB range from your form, then tap Resize.",
     "intro": "Most Indian application forms ask for a passport-size photo, and the shape they mean is commonly 3.5 × 4.5 cm. Online, that size has to be expressed in pixels and kilobytes. This page is preset to 413 × 531 px at 300 DPI with a 100 KB maximum, and you can change the KB limits to match your form. The photo is processed on your phone, never uploaded.",
-    "updated": "2026-10-30",
+    "updated": "2026-10-31",
     "config": {
       "widthPx": 413,
       "heightPx": 531,
@@ -804,7 +814,7 @@
         "a": "There's no fixed KB size — each form sets its own range, such as 20–50 KB or up to 200 KB. Type your form's minimum and maximum into the Min size and Max size fields and the tool keeps the JPG inside that range."
       },
       {
-        "q": "Will my photo be stretched?",
+        "q": "Will resizing to passport size stretch my face?",
         "a": "No. If your original has a different shape and Keep proportions is off, the photo is centre-cropped to 3.5 × 4.5 cm, never stretched or squashed. For control over the crop, use Crop Image with the Passport 3.5:4.5 shape first."
       },
       {
@@ -821,7 +831,8 @@
       "crop-image",
       "resize-image/signature-resize",
       "compress-image/to-50kb"
-    ]
+    ],
+    "howTo": "How to resize a passport size photo"
   },
   {
     "slug": "signature-resize",
@@ -832,8 +843,9 @@
     "metaTitle": "Resize Signature to 10–20 KB for Forms | Documently",
     "metaDescription": "Resize a scanned signature to a 300 × 100 px JPG between 10 and 20 KB for exam and job forms. Change pixels or KB to match your form. Free, no upload.",
     "answer": "Add a photo of your signature and tap Resize. This preset makes a 300 × 100 px JPG at 200 DPI between 10 and 20 KB — the range many exam forms ask for. Edit the pixels or KB if your form differs.",
+    "keyFacts": "Resize Signature for Online Forms is a Documently preset that makes a 300 × 100 px signature strip (3:1) at 200 DPI, kept between 10 and 20 KB. At 200 DPI the strip prints at about 3.8 × 1.3 cm, since 300 ÷ 200 × 2.54 = 3.81 cm. The 10–20 KB range matches two verified notices: SSC CGL 2026 asks for a 10–20 KB signature of about 6.0 × 2.0 cm, and IBPS PO 2026 asks for 140 × 60 px at 10–20 KB. A clean signature on white paper can encode to under 10 KB, below many portal minimums, so the tool pads the file up to 10 KB without changing a pixel; a file above 20 KB gets a lower JPEG quality. Width, height, DPI and both KB limits are editable, and a wider photo is centre-cropped to 3:1, never stretched. Processing stays in the browser. Sign in black ink on unruled paper, photograph in daylight, and tap Resize.",
     "intro": "Signature uploads trip up more applicants than photos do. The image has to be a wide strip, readable, and inside a narrow KB range — commonly 10–20 KB. This page is preset to a 300 × 100 px strip (3:1) at 200 DPI with a 10–20 KB range. If your form gives different numbers, just edit the fields. Your signature never leaves your phone.",
-    "updated": "2026-10-30",
+    "updated": "2026-10-31",
     "config": {
       "widthPx": 300,
       "heightPx": 100,
@@ -902,7 +914,7 @@
         "a": "Only if your form allows it. IBPS asks for black ink; many other forms accept black or blue. Black on white is the safest choice because it stays clear after compression."
       },
       {
-        "q": "Can I change the pixel size?",
+        "q": "Can I change the signature size in pixels or cm?",
         "a": "Yes. Width, height, DPI and both KB limits are editable. Switch Units to Centimetres if your form gives the size in cm — the pixels are calculated from the DPI you choose."
       }
     ],
@@ -922,8 +934,9 @@
     "metaTitle": "SSC CGL 2026 Signature Size (10–20 KB) & Live Photo Rules",
     "metaDescription": "SSC CGL 2026: only the signature is uploaded (JPG, 10–20 KB, 6 × 2 cm). Your photo is taken live by webcam. Resize your signature free, on your phone.",
     "answer": "For SSC CGL 2026 you upload only a signature: JPG, 10–20 KB, about 6.0 × 2.0 cm. There is no photo upload — your photo is captured live by webcam or phone camera inside the application form.",
+    "keyFacts": "SSC CGL 2026 needs only one upload, the signature: a scanned JPG of 10–20 KB, about 6.0 cm wide and 2.0 cm high, according to the SSC CGL 2026 notice (paras 9.3–9.6), verified on 30 October 2026. The photograph is not uploaded; the application module captures a live photo by webcam or mobile camera. Many websites still quote a 20–50 KB, 3.5 × 4.5 cm photo for SSC CGL, but that spec is not in the 2026 notice. The Documently SSC CGL preset outputs the signature at 472 × 157 px with 200 DPI written into the JPG, because 6.0 cm ÷ 2.54 × 200 = 472 px and 2.0 cm ÷ 2.54 × 200 = 157 px. A signature under 10 KB is padded to the minimum without changing the image. Blurred or miniature signatures are rejected. The file is made in the browser and never uploaded to us. Sign on plain white paper, crop tightly, and download.",
     "intro": "SSC changed how CGL photos work, and much of the advice online hasn't caught up. In the 2026 notice, the photo is captured live during the application and only the signature is uploaded. This page resizes your signature to the official 10–20 KB JPG at 6.0 × 2.0 cm, and explains the live photo rules so your capture isn't rejected. Everything stays on your phone.",
-    "updated": "2026-10-30",
+    "updated": "2026-10-31",
     "exam": "SSC CGL 2026",
     "authority": "Staff Selection Commission (SSC)",
     "sourceUrl": "https://ssc.gov.in/api/attachment/uploads/masterData/NoticeBoards/Notice_of_adv_cgl_2025.pdf",
@@ -1037,8 +1050,9 @@
     "metaTitle": "NEET UG 2026 Photo & Signature Size – Resize Free",
     "metaDescription": "NEET UG 2026 photo: JPG 10–200 KB, white background, face 80%. Signature: 10–100 KB. Resize both to the official spec free, right on your phone.",
     "answer": "For NEET UG 2026, the photo must be a JPG of 10–200 KB with a white background and your face covering 80%; the signature must be a JPG of 10–100 KB. NTA doesn't set pixel dimensions for either.",
+    "keyFacts": "NEET UG 2026 asks for a passport-size photo as a JPG of 10–200 KB and a signature as a JPG of 10–100 KB, according to the NEET (UG) 2026 Information Bulletin, Chapter 3, from the National Testing Agency (NTA), verified on 30 October 2026. The photo can be colour or black and white, must be taken on or after 1 January 2026, and needs a white background with the face covering 80%, ears visible and no mask. NTA sets no pixel size, so the Documently NEET preset outputs the photo at 276 × 354 px (3.5 × 4.5 cm at 200 DPI) and the signature as a 300 × 100 px strip. A live photo is also captured and matched with the Aadhaar photo. Finger and thumb impressions have no preset, because the bulletin gives two conflicting size ranges. No correction is allowed after upload. Resize both files in the browser, zoom in, then submit.",
     "intro": "The NEET UG application asks for a passport-size photo and a signature, and also captures a live photo that's matched with your Aadhaar. This page is set to the NEET (UG) 2026 Information Bulletin: photo 10–200 KB, signature 10–100 KB, both JPG. Crop, resize and download each in seconds — your images stay on your phone. We'll update this page when the NEET UG 2027 bulletin is released.",
-    "updated": "2026-10-30",
+    "updated": "2026-10-31",
     "exam": "NEET UG 2026",
     "authority": "National Testing Agency (NTA)",
     "sourceUrl": "https://cdnbbsr.s3waas.gov.in/s37bc1ec1d9c3426357e69acd5bf320061/uploads/2026/02/202602231394640855.pdf",
@@ -1144,7 +1158,7 @@
         "a": "No. The photo must be taken on or after 1 January 2026. A live photo is also captured during the form and matched with your Aadhaar photo, so an outdated picture can cause a mismatch."
       },
       {
-        "q": "Do I upload the postcard-size photo?",
+        "q": "Do I need to upload a postcard size photo for NEET 2026?",
         "a": "Not in 2026. Keep 4–6 postcard-size (4\" × 6\") prints of the same photo for the exam centre, plus 6–8 passport-size copies. Only the passport-size photo and the signature are uploaded as image files here."
       }
     ],
@@ -1164,8 +1178,9 @@
     "metaTitle": "JEE Main 2027 Photo & Signature Size – Resize Free",
     "metaDescription": "JEE Main 2027 photo: colour JPG, 10–200 KB, white background, face 80%. Signature: 10–100 KB. Resize both to NTA's spec free, on your own phone.",
     "answer": "For JEE Main 2027, upload a colour photo as a JPG of 10–200 KB with a white background and your face covering 80%, and a signature JPG of 10–100 KB. NTA sets no pixel dimensions; colour is mandatory.",
+    "keyFacts": "JEE Main 2027 asks for a colour passport-size photo as a JPG of 10–200 KB and a signature as a JPG of 10–100 KB, according to the JEE (Main) 2027 Information Bulletin released by the National Testing Agency (NTA) on 24 October 2026 and verified on 30 October 2026. Colour is mandatory, unlike NEET UG 2026, which allows black and white. The photo needs a white background, the face covering 80%, ears visible and no mask. NTA sets no pixel size, so the Documently JEE Main preset outputs a 276 × 354 px photo (3.5 × 4.5 cm at 200 DPI) and a 300 × 100 px signature. Supporting documents such as the Class 10 certificate go up as PDFs of 50–300 KB; in our tests, the Compress PDF 200 KB target took a 5.16 MB six-page scan to 154 KB. Files are made in the browser, never uploaded. Take a fresh colour photo and download both files.",
     "intro": "NTA released the JEE (Main) 2027 Information Bulletin on 24 October 2026. The photo rules look like NEET's, with one key difference: the photo must be in colour. This page is preset to the 2027 bulletin — photo 10–200 KB, signature 10–100 KB — so you can crop, resize and download both in a minute. Your images are processed on your phone, never uploaded to us.",
-    "updated": "2026-10-30",
+    "updated": "2026-10-31",
     "exam": "JEE Main 2027",
     "authority": "National Testing Agency (NTA)",
     "sourceUrl": "https://cdnbbsr.s3waas.gov.in/s3f8e59f4b2fe7c5705bf878bbd494ccdf/uploads/2026/10/202610241890224107.pdf",
@@ -1273,7 +1288,7 @@
         "a": "Supporting documents must be PDFs of 50–300 KB. Use Compress PDF with the 200 KB target, which keeps a safe margin. If your certificate is a photo, convert it with JPG to PDF first, then compress."
       },
       {
-        "q": "Is this updated for JEE Main 2027?",
+        "q": "Is this page updated for the JEE Main 2027 bulletin?",
         "a": "Yes. This page follows the JEE (Main) 2027 Information Bulletin released on 24 October 2026, checked on 30 October 2026. Always confirm against the bulletin before submitting, in case NTA issues a correction."
       }
     ],
@@ -1293,8 +1308,9 @@
     "metaTitle": "UPSC CSE 2026 Photo & Triple Signature Size – Resize",
     "metaDescription": "UPSC CSE 2026: colour photo JPG 20–200 KB, triple signature JPG 20–100 KB, 350–500 px. Resize both free to the official spec, right on your phone.",
     "answer": "For UPSC Civil Services 2026, upload a colour photo as a JPG of 20–200 KB with your face covering at least 75%, and a triple signature (signed three times in one image) as a JPG of 20–100 KB, 350–500 px.",
+    "keyFacts": "UPSC Civil Services 2026 asks for a colour photo as a JPG of 20–200 KB and a triple signature as a JPG of 20–100 KB measuring 350–500 px, according to UPSC CSE 2026 Notice No. 05/2026-CSE and the upsconline photo and signature instructions, verified on 30 October 2026. The triple signature means signing three times, one below the other, in black ink on plain white paper, captured in a single image with no lines or colours. In the photo, the face must cover at least 75% of the frame, on a plain white background, with both ears visible, eyes open and no signature on the photo. Live photo capture is mandatory and is matched against the upload. UPSC sets no photo pixel size, so the Documently UPSC preset outputs 413 × 531 px (3.5 × 4.5 cm at 300 DPI) and a 400 × 500 px signature image. Sign three times, photograph the page in daylight, and resize here.",
     "intro": "UPSC's photo and signature rules are stricter than most exams. The photo is matched against a live capture, and the signature isn't one signature — it's three, one below the other, in a single image. This page is preset to the UPSC CSE 2026 instructions, so your files come out at the right size and shape. Everything happens on your phone; nothing is uploaded to us.",
-    "updated": "2026-10-30",
+    "updated": "2026-10-31",
     "exam": "UPSC Civil Services 2026",
     "authority": "Union Public Service Commission (UPSC)",
     "sourceUrl": "https://www.upsc.gov.in/sites/default/files/Notif-CSP-2026-Engl-060226Rev.pdf",
@@ -1402,7 +1418,7 @@
       },
       {
         "q": "Can I wear spectacles in my UPSC photo?",
-        "a": "The instructions rule out dark or coloured glasses. If you wear clear glasses, make sure they cause no glare or shadow over your eyes — removing them for the photo is the safest choice, as long as you look like the live capture."
+        "a": "Not dark or coloured glasses; the instructions rule those out. If you wear clear glasses, make sure they cause no glare or shadow over your eyes. Removing them is the safest choice, as long as you still look like your live capture."
       },
       {
         "q": "Does UPSC compare my photo with a live photo?",
@@ -1425,8 +1441,9 @@
     "metaTitle": "IBPS PO 2026 Photo, Signature & Declaration Size",
     "metaDescription": "IBPS PO 2026: photo 200×230 px 20–50 KB, signature 140×60 px 10–20 KB, thumb 20–50 KB, declaration 50–100 KB. Resize all four free on your phone.",
     "answer": "IBPS PO 2026 needs four JPGs: photo 200 × 230 px (20–50 KB), signature 140 × 60 px (10–20 KB), left thumb impression 240 × 240 px (20–50 KB) and handwritten declaration 800 × 400 px (50–100 KB).",
+    "keyFacts": "IBPS PO 2026 asks for four JPG uploads, according to the IBPS CRP PO/MT-XVI notification of 30 June 2026, Annexure III, verified on 30 October 2026. First, a recent colour photo of 200 × 230 px and 20–50 KB on a light background. Second, a signature of 140 × 60 px and 10–20 KB, in black ink and not in capitals. Third, a left thumb impression of 240 × 240 px and 20–50 KB. Finally, a handwritten English declaration of 800 × 400 px and 50–100 KB. The Documently IBPS PO preset outputs all four at the exact pixels with 200 DPI. In our tests, we measured a 20.3 KB photo, a 10.3 KB signature, a 20.3 KB thumb impression and a 57.7 KB declaration, all inside the official KB ranges. Small signature and thumb files are padded up to the minimum without changing the image. Files are made in the browser, never uploaded. Photograph all four in daylight, then resize each one.",
     "intro": "IBPS asks for four uploads, not two — photo, signature, left thumb impression and a handwritten declaration — and each has exact pixel dimensions and a KB range. This page is preset to all four from the CRP PO/MT-XVI notification, so you can do them one after another without guessing. The tool works on your phone and never uploads your images.",
-    "updated": "2026-10-30",
+    "updated": "2026-10-31",
     "exam": "IBPS PO 2026 (CRP PO/MT-XVI)",
     "authority": "Institute of Banking Personnel Selection (IBPS)",
     "sourceUrl": "https://www.ibps.in/wp-content/uploads/Detailed-Notification_CRP-PO-XVI_Final_V1_30.06.2026.pdf",
@@ -1552,7 +1569,7 @@
       {
         "heading": "Same sizes for other IBPS exams?",
         "paragraphs": [
-          "IBPS commonly uses these same sizes across its recruitments. But always check the annexure of each notification before you upload, because IBPS can change dimensions or KB ranges between cycles. The live photo captured by webcam or mobile during the form is separate from the uploaded photo."
+          "Other IBPS recruitments publish their own notifications, so check the annexure of the one you are applying for. But always check the annexure of each notification before you upload, because IBPS can change dimensions or KB ranges between cycles. The live photo captured by webcam or mobile during the form is separate from the uploaded photo."
         ]
       }
     ],
@@ -1576,6 +1593,10 @@
       {
         "q": "Why is my IBPS signature file too small?",
         "a": "A 140 × 60 px signature is tiny and often compresses to under 10 KB, which IBPS rejects. This tool pads the file up to the 10 KB minimum without changing the picture, so it passes the size check."
+      },
+      {
+        "q": "Will my IBPS PO photo and signature pass the size check?",
+        "a": "Yes, when made with this preset. In our tests, the four files came out at 20.3 KB (photo), 10.3 KB (signature), 20.3 KB (thumb) and 57.7 KB (declaration), each at the exact IBPS pixels and inside its official KB range. Check the size on the result card before uploading."
       }
     ],
     "related": [
