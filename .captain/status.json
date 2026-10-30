@@ -1,9 +1,9 @@
 {
   "name": "documently.in",
   "stage": "live at documently.in",
-  "focus": "11 tools live (incl. Unlock PDF); Cloudflare Pages + D1 + www redirect + hello@ email routing done",
+  "focus": "17 tools live (added page numbers, watermark, organize, protect PDF, HEIC converter, passport sheet); mega menu + mobile drawer",
   "blockers": [],
-  "next_action": "Submit https://documently.in/sitemap.xml in Google Search Console and Bing Webmaster Tools",
+  "next_action": "Check Search Console indexing (~7 Nov); next tools: compress video (ffmpeg.wasm), OCR, Hindi UI",
   "health": "active",
   "updated_at": "2026-10-31"
 }
