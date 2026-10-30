@@ -1,9 +1,9 @@
 {
   "name": "documently.in",
-  "stage": "built — awaiting deploy",
-  "focus": "New sky/ink/lime brand shipped (BRAND.md); Lighthouse mobile perf 100 on key pages",
-  "blockers": [],
-  "next_action": "Connect repo to Cloudflare Pages, create D1 + ADMIN_TOKEN, point DNS, submit sitemap",
+  "stage": "live on documently-570.pages.dev — custom domain pending",
+  "focus": "Cloudflare Pages + D1 + ADMIN_TOKEN live; auto-deploys from mvp-build",
+  "blockers": ["Nameservers at registrar not yet switched to Cloudflare"],
+  "next_action": "Delete parked A/www records in Cloudflare DNS, switch registrar nameservers, add documently.in as Pages custom domain",
   "health": "active",
   "updated_at": "2026-10-31"
 }
