@@ -167,6 +167,20 @@ Running log for documently.in. The SEO agent (PLAN.md, Prompt 2) appends a dated
 - Wrong or missing passwords give clear errors instead of a blank PDF. This build of Ghostscript logs to console.log, so the worker captures it.
 - **Needs human review:** the e-Aadhaar FAQ ("first four letters of the name in capitals + year of birth") is attributed to UIDAI's e-Aadhaar FAQ without a URL, because uidai.gov.in returned 404 to automated fetches. Add the official FAQ link once you've confirmed it in a browser.
 
+### Indexing submitted (2026-10-31, after launch at documently.in)
+- **Google Search Console:** sitemap.xml submitted (33 pages discovered).
+- **Priority indexing requested:**
+  - /
+  - /unlock-pdf/
+  - /compress-pdf/
+  - /compress-pdf/to-100kb/
+  - /exam-photo-signature/ibps-po/
+- **IndexNow (Bing, Yandex and others):**
+  - All 33 sitemap URLs accepted (HTTP 202).
+  - Key file: `public/04ad4d0bf87c4a9ba67ed487108f10cc.txt`.
+  - Re-run after big content changes: `INDEXNOW_KEY=04ad4d0bf87c4a9ba67ed487108f10cc node scripts/indexnow.mjs`
+- **Still to do (owner):** Bing Webmaster Tools sign-in → "Import from Google Search Console" for Bing reports.
+
 ### Citations to check manually
 | Query | Should surface |
 |---|---|
