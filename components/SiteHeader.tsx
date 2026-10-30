@@ -1,13 +1,39 @@
 import Link from "next/link";
 import { Logo } from "./Brand";
+import MainMenu, { type MenuGroup } from "./MainMenu";
+import { examPresets, presetPath, presets, tools } from "@/lib/data";
 
+const sizeLabel: Record<string, string> = { "compress-pdf": "PDF", "compress-image": "Photo" };
 
-const nav = [
-  ["PDF", "/#pdf-tools"],
-  ["Photo", "/#image-tools"],
-  ["Exams", "/#exam-presets"],
-  ["About", "/about/"],
-] as const;
+// Built at render time from the registries, so a new tool or preset shows up in the menu automatically.
+const groups: MenuGroup[] = [
+  {
+    title: "PDF tools",
+    items: tools.filter((t) => t.category === "pdf").map((t) => ({ href: `/${t.slug}/`, label: t.name, icon: t.slug })),
+  },
+  {
+    title: "Photo tools",
+    items: tools.filter((t) => t.category === "image").map((t) => ({ href: `/${t.slug}/`, label: t.name, icon: t.slug })),
+  },
+  {
+    title: "Exam photo & signature",
+    items: examPresets.map((p) => ({ href: presetPath(p), label: p.chip, note: p.exam })),
+  },
+  {
+    title: "Popular sizes",
+    items: presets
+      .filter((p) => p.kind === "size")
+      .map((p) => ({
+        href: presetPath(p),
+        label: sizeLabel[p.tool] ? `${sizeLabel[p.tool]} ${p.chip.replace(/^Under/, "under")}` : p.chip,
+      })),
+  },
+];
+
+const links = [
+  { href: "/about/", label: "About" },
+  { href: "/contact/", label: "Contact" },
+];
 
 export default function SiteHeader() {
   return (
@@ -19,27 +45,16 @@ export default function SiteHeader() {
             documently<span className="text-muted">.in</span>
           </span>
         </Link>
-        <nav aria-label="Main" className="hidden items-center gap-1 text-[0.8rem] font-semibold sm:flex">
-          {nav.map(([label, href]) => (
-            <Link key={href} href={href} className="rounded-full px-3 py-2 hover:bg-paper">
-              {label}
-            </Link>
-          ))}
-        </nav>
-        <Link
-          href="/compress-pdf/"
-          className="inline-flex min-h-10 items-center rounded-full bg-lime px-4 text-[0.8rem] font-semibold text-ink hover:bg-brand-500"
-        >
-          Compress PDF
-        </Link>
-      </div>
-      <nav aria-label="Main (mobile)" className="flex justify-center gap-1 border-t border-line/70 px-2 text-[0.8rem] font-semibold sm:hidden">
-        {nav.slice(0, 3).map(([label, href]) => (
-          <Link key={href} href={href} className="flex min-h-10 items-center rounded-full px-4">
-            {label}
+        <div className="flex items-center gap-1 md:flex-1 md:justify-between md:pl-8">
+          <MainMenu groups={groups} links={links} />
+          <Link
+            href="/compress-pdf/"
+            className="order-first inline-flex min-h-10 items-center rounded-full bg-lime px-4 text-[0.85rem] font-semibold text-ink hover:bg-brand-500 max-[359px]:hidden md:order-last"
+          >
+            Compress PDF
           </Link>
-        ))}
-      </nav>
+        </div>
+      </div>
     </header>
   );
 }
