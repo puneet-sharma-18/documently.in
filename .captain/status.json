@@ -1,0 +1,9 @@
+{
+  "name": "documently.in",
+  "stage": "building",
+  "focus": "MVP: 10 client-side tools + Tier A pages",
+  "blockers": [],
+  "next_action": "Deploy to Cloudflare Pages and submit sitemap",
+  "health": "active",
+  "updated_at": "2026-10-30"
+}

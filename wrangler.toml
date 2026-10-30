@@ -1,0 +1,14 @@
+# Cloudflare Pages project config (static export in out/ + Pages Functions in functions/).
+name = "documently"
+compatibility_date = "2026-10-01"
+pages_build_output_dir = "out"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "documently"
+# Replace with the id printed by `npx wrangler d1 create documently` (see db/README.md).
+# Local dev (`wrangler pages dev`) works with this placeholder.
+database_id = "00000000-0000-0000-0000-000000000000"
+
+# ADMIN_TOKEN is a secret: set it in Cloudflare Pages > Settings > Variables and Secrets
+# (encrypted), or locally in .dev.vars as ADMIN_TOKEN=... — never commit it.
