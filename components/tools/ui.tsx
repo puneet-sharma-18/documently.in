@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import { formatBytes } from "@/lib/files";
 
 export function Panel({ children }: { children: ReactNode }) {
-  return <div className="space-y-4 rounded-[var(--radius-card)] border border-line bg-card p-4 shadow-sm sm:p-5">{children}</div>;
+  return <div className="card space-y-4 p-4 sm:p-6">{children}</div>;
 }
 
 export function Chips<T extends string | number>({
@@ -82,7 +82,7 @@ export function PrimaryButton({ children, disabled, onClick }: { children: React
       type="button"
       disabled={disabled}
       onClick={onClick}
-      className="min-h-12 w-full rounded-xl bg-brand-600 px-6 text-base font-semibold text-white shadow-sm hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+      className="min-h-12 w-full rounded-full bg-brand-600 px-6 text-base font-semibold text-white shadow-sm hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
     >
       {children}
     </button>

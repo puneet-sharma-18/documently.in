@@ -1,26 +1,37 @@
 @import "tailwindcss";
 
-/* One brand colour (deep teal), a warm neutral ramp, system fonts. */
+/*
+ * Brand: ink black + electric lime on soft white, with a sky-blue hero.
+ * - brand-600/700 are the ink used for primary pills and links (high contrast).
+ * - brand-50…500 are the lime ramp used for accents, chips and highlights.
+ * System fonts only — no web-font download, so text paints on the first frame.
+ */
 @theme {
-  --color-brand-50: #ecf8f5;
-  --color-brand-100: #d2efe8;
-  --color-brand-200: #a6dfd1;
-  --color-brand-500: #14907a;
-  --color-brand-600: #0e7c66;
-  --color-brand-700: #0b6352;
-  --color-brand-900: #063a30;
+  --color-brand-50: #f4fbd8;
+  --color-brand-100: #e8f7ad;
+  --color-brand-200: #dcef8f;
+  --color-brand-500: #c6ec3f;
+  --color-brand-600: #0f1112;
+  --color-brand-700: #2b2f31;
+  --color-brand-900: #1b2200;
 
-  --color-ink: #17201d;
-  --color-muted: #5b6662;
-  --color-line: #e3e7e5;
-  --color-paper: #fbfbf9;
+  --color-lime: #d4f54a;
+  --color-sky-deep: #1f6fd0;
+  --color-sky: #5aa6ec;
+  --color-sky-pale: #cfe6fb;
+
+  --color-ink: #0f1112;
+  --color-muted: #5d6366;
+  --color-line: #e7e9e6;
+  --color-paper: #f5f6f3;
   --color-card: #ffffff;
   --color-warn: #b45309;
   --color-danger: #b42318;
 
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Helvetica Neue", Arial,
     sans-serif;
-  --radius-card: 14px;
+  --font-mono: ui-monospace, "SF Mono", "Roboto Mono", Menlo, Consolas, monospace;
+  --radius-card: 22px;
 }
 
 html {
@@ -33,10 +44,59 @@ body {
   font-family: var(--font-sans);
 }
 
+h1,
+h2,
+h3 {
+  letter-spacing: -0.025em;
+}
+
+/* "• ABOUT US" style section label. */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+.eyebrow::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--color-ink);
+}
+
+/* Soft white card on the paper background. */
+.card {
+  background: var(--color-card);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  box-shadow: 0 1px 2px rgb(15 17 18 / 0.04), 0 8px 24px -12px rgb(15 17 18 / 0.08);
+}
+
+/*
+ * Sky hero drawn entirely in CSS (no image request): a blue gradient with
+ * soft radial "clouds" toward the bottom. The deep top keeps white text legible.
+ */
+.sky {
+  background-color: var(--color-sky-deep);
+  background-image:
+    radial-gradient(60% 30% at 15% 100%, rgb(255 255 255 / 0.95), transparent 70%),
+    radial-gradient(45% 26% at 55% 104%, rgb(255 255 255 / 0.9), transparent 70%),
+    radial-gradient(50% 30% at 92% 98%, rgb(255 255 255 / 0.92), transparent 70%),
+    radial-gradient(30% 14% at 80% 70%, rgb(255 255 255 / 0.35), transparent 70%),
+    radial-gradient(28% 12% at 20% 64%, rgb(255 255 255 / 0.3), transparent 70%),
+    linear-gradient(180deg, #1a63c4 0%, #3f8de0 38%, #7dbbf0 68%, #cfe6fb 100%);
+}
+
 .prose-doc h2 {
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   font-weight: 700;
-  margin: 2rem 0 0.75rem;
+  margin: 2.25rem 0 0.75rem;
 }
 .prose-doc h3 {
   font-size: 1.05rem;
@@ -46,7 +106,7 @@ body {
 .prose-doc p {
   margin: 0.75rem 0;
   line-height: 1.7;
-  color: #2b3532;
+  color: #2b2f31;
 }
 .prose-doc ul {
   list-style: disc;
@@ -61,15 +121,33 @@ body {
 .prose-doc li {
   margin: 0.35rem 0;
   line-height: 1.65;
-  color: #2b3532;
+  color: #2b2f31;
+}
+.prose-doc li::marker {
+  color: var(--color-ink);
 }
 .prose-doc a {
-  color: var(--color-brand-700);
+  color: var(--color-ink);
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-decoration-color: var(--color-brand-500);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
 }
 
 :focus-visible {
-  outline: 3px solid var(--color-brand-500);
+  outline: 3px solid var(--color-ink);
   outline-offset: 2px;
+}
+.sky :focus-visible,
+footer :focus-visible {
+  outline-color: var(--color-lime);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    transition: none !important;
+    animation: none !important;
+  }
 }

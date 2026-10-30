@@ -49,7 +49,7 @@ export default function Dropzone({ accept, multiple, label, hint, maxSizeMB = 20
       <input ref={input} id={id} type="file" accept={accept} multiple={multiple} className="sr-only" onChange={(e) => take(e.target.files)} />
       <label
         htmlFor={id}
-        className="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 text-base font-semibold text-white shadow-sm hover:bg-brand-700"
+        className="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-full bg-brand-600 px-6 text-base font-semibold text-white shadow-sm hover:bg-brand-700"
       >
         <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden>
           <path d="M12 16V4m0 0l-4 4m4-4l4 4M4 16v3a1 1 0 001 1h14a1 1 0 001-1v-3" strokeLinecap="round" strokeLinejoin="round" />

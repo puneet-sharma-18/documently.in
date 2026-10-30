@@ -51,9 +51,10 @@ export default function LegalPage({
   return (
     <main className="mx-auto w-full max-w-3xl px-4 py-8">
       <Breadcrumbs items={[{ name, href: path }]} />
-      <h1 className="mt-4 text-3xl font-bold tracking-tight">{heading}</h1>
+      <p className="eyebrow mt-8">{name}</p>
+      <h1 className="mt-3 text-[2rem] font-semibold leading-tight tracking-[-0.03em] sm:text-[2.6rem]">{heading}</h1>
       {updated && <p className="mt-2 text-sm text-muted">Last updated: {LEGAL_UPDATED}</p>}
-      <div className="prose-doc mt-6">{children}</div>
+      <div className="prose-doc card mt-8 px-5 py-3 sm:px-8 sm:py-5">{children}</div>
     </main>
   );
 }

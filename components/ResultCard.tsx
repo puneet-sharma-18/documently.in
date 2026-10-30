@@ -32,7 +32,7 @@ export default function ResultCard({ files, beforeBytes, details, warning, zipNa
     <div className="rounded-[var(--radius-card)] border border-brand-200 bg-brand-50 p-4 sm:p-5" role="status" aria-live="polite">
       <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
         <p className="text-lg font-bold text-brand-900">Done ✓</p>
-        <p className="text-sm text-[#2b3532]">
+        <p className="text-sm text-brand-700">
           {beforeBytes !== undefined && (
             <>
               <span className="line-through decoration-muted/60">{formatBytes(beforeBytes)}</span>
@@ -54,12 +54,12 @@ export default function ResultCard({ files, beforeBytes, details, warning, zipNa
               downloadBlob(files[0].blob, files[0].name);
               onDownload?.();
             }}
-            className="min-h-12 rounded-xl bg-brand-600 px-6 font-semibold text-white hover:bg-brand-700"
+            className="min-h-12 rounded-full bg-brand-600 px-6 font-semibold text-white hover:bg-brand-700"
           >
             Download {files[0].name.split(".").pop()?.toUpperCase()}
           </button>
         ) : (
-          <button type="button" onClick={downloadAll} className="min-h-12 rounded-xl bg-brand-600 px-6 font-semibold text-white hover:bg-brand-700">
+          <button type="button" onClick={downloadAll} className="min-h-12 rounded-full bg-brand-600 px-6 font-semibold text-white hover:bg-brand-700">
             Download all ({files.length} files, ZIP)
           </button>
         )}

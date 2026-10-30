@@ -26,36 +26,47 @@ export default function ToolPage({ tool, preset }: { tool: Tool; preset?: Preset
   const howTo = preset?.kind === "exam" ? `How to resize your ${preset.exam} photo and signature` : preset ? (preset.howTo ?? `How to ${lowerFirst(preset.h1)}`) : (tool.howTo ?? `How to use ${tool.name}`);
 
   return (
-    <main className="mx-auto max-w-3xl px-4 pb-8 pt-4">
+    <main>
       <ViewTracker tool={tool.slug} preset={preset?.slug} />
-      <Breadcrumbs items={crumbs} />
-
-      <h1 className="mt-4 text-[1.7rem] font-extrabold leading-tight tracking-tight sm:text-4xl">{page.h1}</h1>
-      <p className="mt-3 text-[1.05rem] leading-relaxed text-[#2b3532]">{page.answer}</p>
-      <p className="mt-2 text-sm font-medium text-brand-700">{site.trustLine}</p>
-
-      <div className="mt-5">
-        <ToolRunner tool={tool.slug} presetSlug={preset?.slug} config={preset?.config} />
+      <div className="border-b border-line bg-gradient-to-b from-sky-pale/70 to-paper">
+        <div className="mx-auto max-w-3xl px-4 pb-8 pt-4">
+          <Breadcrumbs items={crumbs} />
+          <p className="eyebrow mt-6">{preset?.kind === "exam" ? `${preset.authority ?? "Exam"} · verified preset` : tool.category === "pdf" ? "PDF tool" : "Photo tool"}</p>
+          <h1 className="mt-3 text-[1.85rem] font-semibold leading-[1.1] tracking-[-0.03em] sm:text-[2.6rem]">{page.h1}</h1>
+          <p className="mt-4 text-[1.05rem] leading-relaxed text-brand-700">{page.answer}</p>
+          <ul className="mt-4 flex flex-wrap gap-2" aria-label="Why it's safe">
+            {site.trustLine.split(" · ").map((t) => (
+              <li key={t} className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 text-xs font-semibold ring-1 ring-line">
+                <span className="h-1.5 w-1.5 rounded-full bg-brand-500 ring-2 ring-brand-100" aria-hidden />
+                {t}
+              </li>
+            ))}
+          </ul>
+          <div className="mt-6">
+            <ToolRunner tool={tool.slug} presetSlug={preset?.slug} config={preset?.config} />
+          </div>
+        </div>
       </div>
 
+      <div className="mx-auto max-w-3xl px-4 pb-8">
       {preset?.kind === "exam" && preset.config.items && <SpecBox preset={preset} items={preset.config.items} />}
 
       {page.keyFacts && (
-        <section aria-labelledby="key-facts" className="mt-8 border-l-4 border-brand-500 bg-card py-1 pl-4 pr-2">
-          <h2 id="key-facts" className="text-lg font-bold">
+        <section aria-labelledby="key-facts" className="card mt-8 p-5 sm:p-6">
+          <h2 id="key-facts" className="inline-flex rounded-full bg-lime px-3 py-1 font-mono text-[0.7rem] font-semibold uppercase tracking-[0.14em]">
             Key facts
           </h2>
-          <p className="mt-2 leading-relaxed text-[#2b3532]">{page.keyFacts}</p>
+          <p className="mt-3 leading-relaxed text-brand-700">{page.keyFacts}</p>
         </section>
       )}
 
       {siblings.length > 0 && (
         <nav aria-label={`${tool.name} presets`} className="mt-8">
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">{preset ? "Other sizes & presets" : "Popular sizes & exam presets"}</h2>
+          <h2 className="eyebrow">{preset ? "Other sizes & presets" : "Popular sizes & exam presets"}</h2>
           <ul className="mt-3 flex flex-wrap gap-2">
             {siblings.map((p) => (
               <li key={p.slug}>
-                <Link href={presetPath(p)} className="inline-flex min-h-11 items-center rounded-full border border-line bg-card px-4 text-sm font-semibold hover:border-brand-500 hover:text-brand-700">
+                <Link href={presetPath(p)} className="inline-flex min-h-11 items-center rounded-full border border-line bg-card px-4 text-sm font-semibold transition hover:border-ink hover:bg-lime">
                   {p.chip}
                 </Link>
               </li>
@@ -64,14 +75,14 @@ export default function ToolPage({ tool, preset }: { tool: Tool; preset?: Preset
         </nav>
       )}
 
-      <section aria-labelledby="how-to" className="mt-10">
-        <h2 id="how-to" className="text-xl font-bold">
+      <section aria-labelledby="how-to" className="mt-12">
+        <h2 id="how-to" className="text-2xl font-semibold">
           {howTo}
         </h2>
-        <ol className="mt-4 space-y-3">
+        <ol className="mt-5 space-y-3">
           {page.steps.map((s, i) => (
-            <li key={i} className="flex gap-3">
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-100 font-bold text-brand-900">{i + 1}</span>
+            <li key={i} className="card flex gap-4 rounded-2xl p-4">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-ink font-mono text-sm font-bold text-lime">{i + 1}</span>
               <span className="pt-1 leading-relaxed">{s}</span>
             </li>
           ))}
@@ -125,6 +136,7 @@ export default function ToolPage({ tool, preset }: { tool: Tool; preset?: Preset
           },
         ]}
       />
+      </div>
     </main>
   );
 }
@@ -162,7 +174,7 @@ function dimText(i: ExamItem) {
 /** Official spec table with citation — the part of the page AI answers and featured snippets quote. */
 function SpecBox({ preset, items }: { preset: Preset; items: ExamItem[] }) {
   return (
-    <section aria-labelledby="spec" className="mt-8 rounded-[var(--radius-card)] border border-line bg-card p-4 sm:p-5">
+    <section aria-labelledby="spec" className="card mt-8 p-4 sm:p-6">
       <h2 id="spec" className="text-xl font-bold">
         Official {preset.exam} upload requirements
       </h2>
@@ -206,9 +218,9 @@ function SpecBox({ preset, items }: { preset: Preset; items: ExamItem[] }) {
         </div>
       )}
       {preset.sourceUrl && (
-        <p className="mt-4 rounded-lg bg-paper p-3 text-sm">
+        <p className="mt-5 rounded-2xl bg-brand-50 p-4 text-sm">
           <strong>Source:</strong>{" "}
-          <a href={preset.sourceUrl} className="text-brand-700 underline" rel="noopener noreferrer nofollow" target="_blank">
+          <a href={preset.sourceUrl} className="font-semibold underline decoration-2 underline-offset-2" rel="noopener noreferrer nofollow" target="_blank">
             {preset.sourceLabel ?? `${preset.authority} official notice`}
           </a>
           {preset.verifiedOn && <> · Verified on {longDate(preset.verifiedOn)}</>}. Always re-check the latest notice before you submit.

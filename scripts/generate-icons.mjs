@@ -4,27 +4,35 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import sharp from "sharp";
 
-const TEAL = "#0e7c66";
-const MINT = "#a6dfd1";
+const INK = "#0f1112";
+const LIME = "#d4f54a";
 
-// Same geometry as <Logo/> (32×32 viewBox).
-const glyph = `<path d="M10 7h8l5 5v13H10z" fill="#fff"/><path d="M18 7v5h5" fill="${MINT}"/>
-<path d="M13.5 17.5l2.5 2.5 4-4.5" fill="none" stroke="${TEAL}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
+// Same geometry as <Logo/> in components/Brand.tsx (32×32 viewBox).
+const glyph = `<path d="M10 7h8l5 5v13H10z" fill="#fff"/><path d="M18 7v5h5" fill="${LIME}"/>
+<path d="M13.5 17.5l2.5 2.5 4-4.5" fill="none" stroke="${INK}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
 
-const logoSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="${TEAL}"/>${glyph}</svg>`;
+const logoSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="9" fill="${INK}"/>${glyph}</svg>`;
 
-// Maskable: full-bleed teal, glyph scaled into the 80% safe zone.
-const maskableSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" fill="${TEAL}"/>
+// Maskable: full-bleed ink, glyph scaled into the 80% safe zone.
+const maskableSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" fill="${INK}"/>
 <g transform="translate(16 16) scale(0.78) translate(-16.5 -16)">${glyph}</g></svg>`;
 
+// Share card: the sky hero with clouds, white headline and a lime pill.
 const ogSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-<rect width="1200" height="630" fill="#fbfbf9"/>
-<rect x="0" y="0" width="1200" height="12" fill="${TEAL}"/>
-<g transform="translate(96 112) scale(4)"><rect width="32" height="32" rx="8" fill="${TEAL}"/>${glyph}</g>
-<text x="248" y="190" font-family="Helvetica, Arial, sans-serif" font-size="64" font-weight="700" fill="#17201d">documently<tspan fill="${TEAL}">.in</tspan></text>
-<text x="96" y="340" font-family="Helvetica, Arial, sans-serif" font-size="58" font-weight="700" fill="#17201d">Free PDF &amp; photo tools</text>
-<text x="96" y="410" font-family="Helvetica, Arial, sans-serif" font-size="58" font-weight="700" fill="#17201d">for every Indian form</text>
-<text x="96" y="510" font-family="Helvetica, Arial, sans-serif" font-size="32" fill="#5b6662">Compress · Resize · Convert to the exact KB · Files never leave your device</text>
+<defs>
+<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a63c4"/><stop offset="0.4" stop-color="#3f8de0"/><stop offset="0.72" stop-color="#7dbbf0"/><stop offset="1" stop-color="#cfe6fb"/></linearGradient>
+<radialGradient id="cloud"><stop offset="0" stop-color="#fff" stop-opacity="0.95"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="1200" height="630" fill="url(#sky)"/>
+<ellipse cx="160" cy="640" rx="420" ry="150" fill="url(#cloud)"/>
+<ellipse cx="660" cy="660" rx="380" ry="140" fill="url(#cloud)"/>
+<ellipse cx="1110" cy="630" rx="400" ry="160" fill="url(#cloud)"/>
+<g transform="translate(96 84) scale(2.5)"><rect width="32" height="32" rx="9" fill="${INK}"/>${glyph}</g>
+<text x="194" y="135" font-family="Helvetica, Arial, sans-serif" font-size="44" font-weight="700" fill="#fff">documently<tspan fill-opacity="0.7">.in</tspan></text>
+<text x="96" y="282" font-family="Helvetica, Arial, sans-serif" font-size="72" font-weight="700" letter-spacing="-2" fill="#fff">Free PDF &amp; photo tools</text>
+<text x="96" y="364" font-family="Helvetica, Arial, sans-serif" font-size="72" font-weight="700" letter-spacing="-2" fill="${LIME}">for every Indian form</text>
+<rect x="96" y="414" width="488" height="60" rx="30" fill="${INK}"/>
+<text x="126" y="452" font-family="Menlo, monospace" font-size="22" font-weight="700" letter-spacing="2" fill="#fff">FREE · NO SIGNUP · NO UPLOAD</text>
 </svg>`;
 
 mkdirSync("public/icons", { recursive: true });

@@ -19,37 +19,42 @@ export default function ToolGrid({ tools, searchable }: { tools: Card[]; searcha
   return (
     <div>
       {searchable && (
-        <label className="block max-w-2xl">
+        <label className="mx-auto block max-w-xl">
           <span className="sr-only">Search tools</span>
           <input
             type="search"
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder="What do you need? e.g. compress, signature, merge"
-            className="min-h-12 w-full rounded-xl border border-line bg-card px-4 text-base shadow-sm outline-none focus:border-brand-500"
+            className="min-h-13 w-full rounded-full border border-line bg-white px-6 text-base shadow-[0_8px_24px_-14px_rgb(15_17_18/0.25)] outline-none placeholder:text-muted focus:border-ink"
           />
         </label>
       )}
       {groups.map(
         (g) =>
           (g.items.length > 0 || !query) && (
-            <section key={g.id} id={g.id} aria-labelledby={`${g.id}-h`} className="mt-8 scroll-mt-20">
-              <h2 id={`${g.id}-h`} className="text-lg font-bold">
+            <section key={g.id} id={g.id} aria-labelledby={`${g.id}-h`} className="mt-10 scroll-mt-24 text-left">
+              <h2 id={`${g.id}-h`} className="eyebrow">
                 {g.title}
               </h2>
-              <ul className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              <ul className="mt-4 grid grid-cols-1 gap-3 rounded-[28px] border border-line bg-white p-3 sm:grid-cols-2 lg:grid-cols-3">
                 {g.items.map((t) => (
                   <li key={t.slug}>
                     <Link
                       href={`/${t.slug}/`}
-                      className="flex h-full min-h-16 items-start gap-3 rounded-[var(--radius-card)] border border-line bg-card p-4 transition hover:-translate-y-0.5 hover:border-brand-500 hover:shadow-sm"
+                      className="group flex h-full flex-col justify-between gap-4 rounded-[20px] sm:min-h-36 sm:gap-6 border border-line bg-white p-5 transition hover:border-ink"
                     >
-                      <span className="rounded-lg bg-brand-50 p-2 text-brand-700">
-                        <ToolIcon slug={t.slug} />
+                      <span className="flex items-start justify-between">
+                        <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-lime text-ink">
+                          <ToolIcon slug={t.slug} className="h-5 w-5" />
+                        </span>
+                        <span aria-hidden className="text-muted transition group-hover:translate-x-0.5 group-hover:text-ink">
+                          →
+                        </span>
                       </span>
                       <span>
-                        <span className="block font-semibold">{t.name}</span>
-                        <span className="mt-0.5 block text-sm leading-snug text-muted">{t.short}</span>
+                        <span className="block text-[1.05rem] font-semibold tracking-tight">{t.name}</span>
+                        <span className="mt-1 block text-sm leading-snug text-muted">{t.short}</span>
                       </span>
                     </Link>
                   </li>

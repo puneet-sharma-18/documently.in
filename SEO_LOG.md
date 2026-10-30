@@ -118,3 +118,12 @@ Running log for documently.in. The SEO agent (PLAN.md, Prompt 2) appends a dated
 - **Still open:**
   - home, contact and terms have low citability and need answer-first intros
   - the first-use Ghostscript download (about 11 MB) is heavy on 4G; worth exploring a smaller build
+
+---
+
+## 2026-10-31 — Redesign (sky / ink / lime brand)
+- **Visual only.** No content, URL, metadata or JSON-LD changes; the git diff touches 0 schema lines.
+- **Brand system:** documented in `BRAND.md`. Uses system fonts, a CSS-only sky hero and inline SVG, with no new requests.
+- **Lighthouse mobile (local):** performance 100 on home, PDF to 100 KB, IBPS PO, Resize Image and Privacy (LCP 0.8–0.9 s, CLS 0); accessibility 100 and SEO 100.
+  - **Best practices:** 96 on tool pages, from the local-only `/api/track` 404.
+- **New OG image** (sky card); favicon and PWA icons regenerated.
