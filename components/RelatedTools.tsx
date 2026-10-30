@@ -2,10 +2,15 @@ import Link from "next/link";
 import { getTool, presetPath, presets } from "@/lib/data";
 import ToolIcon from "./ToolIcon";
 
-export default function RelatedTools({ toolSlugs, presetSlugs = [] }: { toolSlugs: string[]; presetSlugs?: string[] }) {
-  const relTools = toolSlugs.map(getTool).filter((t) => t !== undefined);
-  const relPresets = presetSlugs
-    .map((s) => presets.find((p) => p.slug === s))
+/** `refs` are tool slugs ("merge-pdf") or preset refs ("compress-pdf/to-100kb"); unknown refs are skipped. */
+export default function RelatedTools({ refs }: { refs: string[] }) {
+  const relTools = refs.filter((r) => !r.includes("/")).map(getTool).filter((t) => t !== undefined);
+  const relPresets = refs
+    .filter((r) => r.includes("/"))
+    .map((r) => {
+      const [tool, slug] = r.split("/");
+      return presets.find((p) => p.tool === tool && p.slug === slug);
+    })
     .filter((p) => p !== undefined);
   if (!relTools.length && !relPresets.length) return null;
   return (

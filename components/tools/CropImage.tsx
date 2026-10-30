@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Dropzone from "../Dropzone";
 import ResultCard from "../ResultCard";
 import Cropper from "./Cropper";
+import { useObjectUrl } from "./useObjectUrl";
 import { Busy, Chips, ErrorBox, Panel, PrimaryButton } from "./ui";
 import { useJob } from "./useJob";
 import type { ToolProps } from "./types";
@@ -16,17 +17,11 @@ type Ratio = keyof typeof RATIOS;
 
 export default function CropImage({ tool, presetSlug }: ToolProps) {
   const [file, setFile] = useState<File | null>(null);
-  const [url, setUrl] = useState<string | null>(null);
   const [ratio, setRatio] = useState<Ratio>("free");
   const [crop, setCrop] = useState<CropRect | null>(null);
   const job = useJob(tool, presetSlug);
 
-  useEffect(() => {
-    if (!file) return setUrl(null);
-    const u = URL.createObjectURL(file);
-    setUrl(u);
-    return () => URL.revokeObjectURL(u);
-  }, [file]);
+  const url = useObjectUrl(file);
 
   function start() {
     if (!file || !crop) return;
@@ -61,7 +56,7 @@ export default function CropImage({ tool, presetSlug }: ToolProps) {
       {file && url && !job.output && (
         <>
           <Chips label="Shape" options={Object.keys(RATIOS) as Ratio[]} value={ratio} onChange={setRatio} format={(r) => (r === "free" ? "Free" : r === "3.5:4.5" ? "Passport 3.5:4.5" : r === "3:1" ? "Signature 3:1" : r)} />
-          <Cropper src={url} aspect={RATIOS[ratio]} onChange={setCrop} />
+          <Cropper key={`${ratio}-${url}`} src={url} aspect={RATIOS[ratio]} onChange={setCrop} />
           {crop && <p className="text-center text-sm text-muted">{Math.round(crop.w)} × {Math.round(crop.h)} px</p>}
           <div className="flex flex-col gap-2 sm:flex-row">
             {job.busy ? <Busy message={job.progress} /> : <PrimaryButton onClick={start} disabled={!crop}>Crop photo</PrimaryButton>}

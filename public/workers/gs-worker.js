@@ -38,6 +38,18 @@ var LADDER = [
   { dpi: 40, q: 2.0 },
 ];
 var LEVELS = { high: 0, balanced: 2, small: 4 };
+var MIN_DPI = 40;
+var MAX_DPI = 150;
+
+function clampDpi(d) {
+  return Math.max(MIN_DPI, Math.min(MAX_DPI, Math.round(d)));
+}
+
+// JPEG QFactor that suits a resolution: low-res images need stronger compression to pay off.
+function stepFor(dpi) {
+  var q = dpi >= 130 ? 0.4 : dpi >= 100 ? 0.76 : dpi >= 80 ? 0.9 : dpi >= 65 ? 1.0 : dpi >= 55 ? 1.3 : dpi >= 45 ? 1.6 : 2.0;
+  return { dpi: dpi, q: q };
+}
 
 function gsArgs(step, gray) {
   var r = String(step.dpi);
@@ -100,13 +112,13 @@ async function runOnce(input, step, gray) {
   mod.FS.writeFile("/in.pdf", input);
   try {
     mod.callMain(gsArgs(step, gray));
-  } catch (e) {
+  } catch {
     // Emscripten signals exit() by throwing; a missing output file below is the real failure signal.
   }
   var out;
   try {
     out = mod.FS.readFile("/out.pdf");
-  } catch (e) {
+  } catch {
     out = null;
   }
   var log = errors.join("\n");
@@ -136,24 +148,37 @@ self.onmessage = async function (e) {
       return;
     }
 
-    // Target mode: walk the ladder, jumping ahead when we're far over the target.
+    // Target mode. Image bytes scale roughly with dpi², so estimate the dpi that lands under the
+    // target, then refine: step down if still too big, step up once if we undershot by a lot.
     var target = job.targetKB * 1000 - 1024;
-    var best = null;
-    var i = 0;
-    var pass = 1;
-    while (i < LADDER.length) {
-      progress("Pass " + pass + " — trying " + LADDER[i].dpi + " dpi images…");
-      var result = await runOnce(input, LADDER[i], job.gray);
-      if (!best || result.length < best.bytes.length) best = { bytes: result, dpi: LADDER[i].dpi };
-      if (result.length <= target || i === LADDER.length - 1) break;
-      var ratio = result.length / target;
-      i = Math.min(LADDER.length - 1, i + (ratio > 3 ? 3 : ratio > 1.6 ? 2 : 1));
-      pass++;
+    var best = null; // highest-dpi result under target
+    var smallest = null;
+    var tried = {};
+    var dpi = clampDpi(200 * Math.sqrt(target / input.length) * 1.4);
+    for (var pass = 1; pass <= 5 && !tried[dpi]; pass++) {
+      tried[dpi] = true;
+      progress("Pass " + pass + " — trying " + dpi + " dpi images…");
+      var bytes = await runOnce(input, stepFor(dpi), job.gray);
+      if (!smallest || bytes.length < smallest.bytes.length) smallest = { bytes: bytes, dpi: dpi };
+      var next;
+      if (bytes.length <= target) {
+        if (!best || dpi > best.dpi) best = { bytes: bytes, dpi: dpi };
+        // Comfortably under: try one sharper pass, but never re-try a dpi.
+        if (bytes.length > target * 0.6 || dpi >= MAX_DPI) break;
+        next = clampDpi(dpi * Math.sqrt(target / bytes.length) * 0.92);
+        if (next <= dpi) break;
+      } else {
+        if (dpi <= MIN_DPI) break;
+        next = Math.min(dpi - 8, clampDpi(dpi * Math.sqrt(target / bytes.length) * 0.9));
+        next = clampDpi(next);
+        if (best && next <= best.dpi) break;
+      }
+      dpi = next;
     }
-    var reached = best.bytes.length <= target;
+    var pick = best || smallest;
     self.postMessage(
-      { id: id, result: { bytes: best.bytes.buffer, resolution: best.dpi, reachedTarget: reached } },
-      [best.bytes.buffer]
+      { id: id, result: { bytes: pick.bytes.buffer, resolution: pick.dpi, reachedTarget: Boolean(best) } },
+      [pick.bytes.buffer]
     );
   } catch (err) {
     self.postMessage({ id: id, error: (err && err.message) || String(err) });

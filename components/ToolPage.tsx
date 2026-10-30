@@ -79,7 +79,7 @@ export default function ToolPage({ tool, preset }: { tool: Tool; preset?: Preset
 
       <Faq items={page.faqs} />
 
-      <RelatedTools toolSlugs={related.filter((r) => !r.includes("/"))} presetSlugs={related.filter((r) => r.includes("/")).map((r) => r.split("/")[1])} />
+      <RelatedTools refs={related} />
 
       <p className="mt-10 text-sm text-muted">
         Last updated {longDate(page.updated)}.{" "}

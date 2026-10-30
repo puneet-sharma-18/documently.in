@@ -25,7 +25,7 @@ export default function ResizeImage({ tool, presetSlug, config }: ToolProps) {
   const job = useJob(tool, presetSlug);
 
   useEffect(() => {
-    if (!file) return setNatural(null);
+    if (!file) return;
     let cancelled = false;
     createImageBitmap(file)
       .then((b) => {

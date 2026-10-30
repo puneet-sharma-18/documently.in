@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Third-party WASM glue copied in at build time, and local Cloudflare state.
+    "public/vendor/**",
+    ".wrangler/**",
   ]),
 ]);
 

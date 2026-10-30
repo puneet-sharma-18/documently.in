@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Dropzone from "../Dropzone";
 import ResultCard from "../ResultCard";
 import Cropper from "./Cropper";
+import { useObjectUrl } from "./useObjectUrl";
 import { Busy, Chips, ErrorBox, Panel, PrimaryButton } from "./ui";
 import { useJob } from "./useJob";
 import type { ToolProps } from "./types";
@@ -54,24 +55,15 @@ export default function ExamPhotoSignature({ tool, presetSlug, config }: ToolPro
   const [minKB, setMinKB] = useState<number | null>(item.minKB);
   const [maxKB, setMaxKB] = useState<number | null>(item.maxKB);
   const [file, setFile] = useState<File | null>(null);
-  const [url, setUrl] = useState<string | null>(null);
+  const url = useObjectUrl(file);
   const [crop, setCrop] = useState<CropRect | null>(null);
   const job = useJob(tool, presetSlug ? `${presetSlug}:${item.key}` : item.key);
 
-  useEffect(() => {
-    setMinKB(item.minKB);
-    setMaxKB(item.maxKB);
-  }, [item]);
-
-  useEffect(() => {
-    if (!file) return setUrl(null);
-    const u = URL.createObjectURL(file);
-    setUrl(u);
-    return () => URL.revokeObjectURL(u);
-  }, [file]);
-
   function pickItem(k: string) {
-    setKey(k);
+    const next = items.find((i) => i.key === k) ?? items[0];
+    setKey(next.key);
+    setMinKB(next.minKB);
+    setMaxKB(next.maxKB);
     job.reset();
   }
 
@@ -144,7 +136,7 @@ export default function ExamPhotoSignature({ tool, presetSlug, config }: ToolPro
       {file && url && !job.output && (
         <>
           <p className="text-sm text-muted">Drag the box to frame the {item.key === "signature" ? "signature with a little white margin" : item.key === "photo" ? "face — head and top of shoulders" : "image"}. The shape is locked to the required size.</p>
-          <Cropper src={url} aspect={aspect} onChange={setCrop} />
+          <Cropper key={`${item.key}-${url}`} src={url} aspect={aspect} onChange={setCrop} />
           <div className="flex flex-col gap-2 sm:flex-row">
             {job.busy ? <Busy message={job.progress} /> : <PrimaryButton onClick={start} disabled={!crop}>Make {item.outWidth} × {item.outHeight} px JPG</PrimaryButton>}
             <button type="button" onClick={() => setFile(null)} className="min-h-12 rounded-xl border border-line px-6 font-semibold hover:border-brand-500">
@@ -163,10 +155,7 @@ export default function ExamPhotoSignature({ tool, presetSlug, config }: ToolPro
           onReset={() => {
             job.reset();
             setFile(null);
-            if (items.length > 1) {
-              const i = items.findIndex((x) => x.key === key);
-              setKey(items[(i + 1) % items.length].key);
-            }
+            if (items.length > 1) pickItem(items[(items.findIndex((x) => x.key === key) + 1) % items.length].key);
           }}
         />
       )}
