@@ -14,11 +14,11 @@ export default function RelatedTools({ refs }: { refs: string[] }) {
     .filter((p) => p !== undefined);
   if (!relTools.length && !relPresets.length) return null;
   return (
-    <section aria-labelledby="related" className="mt-10">
-      <h2 id="related" className="text-2xl font-semibold">
-        Related tools
+    <section aria-labelledby="related" className="mt-8">
+      <h2 id="related" className="eyebrow">
+        More tools
       </h2>
-      <ul className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+      <ul className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
         {relTools.map((t) => (
           <li key={t.slug}>
             <Link

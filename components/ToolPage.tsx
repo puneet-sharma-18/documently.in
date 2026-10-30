@@ -51,15 +51,6 @@ export default function ToolPage({ tool, preset }: { tool: Tool; preset?: Preset
       <div className="mx-auto max-w-3xl px-4 pb-8">
       {preset?.kind === "exam" && preset.config.items && <SpecBox preset={preset} items={preset.config.items} />}
 
-      {page.keyFacts && (
-        <section aria-labelledby="key-facts" className="card mt-8 p-5 sm:p-6">
-          <h2 id="key-facts" className="inline-flex rounded-full bg-lime px-3 py-1 text-[0.8rem] font-semibold">
-            Key facts
-          </h2>
-          <p className="mt-3 leading-relaxed text-brand-700">{page.keyFacts}</p>
-        </section>
-      )}
-
       {siblings.length > 0 && (
         <nav aria-label={`${tool.name} presets`} className="mt-8">
           <h2 className="eyebrow">{preset ? "Other sizes & presets" : "Popular sizes & exam presets"}</h2>
@@ -75,15 +66,17 @@ export default function ToolPage({ tool, preset }: { tool: Tool; preset?: Preset
         </nav>
       )}
 
-      <section aria-labelledby="how-to" className="mt-12">
-        <h2 id="how-to" className="text-2xl font-semibold">
+      <RelatedTools refs={related} />
+
+      <section aria-labelledby="how-to" className="mt-10">
+        <h2 id="how-to" className="text-xl font-semibold">
           {howTo}
         </h2>
-        <ol className="mt-5 space-y-3">
+        <ol className="mt-4 grid gap-2 sm:grid-cols-2">
           {page.steps.map((s, i) => (
-            <li key={i} className="card flex gap-4 rounded-2xl p-4">
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-ink text-sm font-bold text-lime">{i + 1}</span>
-              <span className="pt-1 leading-relaxed">{s}</span>
+            <li key={i} className="flex gap-3 rounded-2xl bg-card p-3 text-[0.95rem] ring-1 ring-line">
+              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-ink text-xs font-bold text-lime">{i + 1}</span>
+              <span className="pt-0.5 leading-snug">{s}</span>
             </li>
           ))}
         </ol>
@@ -91,16 +84,31 @@ export default function ToolPage({ tool, preset }: { tool: Tool; preset?: Preset
 
       <AdSlot slot="after-howto" />
 
-      <article className="prose-doc mt-6">
-        <p>{page.intro}</p>
-        {page.sections.map((s) => (
-          <ContentSection key={s.heading} section={s} />
-        ))}
-      </article>
+      {/* Reference material stays in the page (search engines and answer engines read it) but folded away, so the page reads as a tool. */}
+      <details className="card group mt-8 [&_summary::-webkit-details-marker]:hidden">
+        <summary className="flex min-h-14 cursor-pointer items-center justify-between gap-4 px-5 font-semibold">
+          About {tool.name}: key facts and tips
+          <span aria-hidden className="text-xl leading-none transition group-open:rotate-45">+</span>
+        </summary>
+        <div className="border-t border-line px-5 pb-5">
+          {page.keyFacts && (
+            <section aria-labelledby="key-facts">
+              <h2 id="key-facts" className="mt-4 inline-flex rounded-full bg-lime px-3 py-1 text-[0.8rem] font-semibold">
+                Key facts
+              </h2>
+              <p className="mt-3 leading-relaxed text-brand-700">{page.keyFacts}</p>
+            </section>
+          )}
+          <article className="prose-doc mt-2">
+            <p>{page.intro}</p>
+            {page.sections.map((s) => (
+              <ContentSection key={s.heading} section={s} />
+            ))}
+          </article>
+        </div>
+      </details>
 
       <Faq items={page.faqs} />
-
-      <RelatedTools refs={related} />
 
       <p className="mt-10 text-sm text-muted">
         Last updated {longDate(page.updated)}.{" "}
