@@ -28,7 +28,7 @@
   --color-warn: #b45309;
   --color-danger: #b42318;
 
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Helvetica Neue", Arial,
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Helvetica Neue", Arial,
     sans-serif;
   --font-mono: ui-monospace, "SF Mono", "Roboto Mono", Menlo, Consolas, monospace;
   --radius-card: 22px;
@@ -47,7 +47,7 @@ body {
 h1,
 h2,
 h3 {
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
 }
 
 /* "• ABOUT US" style section label. */
@@ -55,11 +55,8 @@ h3 {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
   color: var(--color-ink);
 }
 .eyebrow::before {

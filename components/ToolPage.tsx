@@ -53,7 +53,7 @@ export default function ToolPage({ tool, preset }: { tool: Tool; preset?: Preset
 
       {page.keyFacts && (
         <section aria-labelledby="key-facts" className="card mt-8 p-5 sm:p-6">
-          <h2 id="key-facts" className="inline-flex rounded-full bg-lime px-3 py-1 font-mono text-[0.7rem] font-semibold uppercase tracking-[0.14em]">
+          <h2 id="key-facts" className="inline-flex rounded-full bg-lime px-3 py-1 text-[0.8rem] font-semibold">
             Key facts
           </h2>
           <p className="mt-3 leading-relaxed text-brand-700">{page.keyFacts}</p>
@@ -82,7 +82,7 @@ export default function ToolPage({ tool, preset }: { tool: Tool; preset?: Preset
         <ol className="mt-5 space-y-3">
           {page.steps.map((s, i) => (
             <li key={i} className="card flex gap-4 rounded-2xl p-4">
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-ink font-mono text-sm font-bold text-lime">{i + 1}</span>
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-ink text-sm font-bold text-lime">{i + 1}</span>
               <span className="pt-1 leading-relaxed">{s}</span>
             </li>
           ))}

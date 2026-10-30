@@ -19,7 +19,7 @@ export default function SiteHeader() {
             documently<span className="text-muted">.in</span>
           </span>
         </Link>
-        <nav aria-label="Main" className="hidden items-center gap-1 font-mono text-[0.7rem] font-semibold uppercase tracking-[0.14em] sm:flex">
+        <nav aria-label="Main" className="hidden items-center gap-1 text-[0.8rem] font-semibold sm:flex">
           {nav.map(([label, href]) => (
             <Link key={href} href={href} className="rounded-full px-3 py-2 hover:bg-paper">
               {label}
@@ -28,12 +28,12 @@ export default function SiteHeader() {
         </nav>
         <Link
           href="/compress-pdf/"
-          className="inline-flex min-h-10 items-center rounded-full bg-lime px-4 font-mono text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-ink hover:bg-brand-500"
+          className="inline-flex min-h-10 items-center rounded-full bg-lime px-4 text-[0.8rem] font-semibold text-ink hover:bg-brand-500"
         >
           Compress PDF
         </Link>
       </div>
-      <nav aria-label="Main (mobile)" className="flex justify-center gap-1 border-t border-line/70 px-2 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.12em] sm:hidden">
+      <nav aria-label="Main (mobile)" className="flex justify-center gap-1 border-t border-line/70 px-2 text-[0.8rem] font-semibold sm:hidden">
         {nav.slice(0, 3).map(([label, href]) => (
           <Link key={href} href={href} className="flex min-h-10 items-center rounded-full px-4">
             {label}

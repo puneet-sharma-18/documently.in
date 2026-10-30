@@ -35,7 +35,7 @@ export function PillLink({ href, children, tone = "ink", className = "" }: PillP
   return (
     <Link
       href={href}
-      className={`group inline-flex min-h-12 items-center gap-3 rounded-full py-1.5 pl-5 pr-1.5 font-mono text-xs font-semibold uppercase tracking-[0.12em] transition ${t.pill} ${className}`}
+      className={`group inline-flex min-h-12 items-center gap-3 rounded-full py-1.5 pl-5 pr-1.5 text-sm font-semibold transition ${t.pill} ${className}`}
     >
       {children}
       <span className={`flex h-9 w-9 items-center justify-center rounded-full transition group-hover:rotate-45 ${t.dot}`}>

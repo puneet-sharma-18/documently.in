@@ -82,7 +82,7 @@ export default function Home() {
         </section>
         <div className="mt-10 grid gap-3 md:grid-cols-3">
           <div className="sky relative flex min-h-64 flex-col justify-between overflow-hidden rounded-[var(--radius-card)] p-6 text-white">
-            <p className="font-mono text-xs font-semibold uppercase tracking-[0.14em]">documently</p>
+            <p className="text-xs font-semibold">documently</p>
             <div>
               <p className="text-6xl font-semibold tracking-tight [text-shadow:0_1px_12px_rgb(0_40_100/0.35)]">{tools.length}</p>
               <p className="mt-2 max-w-[16rem] text-sm font-medium text-ink">Free PDF and photo tools, each one a single tap from the home page.</p>
@@ -142,7 +142,7 @@ export default function Home() {
                     <div className="flex flex-wrap gap-2 rounded-2xl bg-paper p-4">
                       {(p.config.items ?? []).map((i) => (
                         <span key={i.key} className="card inline-flex flex-col rounded-xl px-3 py-2 text-left">
-                          <span className="font-mono text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-muted">{i.label}</span>
+                          <span className="text-xs font-semibold text-muted">{i.label}</span>
                           <span className="mt-0.5 text-sm font-semibold">
                             {i.outWidth} × {i.outHeight} px
                           </span>
@@ -177,7 +177,7 @@ export default function Home() {
         <div className="mt-10 grid gap-3 rounded-[28px] border border-line bg-white p-3 md:grid-cols-3">
           {sizeGroups.map((g) => (
             <div key={g.label} className="flex flex-col rounded-[20px] border border-line p-5 sm:p-6">
-              <p className="flex items-center gap-2 font-mono text-[0.7rem] font-semibold uppercase tracking-[0.14em]">
+              <p className="flex items-center gap-2 text-[0.8rem] font-semibold">
                 <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-lime">
                   <ToolIcon slug={g.tool} className="h-4 w-4" />
                 </span>
@@ -201,7 +201,7 @@ export default function Home() {
               </ul>
               <Link
                 href={`/${g.tool}/`}
-                className="mt-6 inline-flex min-h-12 items-center justify-center rounded-full bg-ink font-mono text-xs font-semibold uppercase tracking-[0.12em] text-white hover:bg-brand-700"
+                className="mt-6 inline-flex min-h-12 items-center justify-center rounded-full bg-ink text-sm font-semibold text-white hover:bg-brand-700"
               >
                 {g.cta}
               </Link>
@@ -215,7 +215,7 @@ export default function Home() {
 
         {/* Closing CTA */}
         <section aria-labelledby="cta-h" className="sky relative mt-20 overflow-hidden rounded-[28px] px-6 pb-36 pt-10 text-white sm:px-12 sm:pt-14">
-          <p className="font-mono text-xs font-semibold uppercase tracking-[0.14em]">{site.trustLine}</p>
+          <p className="text-xs font-semibold">{site.trustLine}</p>
           <h2 id="cta-h" className="mt-4 max-w-xl text-[1.9rem] font-semibold leading-[1.1] sm:text-5xl">
             Your documents never leave your phone
           </h2>
@@ -255,7 +255,7 @@ function Hero() {
           <Widget className="absolute left-0 top-6 hidden w-40 -rotate-6 sm:block" label="PDF · in our tests" big="5.16 MB" sub="→ 284 KB for a 500 KB limit" />
           <Widget className="absolute left-0 top-2 w-[8.5rem] -rotate-3 sm:w-36 sm:left-[22%] sm:top-0" label="IBPS PO photo" big="200 × 230" sub="px · 20–50 KB" tick />
           <div className="relative z-10 flex h-32 w-24 flex-col justify-between rounded-2xl bg-sky-deep p-3 sm:w-48 sm:p-4 text-white shadow-[0_20px_50px_-20px_rgb(0_40_100/0.6)] ring-1 ring-white/50 sm:h-44">
-            <span className="font-mono text-[0.62rem] font-semibold uppercase tracking-[0.12em]">Uploads</span>
+            <span className="text-xs font-semibold">Uploads</span>
             <span>
               <span className="block text-4xl font-semibold tracking-tight">0</span>
               <span className="text-xs">runs in your browser</span>
@@ -264,7 +264,7 @@ function Hero() {
           <Widget className="absolute right-0 top-2 w-[8.5rem] rotate-3 sm:w-36 sm:right-[22%] sm:top-0" label="Signature" big="10–20 KB" sub="SSC CGL · IBPS PO" tick />
           <Widget className="absolute right-0 top-6 hidden w-40 rotate-6 sm:block" label="UPSC CSE" big="Triple sign" sub="20–100 KB" />
         </div>
-        <p className="relative mt-8 font-mono text-[0.6rem] font-semibold uppercase tracking-[0.08em] sm:text-[0.7rem] sm:tracking-[0.14em] text-ink/80">{site.trustLine}</p>
+        <p className="relative mt-8 text-xs font-semibold sm:text-[0.8rem] text-ink/80">{site.trustLine}</p>
       </div>
     </section>
   );
@@ -273,7 +273,7 @@ function Hero() {
 function Widget({ className, label, big, sub, tick }: { className: string; label: string; big: string; sub: string; tick?: boolean }) {
   return (
     <div className={`rounded-2xl bg-white p-3.5 shadow-[0_20px_40px_-18px_rgb(0_40_100/0.45)] ${className}`}>
-      <span className="flex items-center justify-between font-mono text-[0.58rem] font-semibold uppercase tracking-[0.1em] text-muted">
+      <span className="flex items-center justify-between text-xs font-semibold text-muted">
         {label}
         {tick && <span className="flex h-4 w-4 items-center justify-center rounded-full bg-lime text-[0.55rem] text-ink">✓</span>}
       </span>
@@ -287,7 +287,7 @@ function Badge({ children, dark }: { children: React.ReactNode; dark?: boolean }
   return (
     <span
       aria-hidden
-      className={`mx-1 inline-flex h-[0.9em] min-w-[0.9em] -translate-y-[0.05em] items-center justify-center rounded-full px-[0.22em] align-middle font-mono text-[0.42em] font-bold ${
+      className={`mx-1 inline-flex h-[0.9em] min-w-[0.9em] -translate-y-[0.05em] items-center justify-center rounded-full px-[0.22em] align-middle text-[0.42em] font-bold ${
         dark ? "bg-ink text-lime" : "bg-lime text-ink"
       }`}
     >

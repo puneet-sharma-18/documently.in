@@ -20,7 +20,7 @@ export default function SiteFooter() {
             </p>
             <a
               href={`mailto:${site.email}`}
-              className="mt-6 inline-flex min-h-11 items-center rounded-full bg-lime px-5 font-mono text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-ink hover:bg-brand-500"
+              className="mt-6 inline-flex min-h-11 items-center rounded-full bg-lime px-5 text-[0.8rem] font-semibold text-ink hover:bg-brand-500"
             >
               {site.email}
             </a>
@@ -76,7 +76,7 @@ export default function SiteFooter() {
 function FooterCol({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
-      <p className="font-mono text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-white">{title}</p>
+      <p className="text-[0.8rem] font-semibold text-white">{title}</p>
       <ul className="mt-4 space-y-2.5">{children}</ul>
     </div>
   );
